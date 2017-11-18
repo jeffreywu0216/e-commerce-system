@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './/app-routing.module';
-import {FormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule} from "@angular/common/http";
+import { MatInputModule} from "@angular/material";
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -16,6 +18,9 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { CartComponent } from './components/cart/cart.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { SellComponent } from './components/sell/sell.component';
+import { AlertComponent } from './components/alert/alert.component';
+import {AuthService} from "./services/auth.service";
+import {AlertService} from "./services/alert.service";
 
 
 @NgModule({
@@ -30,15 +35,19 @@ import { SellComponent } from './components/sell/sell.component';
     HomepageComponent,
     CartComponent,
     BuyComponent,
-    SellComponent
+    SellComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
