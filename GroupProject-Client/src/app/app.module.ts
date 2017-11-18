@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './/app-routing.module';
 import { FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
-import { MatInputModule} from "@angular/material";
+import {MatInputModule, MatTabsModule} from "@angular/material";
 import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { SellComponent } from './components/sell/sell.component';
 import { AlertComponent } from './components/alert/alert.component';
 import {AuthService} from "./services/auth.service";
 import {AlertService} from "./services/alert.service";
+import {AuthGuard} from "./guards/auth.guard";
 
 
 @NgModule({
@@ -44,10 +45,11 @@ import {AlertService} from "./services/alert.service";
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatTabsModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [AuthService, AlertService],
+  providers: [AuthService, AlertService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
