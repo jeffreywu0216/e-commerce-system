@@ -1,3 +1,21 @@
-<p>
-  sell works!
-</p>
+<div class="container">
+  <h2>Sell Item</h2>
+  price: number;
+  productName: string;
+  description: string;
+  <address>
+    <strong>Product Name:</strong><br>
+    <input type="text" name="productName" [(ngModel)]="productName">
+  </address>
+  <address>
+    <strong>Price:</strong><br>
+    <input type="text" name="price" [(ngModel)]="price">
+  </address>
+  <address>
+    <strong>Description:</strong><br>
+    <input type="text" name="description" [(ngModel)]="description">
+  </address>
+  <div class="row">
+    <button type="submit" class="btn btn-default" (click)="submit()">Submit</button>
+  </div>
+</div>

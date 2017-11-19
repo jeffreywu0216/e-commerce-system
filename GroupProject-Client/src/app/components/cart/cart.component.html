@@ -1,3 +1,30 @@
-<p>
-  cart works!
-</p>
+
+<div class="container">
+  <h2>Cart</h2>
+  <br/>
+  <div class="container">
+    <button type="button" class="btn btn-default" (click)="buyItem()">Place Order</button>
+  </div>
+  <br/>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Price</th>
+      <th>Product</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td>${{item.price}}</td>
+      <td>{{item.productName}}</td>
+      <td>{{item.description}}</td>
+      <td><button type="button" class="btn btn-default" (click)="removeItemFromCart(item.itemId)">Cancel</button></td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="container">
+    <button type="button" class="btn btn-default" (click)="buyItem()">Place Order</button>
+  </div>
+</div>

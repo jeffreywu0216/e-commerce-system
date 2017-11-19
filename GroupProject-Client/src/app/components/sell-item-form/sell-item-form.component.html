@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Your Items</h2>
+  <br/>
+  <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default" (click)="findOwn()">All Items</button>
+    <button type="button" class="btn btn-default" (click)="findOwnPending()">All Sold Items</button>
+    <button type="button" class="btn btn-default" (click)="findOwnResolved()">All Unsold Items</button>
+  </div>
+  <table class="table table-hover">
+    <thead>
+    <!--price: number;-->
+    <!--productName: string;-->
+    <!--status: number;-->
+    <!--time: Date;-->
+    <tr>
+      <th>Product Name:</th>
+      <th>Price:</th>
+      <!--<th *ngIf="auth.getEmployee().title === 'Manager'">Resolved By:</th>-->
+      <th>Date:</th>
+      <th>Status:</th>
+      <!--if for sell allow to cancel, if sold allow to view buyer-->
+      <!--<th *ngIf="auth.getEmployee().title === 'Manager'">Action:</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let reimbursement of reimbursements">
+      <td>{{reimbursement.amount}}</td>
+      <td>{{getTypes(reimbursement.reimbType)}}</td>
+      <td>{{reimbursement.reason}}</td>
+      <td>{{getStatus(reimbursement.reimbStatus)}}</td>
+
+      <!--<td *ngIf="auth.getEmployee().title === 'Manager' && reimbursement.reimbStatus === 1">-->
+        <!--<button type="button" class="btn btn-default" (click)="approve(reimbursement.reimbursementId)">Approve</button>-->
+        <!--<button type="button" class="btn btn-default" (click)="deny(reimbursement.reimbursementId)">Deny</button>-->
+      <!--</td>-->
+    </tr>
+    </tbody>
+  </table>
+</div>

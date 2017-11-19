@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ItemService} from "../../services/item.service";
 
 @Component({
   selector: 'app-cart',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(private itemService: ItemService) {
+  }
 
   ngOnInit() {
   }
 
+  // call strip api, and after success link to database
+  buyItem(userId: number) {
+    // this.itemService.buyItem()
+    //   .subscribe(() => {
+    //   }, error => {
+    //     console.log(error);
+    //   });
+  }
+  removeItemFromCart(itemId: number) {
+    this.itemService.removeItemFromCart(itemId)
+      .subscribe(() => {
+      }, error => {
+        console.log(error);
+      });
+  }
 }
