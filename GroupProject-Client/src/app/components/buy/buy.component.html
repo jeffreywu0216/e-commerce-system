@@ -1,3 +1,70 @@
-<p>
-  buy works!
-</p>
+
+<!--<div class="container">-->
+  <!--<h2>Items</h2>-->
+  <!--<br/>-->
+  <!--<table class="table table-hover">-->
+    <!--<thead>-->
+    <!--<tr>-->
+      <!--<th>Price</th>-->
+      <!--<th>Product</th>-->
+      <!--<th>Description</th>-->
+      <!--<th>Time Posted</th>-->
+      <!--<th></th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr *ngFor="let item of items">-->
+      <!--<td>${{item.price}}</td>-->
+      <!--<td>{{item.productName}}</td>-->
+      <!--<td>{{item.description}}</td>-->
+      <!--<td>{{item.time}}</td>-->
+      <!--<td><button type="button" class="btn btn-default" (click)="addItemtoCart(item.itemId)">Add To Cart</button></td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<!--</div>-->
+<div class="container">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.productName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.time}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button class="btn btn-info" (click)="addItemToCart(row.itemId)">Add To Cart</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
