@@ -16,8 +16,8 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { CartComponent } from './components/cart/cart.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { SellComponent } from './components/sell/sell.component';
-
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +36,10 @@ import { SellComponent } from './components/sell/sell.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
