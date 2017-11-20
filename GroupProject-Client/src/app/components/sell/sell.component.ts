@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ItemService} from "../../services/item.service";
 
 @Component({
   selector: 'app-sell',
@@ -9,9 +10,12 @@ export class SellComponent implements OnInit {
   price: number;
   productName: string;
   description: string;
-  constructor() { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
   }
-  submit() {}
+  submitNewSellItem() {
+    this.itemService.submitNewSellItem(this.price, this.productName, this.description)
+      .subscribe(() => alert("Success!"), err => alert(err));
+  }
 }

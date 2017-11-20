@@ -17,7 +17,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { SellComponent } from './components/sell/sell.component';
 import {ItemService} from "./services/item.service";
-import { SellItemFormComponent } from './components/sell-item-form/sell-item-form.component';
 import {MatTableModule} from '@angular/material/table';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
@@ -30,6 +29,7 @@ import {
   MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
+import { UserItemComponent } from './components/user-item/user-item.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import {CdkTableModule} from "@angular/cdk/table";
     CartComponent,
     BuyComponent,
     SellComponent,
-    SellItemFormComponent
+    UserItemComponent
   ],
   imports: [
     BrowserModule,

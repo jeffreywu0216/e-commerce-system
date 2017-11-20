@@ -11,7 +11,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 export class BuyComponent implements OnInit {
   items: Item[] = [];
 
-  displayedColumns = ['productName', 'description', 'price', 'date'];
+  displayedColumns = ['productName', 'description', 'price', 'time', 'action'];
   dataSource: MatTableDataSource<Item>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -42,15 +42,13 @@ export class BuyComponent implements OnInit {
       }
     ];
     this.dataSource = new MatTableDataSource(this.items);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
   ngOnInit() {
   }
-  // ngAfterViewInit() {
-  //   this.dataSource.paginator = this.paginator;
-  //   this.dataSource.sort = this.sort;
-  // }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -59,12 +57,13 @@ export class BuyComponent implements OnInit {
   }
   getAllSellingItems(): void {
 
-    // this.itemService.getAllSellingItems()
-    //   .subscribe( items => {
-    //     this.items = items;
-    //   }, error => {
-    //     console.log(error);
-    //   });
+    this.itemService.getAllSellingItems()
+      .subscribe( items => {
+        this.items = items;
+        this.dataSource = new MatTableDataSource(this.items);
+      }, error => {
+        console.log(error);
+      });
   }
   addItemToCart(itemId: number) {
     this.itemService.addItemToCart(itemId)

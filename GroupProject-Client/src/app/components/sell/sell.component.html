@@ -1,21 +1,40 @@
+<!--<div class="container">-->
+  <!--<h2>Sell Item</h2>-->
+  <!--price: number;-->
+  <!--productName: string;-->
+  <!--description: string;-->
+  <!--<address>-->
+    <!--<strong>Product Name:</strong><br>-->
+    <!--<input type="text" name="productName" [(ngModel)]="productName">-->
+  <!--</address>-->
+  <!--<address>-->
+    <!--<strong>Price:</strong><br>-->
+    <!--<input type="text" name="price" [(ngModel)]="price">-->
+  <!--</address>-->
+  <!--<address>-->
+    <!--<strong>Description:</strong><br>-->
+    <!--<input type="text" name="description" [(ngModel)]="description">-->
+  <!--</address>-->
+  <!--<div class="row">-->
+    <!--<button type="submit" class="btn btn-default" (click)="submit()">Submit</button>-->
+  <!--</div>-->
+<!--</div>-->
 <div class="container">
-  <h2>Sell Item</h2>
-  price: number;
-  productName: string;
-  description: string;
-  <address>
-    <strong>Product Name:</strong><br>
-    <input type="text" name="productName" [(ngModel)]="productName">
-  </address>
-  <address>
-    <strong>Price:</strong><br>
-    <input type="text" name="price" [(ngModel)]="price">
-  </address>
-  <address>
-    <strong>Description:</strong><br>
-    <input type="text" name="description" [(ngModel)]="description">
-  </address>
-  <div class="row">
-    <button type="submit" class="btn btn-default" (click)="submit()">Submit</button>
+  <div class="example-container col-sm-6">
+    <mat-form-field>
+      <input matInput placeholder="Product Name" [(ngModel)]="productName">
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
+                matAutosizeMaxRows="5" [(ngModel)]="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Amount" type="number" class="example-right-align" [(ngModel)]="price">
+    </mat-form-field>
+    <div class="button-row">
+      <button mat-raised-button (click)="submitNewSellItem()">Submit</button>
+    </div>
   </div>
 </div>

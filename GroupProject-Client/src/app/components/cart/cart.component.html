@@ -1,30 +1,66 @@
 
+<!--<div class="container">-->
+  <!--<h2>Cart</h2>-->
+  <!--<br/>-->
+  <!--<div class="container">-->
+    <!--<button type="button" class="btn btn-default" (click)="buyItem()">Place Order</button>-->
+  <!--</div>-->
+  <!--<br/>-->
+  <!--<table class="table table-hover">-->
+    <!--<thead>-->
+    <!--<tr>-->
+      <!--<th>Price</th>-->
+      <!--<th>Product</th>-->
+      <!--<th>Description</th>-->
+      <!--<th></th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr *ngFor="let item of items">-->
+      <!--<td>${{item.price}}</td>-->
+      <!--<td>{{item.productName}}</td>-->
+      <!--<td>{{item.description}}</td>-->
+      <!--<td><button type="button" class="btn btn-default" (click)="removeItemFromCart(item.itemId)">Cancel</button></td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+  <!--<div class="container">-->
+    <!--<button type="button" class="btn btn-default" (click)="buyItem()">Place Order</button>-->
+  <!--</div>-->
+<!--</div>-->
 <div class="container">
-  <h2>Cart</h2>
-  <br/>
-  <div class="container">
-    <button type="button" class="btn btn-default" (click)="buyItem()">Place Order</button>
-  </div>
-  <br/>
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th>Price</th>
-      <th>Product</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of items">
-      <td>${{item.price}}</td>
-      <td>{{item.productName}}</td>
-      <td>{{item.description}}</td>
-      <td><button type="button" class="btn btn-default" (click)="removeItemFromCart(item.itemId)">Cancel</button></td>
-    </tr>
-    </tbody>
-  </table>
-  <div class="container">
-    <button type="button" class="btn btn-default" (click)="buyItem()">Place Order</button>
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.productName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button class="btn btn-danger" (click)="removeItemFromCart(row.itemId)">Remove From Cart</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <button mat-raised-button color="primary" style="float: right;">Place Order</button>
+
   </div>
 </div>
