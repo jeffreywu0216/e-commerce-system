@@ -1,0 +1,93 @@
+<!--<div class="container">-->
+  <!--<h2>Your Items</h2>-->
+  <!--<br/>-->
+  <!--<div class="btn-group" role="group" aria-label="...">-->
+    <!--<button type="button" class="btn btn-default" (click)="findOwn()">All Items</button>-->
+    <!--<button type="button" class="btn btn-default" (click)="findOwnPending()">All Sold Items</button>-->
+    <!--<button type="button" class="btn btn-default" (click)="findOwnResolved()">All Unsold Items</button>-->
+  <!--</div>-->
+  <!--<table class="table table-hover">-->
+    <!--<thead>-->
+    <!--&lt;!&ndash;price: number;&ndash;&gt;-->
+    <!--&lt;!&ndash;productName: string;&ndash;&gt;-->
+    <!--&lt;!&ndash;status: number;&ndash;&gt;-->
+    <!--&lt;!&ndash;time: Date;&ndash;&gt;-->
+    <!--<tr>-->
+      <!--<th>Product Name:</th>-->
+      <!--<th>Price:</th>-->
+      <!--&lt;!&ndash;<th *ngIf="auth.getEmployee().title === 'Manager'">Resolved By:</th>&ndash;&gt;-->
+      <!--<th>Date:</th>-->
+      <!--<th>Status:</th>-->
+      <!--&lt;!&ndash;if for sell allow to cancel, if sold allow to view buyer&ndash;&gt;-->
+      <!--&lt;!&ndash;<th *ngIf="auth.getEmployee().title === 'Manager'">Action:</th>&ndash;&gt;-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr *ngFor="let reimbursement of reimbursements">-->
+      <!--<td>{{reimbursement.amount}}</td>-->
+      <!--<td>{{getTypes(reimbursement.reimbType)}}</td>-->
+      <!--<td>{{reimbursement.reason}}</td>-->
+      <!--<td>{{getStatus(reimbursement.reimbStatus)}}</td>-->
+
+      <!--&lt;!&ndash;<td *ngIf="auth.getEmployee().title === 'Manager' && reimbursement.reimbStatus === 1">&ndash;&gt;-->
+      <!--&lt;!&ndash;<button type="button" class="btn btn-default" (click)="approve(reimbursement.reimbursementId)">Approve</button>&ndash;&gt;-->
+      <!--&lt;!&ndash;<button type="button" class="btn btn-default" (click)="deny(reimbursement.reimbursementId)">Deny</button>&ndash;&gt;-->
+      <!--&lt;!&ndash;</td>&ndash;&gt;-->
+    <!--</tr>-->
+    <!--</tbody>-->
+  <!--</table>-->
+<!--</div>-->
+<div class="container">
+  <mat-form-field>
+    <mat-select [(value)]="selected">
+      <mat-option>None</mat-option>
+      <mat-option value="option1" (onSelectionChange)="getAllItem()">View All Items</mat-option>
+      <mat-option value="option2" (onSelectionChange)="getAllSellItem()">View All Selling</mat-option>
+      <mat-option value="option3" (onSelectionChange)="getAllSoldItem()">View All Sold</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.productName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.time}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button *ngIf="row.status == 1" class="btn btn-danger" (click)="cancelItem(row.itemId)">Cancel Item</button>
+          <button *ngIf="row.status == 2" class="btn btn-info" (click)="viewBuyer(row.itemId)">View Buyer</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
