@@ -9,8 +9,6 @@ export class UserModel {
         private ccard:string,
         private address: Address
       ) {  }
-
-      getUser(){}
 }
 interface Address{
     street:string;

@@ -22,6 +22,14 @@
               <label for="city">City: </label><br>
               <input type="text" [(ngModel)] ="userModel.address.city" name="name" required>
             </div>
+            <div [formGroup]="parts">
+              <input class="area" formControlName="area" size="3">
+              <span>&ndash;</span>
+              <input class="exchange" formControlName="exchange" size="3">
+              <span>&ndash;</span>
+              <input class="subscriber" formControlName="subscriber" size="4">
+            </div>
+            
             <div>
                 <label for="state">State: </label><br>
                 <input type="text" [(ngModel)] ="userModel.address.state" name="name" required>
