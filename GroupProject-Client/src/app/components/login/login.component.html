@@ -1,3 +1,23 @@
-<p>
-  login works!
-</p>
+<div style="text-align: center">
+  <h1>Nozama</h1>
+</div>
+
+<div class="col-md-6 col-md-offset-3">
+
+  <h2>Login</h2>
+  <app-alert></app-alert>
+  <form class="form" name="loginForm" (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm" novalidate>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Email" [formControl]="emailControl" [errorStateMatcher]="matcher" name="email" [(ngModel)]="model.username" required>
+      <mat-error *ngIf="emailControl.hasError('email') && !emailControl.hasError('required')">Please Enter a valid Email Address</mat-error>
+      <mat-error *ngIf="emailControl.hasError('required')">Email is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input matInput type="password" placeholder="Password" [formControl]="passwordControl" name="password" [(ngModel)]="model.password" required>
+      <mat-error *ngIf="passwordControl.hasError('required')">Password is <strong>required</strong></mat-error>
+    </mat-form-field>
+    <div>
+      <button class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</div>
