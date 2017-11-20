@@ -1,3 +1,49 @@
-<p>
-  signup works!
-</p>
+<div class="container">
+  <h1>Sign Up</h1>
+  <form>
+    <div>
+      <div>
+      <label for="name">Name: </label><br>
+      <input type="text" [(ngModel)] ="userModel.name" name="name" required>
+    </div>
+    <div>
+        <label for="age">Age: </label><br>
+        <input type="number" [(ngModel)] ="userModel.age" name="name" required>
+      </div>
+      <div>
+          <label for="email">Email: </label><br>
+          <input type="text" [(ngModel)] ="userModel.email" name="name" required>
+        </div>
+        <div>
+            <label for="street">Street: </label><br>
+            <input type="text" [(ngModel)] ="userModel.address.street" name="name" required>
+          </div>
+          <div>
+              <label for="city">City: </label><br>
+              <input type="text" [(ngModel)] ="userModel.address.city" name="name" required>
+            </div>
+            <div [formGroup]="parts">
+              <input class="area" formControlName="area" size="3">
+              <span>&ndash;</span>
+              <input class="exchange" formControlName="exchange" size="3">
+              <span>&ndash;</span>
+              <input class="subscriber" formControlName="subscriber" size="4">
+            </div>
+            
+            <div>
+                <label for="state">State: </label><br>
+                <input type="text" [(ngModel)] ="userModel.address.state" name="name" required>
+            </div>
+            <div>
+                <label for="phone">Phone: </label><br>
+                <input type="text" [(ngModel)] ="userModel.phone" name="name" required>
+            </div>
+            <div>
+                <label for="ccard">Credit Card: </label><br>
+                <input type="text" [(ngModel)] ="userModel.ccard" name="name" required>
+            </div>
+            <br>
+            <button type="submit" class ="btn btn-success" (click)="onSubmit">Submit</button>
+    </div>
+  </form>
+</div>

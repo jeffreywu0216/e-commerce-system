@@ -5,4 +5,6 @@ export class UserService {
 
   constructor() { }
 
+  getUser(id:number){}
+  getAllUsers(){}
 }
