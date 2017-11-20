@@ -16,8 +16,12 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { CartComponent } from './components/cart/cart.component';
 import { BuyComponent } from './components/buy/buy.component';
 import { SellComponent } from './components/sell/sell.component';
+import { AlertComponent } from './components/alert/alert.component';
+import {AuthService} from "./services/auth.service";
+import {AlertService} from "./services/alert.service";
+import {AuthGuard} from "./guards/auth.guard";
+
 import {ItemService} from "./services/item.service";
-import {MatTableModule} from '@angular/material/table';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule,
@@ -25,7 +29,7 @@ import {
   MatListModule, MatMenuModule,
   MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
   MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
-  MatSortModule,
+  MatSortModule,MatTableModule,
   MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
@@ -44,6 +48,7 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     CartComponent,
     BuyComponent,
     SellComponent,
+    AlertComponent,
     UserItemComponent
   ],
   imports: [
@@ -87,7 +92,10 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     MatNativeDateModule,
     ReactiveFormsModule
   ],
-  providers: [
+    providers: [
+    AuthService, 
+    AlertService, 
+    AuthGuard,
     ItemService
   ],
   bootstrap: [AppComponent]

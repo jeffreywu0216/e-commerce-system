@@ -1,3 +1,24 @@
-<p>
-  nav works!
-</p>
+<nav mat-tab-nav-bar>
+  <img src="https://images-na.ssl-images-amazon.com/images/G/01/gc/designs/livepreview/a_generic_white_10_us_noto_email_v2016_us-main._CB277146614_.png" height="42">
+  <a mat-tab-link
+     *ngFor="let link of navlinks"
+     [routerLink]="link.path"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive"
+  >
+    {{link.label}}
+  </a>
+
+  <a mat-tab-link *ngIf="manager" [routerLink]="alluser"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">All User</a>
+
+  <a mat-tab-link
+  *ngFor="let link of navlinks2"
+  [routerLink]="link.path"
+  routerLinkActive #rla="routerLinkActive"
+  [active]="rla.isActive"
+  >
+  {{link.label}}
+  </a>
+</nav>
