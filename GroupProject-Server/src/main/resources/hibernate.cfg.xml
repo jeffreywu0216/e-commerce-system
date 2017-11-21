@@ -7,9 +7,9 @@
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
 
         <!--August's Account-->
-        <property name="hibernate.connection.username">ajduet</property>
-        <property name="hibernate.connection.password">passw0rd</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@oct23java.cy0du1iivwoh.us-east-1.rds.amazonaws.com:1521:ORCL</property>
+        <property name="hibernate.connection.username">project2</property>
+        <property name="hibernate.connection.password">12345678</property>
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@project2instance.cfjtzhf9yzbt.us-east-2.rds.amazonaws.com,:1521:ORCL</property>
 
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
         <property name="hibernate.show_sql">true</property>
