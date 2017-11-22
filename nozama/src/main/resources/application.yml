@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    username: project2
+    password: 12345678
+    url: jdbc:oracle:thin:@project2instance.cfjtzhf9yzbt.us-east-2.rds.amazonaws.com:1521:ORCL
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
