@@ -37,15 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.auth.login(this.model.username, this.model.password).subscribe(
-      resp => {
-        localStorage.setItem('currentUser', JSON.stringify((resp)));
-        this.router.navigate(['home']);
-      },
-      error => {
-        console.log('login fail');
-        this.alertService.error("Invalid Username or Password");
-      }
-    );
+    this.auth.login(this.model.username, this.model.password);
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-nav',
@@ -6,14 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  manager = true;
-  navlinks = [{path: 'buy', label: 'Buy'}, {path: 'sell', label: 'Sell'},
-    {path: 'profile', label: 'Profile'}];
-  navlinks2 = [{path: 'cart', label: 'Cart'},
-    {path: 'logout', label: 'Logout'}];
-  constructor() { }
+  isManager: boolean;
+  isLoggedIn: boolean;
+  navlinks = [{path: 'buy', label: 'Buy'}, {path: 'sell', label: 'Sell'}];
+  constructor(private login: AuthService) { }
 
   ngOnInit() {
+    // this.isLoggedIn = this.login.userlogin;
+    this.isLoggedIn = false;
+    this.isManager = true;
+    // this.isManager = this.login.isAdmin;
   }
 
 }
