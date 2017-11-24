@@ -6,13 +6,13 @@ import {AlertService} from "./alert.service";
 
 @Injectable()
 export class AuthService {
-  loginURL = 'http://localhost:8090/nozama/login';
+  loginURL = 'http://localhost:8080/user/login';
   userlogin = false;
   isAdmin = false;
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) { }
   login(username: string, password: string) {
     const url = `${this.loginURL}`;
-    return this.http.post(url, JSON.stringify({username: username, password: password})).subscribe(
+    return this.http.post(url, {email: username, password: password}).subscribe(
       resp => {
         localStorage.setItem('currentUser', JSON.stringify(resp));
         this.userlogin = true;
