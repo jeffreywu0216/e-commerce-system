@@ -17,8 +17,8 @@
   <span style="flex: auto;"></span>
 
   <mat-menu #appMenu="matMenu">
-    <button mat-menu-item routerLink="profile"> Profile </button>
-    <button mat-menu-item routerLink="history"> History </button>
+    <button *ngIf="isLoggedIn" mat-menu-item routerLink="profile"> Profile </button>
+    <button *ngIf="isLoggedIn" mat-menu-item routerLink="history"> History </button>
     <button *ngIf="!isLoggedIn" routerLink="login" mat-menu-item> Login </button>
     <button *ngIf="isLoggedIn" routerLink="logout" mat-menu-item> Logout </button>
   </mat-menu>
@@ -27,7 +27,7 @@
     <mat-icon>person</mat-icon>
   </button>
 
-  <a mat-button routerLink="cart"><mat-icon>shopping-cart</mat-icon></a>
+  <a *ngIf="isLoggedIn" mat-button routerLink="cart"><mat-icon>shopping-cart</mat-icon></a>
 </mat-toolbar>
 
 <!--<nav mat-tab-nav-bar>-->

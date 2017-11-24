@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AlertService} from "./alert.service";
+import {User} from "../models/user";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
       resp => {
         localStorage.setItem('currentUser', JSON.stringify(resp));
         this.userlogin = true;
-        if (localStorage.getItem("title") === 'Admin') {
+        if (resp["userrole"] === 'admin') {
           this.isAdmin = true;
         }
         this.router.navigate(['homepage']);
