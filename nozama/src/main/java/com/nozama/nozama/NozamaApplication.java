@@ -1,5 +1,7 @@
 package com.nozama.nozama;
 
+import com.nozama.nozama.dao.UserDao;
+import com.nozama.nozama.domain.User;
 import com.nozama.nozama.controller.ItemController;
 import com.nozama.nozama.controller.ShoppingCartController;
 import com.nozama.nozama.domain.ShoppingCart;
@@ -22,11 +24,11 @@ public class NozamaApplication {
 		this.itemService = itemService;
 		this.shoppingCartService = shoppingCartService;
 	}
-
+  
 	public static void main(String[] args) {
 		SpringApplication.run(NozamaApplication.class, args);
 	}
-
+  
 	@Bean
 	public CommandLineRunner runner() {
 		return args -> {

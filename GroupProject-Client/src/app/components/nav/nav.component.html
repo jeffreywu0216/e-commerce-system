@@ -1,24 +1,66 @@
-<nav mat-tab-nav-bar>
+<!--<mat-toolbar color="primary">-->
+  <!--<img src="https://images-na.ssl-images-amazon.com/images/G/01/gc/designs/livepreview/a_generic_white_10_us_noto_email_v2016_us-main._CB277146614_.png" height="42">-->
+
+  <!--<span style="flex: 1 1 auto;"></span>-->
+
+  <!--<div class="far-end">-->
+    <!--<span class="space-reducer">Line1</span>-->
+    <!--<span class="space-reducer">Line2</span>-->
+    <!--<span class="space-reducer">Line3</span>-->
+  <!--</div>-->
+<!--</mat-toolbar>-->
+<mat-toolbar>
   <img src="https://images-na.ssl-images-amazon.com/images/G/01/gc/designs/livepreview/a_generic_white_10_us_noto_email_v2016_us-main._CB277146614_.png" height="42">
-  <a mat-tab-link
-     *ngFor="let link of navlinks"
-     [routerLink]="link.path"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive"
-  >
-    {{link.label}}
-  </a>
+  <a mat-button routerLink="buy">Buy</a>
+  <a mat-button routerLink="sell">Sell</a>
+  <a mat-button *ngIf="isManager" routerLink="admin">All User</a>
+  <span style="flex: auto;"></span>
 
-  <a mat-tab-link *ngIf="manager" [routerLink]="alluser"
-     routerLinkActive #rla="routerLinkActive"
-     [active]="rla.isActive">All User</a>
+  <mat-menu #appMenu="matMenu">
+    <button *ngIf="isLoggedIn" mat-menu-item routerLink="profile"> Profile </button>
+    <button *ngIf="isLoggedIn" mat-menu-item routerLink="history"> History </button>
+    <button *ngIf="!isLoggedIn" routerLink="login" mat-menu-item> Login </button>
+    <button *ngIf="isLoggedIn" routerLink="logout" mat-menu-item> Logout </button>
+  </mat-menu>
 
-  <a mat-tab-link
-  *ngFor="let link of navlinks2"
-  [routerLink]="link.path"
-  routerLinkActive #rla="routerLinkActive"
-  [active]="rla.isActive"
-  >
-  {{link.label}}
-  </a>
-</nav>
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>person</mat-icon>
+  </button>
+
+  <a *ngIf="isLoggedIn" mat-button routerLink="cart"><mat-icon>shopping-cart</mat-icon></a>
+</mat-toolbar>
+
+<!--<nav mat-tab-nav-bar>-->
+
+  <!--<img src="https://images-na.ssl-images-amazon.com/images/G/01/gc/designs/livepreview/a_generic_white_10_us_noto_email_v2016_us-main._CB277146614_.png" height="42">-->
+    <!--<a mat-tab-link-->
+     <!--*ngFor="let link of navlinks"-->
+     <!--[routerLink]="link.path"-->
+     <!--routerLinkActive #rla="routerLinkActive"-->
+     <!--[active]="rla.isActive"-->
+  <!--&gt;-->
+    <!--{{link.label}}-->
+  <!--</a>-->
+
+  <!--<a mat-tab-link *ngIf="isManager" [routerLink]="alluser"-->
+     <!--routerLinkActive #rla="routerLinkActive"-->
+     <!--[active]="rla.isActive">All User</a>-->
+
+  <!--<mat-menu #appMenu="matMenu">-->
+    <!--<a mat-tab-link [routerLink]="profile">Profile</a>-->
+    <!--<a mat-tab-link [routerLink]="sell">All Selling</a>-->
+    <!--<a mat-tab-link [routerLink]="buy">All Buying</a>-->
+    <!--<a mat-tab-link [routerLink]="cart">My Cart</a>-->
+    <!--&lt;!&ndash;<a mat-tab-link [routerLink]="login">Login</a>&ndash;&gt;-->
+    <!--<a *ngIf="isLoggedIn" mat-tab-link [routerLink]="logout">Logout</a>-->
+  <!--</mat-menu>-->
+
+    <!--<a mat-tab-link [routerLink]="cart"-->
+       <!--routerLinkActive #rla2="routerLinkActive"-->
+       <!--[active]="rla2.isActive">Cart</a>-->
+  <!--<a mat-tab-link [matMenuTriggerFor]="appMenu">-->
+    <!--Profile-->
+  <!--</a>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash;<router-outlet></router-outlet>&ndash;&gt;-->
