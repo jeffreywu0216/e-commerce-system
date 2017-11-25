@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ItemService} from "../../services/item.service";
 import {MatTableDataSource, MatSort} from '@angular/material';
 import {Item} from "../../models/item";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-cart',
@@ -13,7 +14,8 @@ export class CartComponent implements OnInit {
 
   displayedColumns = ['productName', 'description', 'price', 'action'];
   dataSource: MatTableDataSource<Item>;
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService,
+              private cartService: CartService) {
     // this.getAllCartByBuyerId();
     this.dataSource = new MatTableDataSource(this.items);
   }
@@ -31,7 +33,7 @@ export class CartComponent implements OnInit {
     //   });
   }
   removeItemFromCart(itemId: number) {
-    this.itemService.removeItemFromCart(itemId)
+    this.cartService.removeItemFromCart(itemId)
       .subscribe(() => {
       }, error => {
         console.log(error);
