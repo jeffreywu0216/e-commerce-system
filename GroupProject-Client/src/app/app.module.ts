@@ -34,7 +34,8 @@ import {
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
 import { UserItemComponent } from './components/user-item/user-item.component';
-  
+import {CartService} from "./services/cart.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,10 +95,11 @@ import { UserItemComponent } from './components/user-item/user-item.component';
     ReactiveFormsModule
   ],
     providers: [
-    AuthService, 
-    AlertService, 
+    AuthService,
+    AlertService,
     AuthGuard,
-    ItemService
+    ItemService,
+    CartService
   ],
   bootstrap: [AppComponent]
 })
