@@ -34,7 +34,7 @@ public class ItemService {
     }
 
     public List<Item> findBySellerIdAAndStatusId(Integer sellerId, Integer statusId) {
-        return dao.findBySellerIdAAndStatusId(sellerId, statusId);
+        return dao.findBySellerIdAndStatusId(sellerId, statusId);
     }
 
     public List<Item> findByBuyerId(Integer buyerId) {

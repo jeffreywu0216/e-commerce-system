@@ -53,7 +53,7 @@ public class UserController {
 
     @PostMapping(path="/profile", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType
             .APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> findProfileByEmail (@RequestBody User user, HttpServletResponse resp) {
+    public ResponseEntity<User> findProfileById (@RequestBody User user, HttpServletResponse resp) {
         ObjectMapper mapper = new ObjectMapper();
         String ret = null;
         User user1 = userService.getUserById(user.getId());

@@ -31,7 +31,7 @@ public class ShoppingCart {
         this.buyerId = buyerId;
     }
 
-    @Column
+//    @Column
     @ManyToOne
     @JoinColumn(name = "ITEMID", referencedColumnName = "ITEMID")
     public Item getItemId() {

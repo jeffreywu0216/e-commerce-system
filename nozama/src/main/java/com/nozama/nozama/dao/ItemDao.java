@@ -12,7 +12,7 @@ public interface ItemDao extends JpaRepository<Item, Integer> {
     List<Item> findByStatusId(Integer statusId);
     List<Item> findByDescriptionContaining (String s);
     List<Item> findBySellerId(Integer sellerId);
-    List<Item> findBySellerIdAAndStatusId(Integer sellerId, Integer statusId);
+    List<Item> findBySellerIdAndStatusId(Integer sellerId, Integer statusId);
     List<Item> findByBuyerId(Integer buyerId);
     void deleteByItemId(Integer id);
 

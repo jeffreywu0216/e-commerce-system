@@ -10,6 +10,7 @@ export class AuthService {
   loginURL = 'http://localhost:8080/user';
   userlogin = false;
   isAdmin = false;
+  id: number;
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) { }
   login(username: string, password: string) {
     const url = `${this.loginURL}/login`;
@@ -17,6 +18,8 @@ export class AuthService {
       resp => {
         localStorage.setItem('currentUser', JSON.stringify(resp));
         this.userlogin = true;
+        this.id = resp["id"];
+        console.log(this.id);
         console.log(localStorage.getItem('currentUser'));
         if (resp["userrole"] === 'admin') {
           this.isAdmin = true;

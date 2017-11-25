@@ -27,7 +27,7 @@ public class Item {
         this.itemId = itemId;
     }
 
-    @Column
+//    @Column
     @ManyToOne
     @JoinColumn(name = "SELLERID", referencedColumnName = "USERID")
     public User getSellerId() {
@@ -38,7 +38,7 @@ public class Item {
         this.sellerId = sellerId;
     }
 
-    @Column
+//    @Column
     @ManyToOne
     @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
     public User getBuyerId() {
@@ -90,7 +90,7 @@ public class Item {
     }
 
 
-    @Column
+//    @Column
     @ManyToOne
     @JoinColumn(name = "STATUSID", referencedColumnName = "STATUSID")
     public ItemStatus getStatusId() {

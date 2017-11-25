@@ -33,7 +33,7 @@ export class ItemService {
     return this.http.get<Item[]>(`http://localhost:8080/items/buyer/bought/${buyerId}`);
   }
   submitNewSellItem  (price: number, productName: string, description: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/items/item/new/${this.auth.getUser.id}`,
+    return this.http.post(`http://localhost:8080/items/item/new/${this.auth.id}`,
       JSON.stringify({
         price: price,
         productName: productName,
