@@ -2,7 +2,7 @@ export class UserModel {
     constructor(
         private id:number,
         private name:string,
-        private age:number,
+        private dob:Date,
         private email:string,
         private password:string,
         private phone:string,

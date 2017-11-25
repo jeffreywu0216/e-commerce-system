@@ -34,7 +34,7 @@ import {
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
 import { UserItemComponent } from './components/user-item/user-item.component';
-
+  
 @NgModule({
   declarations: [
     AppComponent,
