@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {Item} from "../../models/item";
 import {ItemService} from "../../services/item.service";
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-buy',
@@ -17,7 +18,8 @@ export class BuyComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private itemService: ItemService) {
+  constructor(private itemService: ItemService,
+              private cartService: CartService) {
     // this.getAllSellingItems();
     this.items = [
       {
@@ -65,15 +67,15 @@ export class BuyComponent implements OnInit {
         console.log(error);
       });
   }
-  addItemToCart(itemId: number) {
-    this.itemService.addItemToCart(itemId)
+  addItemToCart(item: Item) {
+    this.cartService.addItemToCart(item)
       .subscribe(() => {
-        for (let i = 0; i < this.items.length; i++) {
-          if (this.items[i].itemId === itemId) {
-            alert(`Added ${this.items[i].productName} to Cart`);
-            break;
-          }
-        }
+        // for (let i = 0; i < this.items.length; i++) {
+        //   if (this.items[i].itemId === itemId) {
+        //     alert(`Added ${this.items[i].productName} to Cart`);
+        //     break;
+        //   }
+        // }
       }, error => {
         console.log(error);
       });

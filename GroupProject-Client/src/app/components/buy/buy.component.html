@@ -57,7 +57,7 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button class="btn btn-info" (click)="addItemToCart(row.itemId)">Add To Cart</button>
+          <button class="btn btn-info" (click)="addItemToCart(row)">Add To Cart</button>
         </mat-cell>
       </ng-container>
 
