@@ -20,6 +20,11 @@ public class UserService {
         return user;
     }
 
+    public User getUserById (Integer id){
+        User user = dao.findOne(id);
+        return user;
+    }
+
 
 
 }

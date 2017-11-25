@@ -29,10 +29,8 @@ public class UserController {
     @PostMapping(path="/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<String> findByEmail(@RequestBody User user, HttpServletResponse resp) {
-        System.out.println("Starting login");
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode node = mapper.createObjectNode();
-        System.out.println(user.getEmail() + " "+ user.getPassword());
         String ret = null;
         User user1 = userService.getUserByEmail(user.getEmail());
         if (user1 == null){
@@ -51,6 +49,16 @@ public class UserController {
         }
 
         return new ResponseEntity<String>(ret, HttpStatus.OK);
+    }
+
+    @PostMapping(path="/profile", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType
+            .APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> findProfileByEmail (@RequestBody User user, HttpServletResponse resp) {
+        ObjectMapper mapper = new ObjectMapper();
+        String ret = null;
+        User user1 = userService.getUserById(user.getId());
+        user1.setPassword("");
+        return new ResponseEntity<User>(user1, HttpStatus.OK);
     }
 
 }

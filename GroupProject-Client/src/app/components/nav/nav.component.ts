@@ -24,7 +24,5 @@ export class NavComponent implements DoCheck {
     // this.isLoggedIn = false;
     // this.isManager = true;
     this.isManager = this.login.isAdmin;
-    console.log(this.isLoggedIn);
-    console.log(this.isManager);
   }
 }
