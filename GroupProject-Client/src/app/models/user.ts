@@ -7,8 +7,6 @@ export interface User {
     phone:number;
     ccard:number;
     address: Address;
-
-    getUser();
 }
 
 interface Address{
