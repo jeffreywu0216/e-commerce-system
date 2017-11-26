@@ -11,14 +11,13 @@ export class ItemService {
   constructor(private http: HttpClient,
               private auth: AuthService) { }
   findOne(itemId: number): Observable<Item> {
-    return this.http.get<Item>(`http://localhost:8080/items/${itemId}`);
+    return this.http.get<Item>(`http://localhost:8080/items/item/${itemId}`);
   }
   getAllSellingItems(): Observable<Item[]> {
     return this.http.get<Item[]>(`http://localhost:8080/items`);
   }
   getSearchResult(word: string): Observable<Item[]> {
-    const params = new HttpParams().set('word', word);
-    return this.http.get<Item[]>(`http://localhost:8080/items/search`, {params: params});
+    return this.http.get<Item[]>(`http://localhost:8080/items/search/${word}`);
   }
   getAllItemsBySellerId(sellerId: number): Observable<Item[]> {
     return this.http.get<Item[]>(`http://localhost:8080/items/seller/${sellerId}`);
@@ -40,16 +39,20 @@ export class ItemService {
         description: description
     }));
   }
-  updateSellItem(itemId: number, price: number, productName: string, description: string) {
+  updateSellItem(itemId: number, sellerId: number, price: number, productName: string, description: string) {
     return this.http.post(`http://localhost:8080/items/item/update/${itemId}`,
       JSON.stringify({
+        sellerId: sellerId,
         price: price,
         productName: productName,
         description: description
       }));
   }
   removeSellItem(itemId: number) {
-    return this.http.delete(`http://localhost:8080/items/item/${itemId}`);
+    return this.http.post(`http://localhost:8080/items/item/delete`,
+      JSON.stringify({
+        itemId: itemId
+      }));
   }
 
 }

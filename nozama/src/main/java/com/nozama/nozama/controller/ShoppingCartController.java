@@ -25,34 +25,35 @@ public class ShoppingCartController {
         this.itemService = itemService;
     }
 
-    @GetMapping(path="/buyer/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/buyer/{id}", produces= MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity<List<ShoppingCart>> findByBuyerId(@PathVariable("id") Integer id) {
         List<ShoppingCart> cartItems = service.findByBuyerId(id);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
-    @PostMapping(path="/watch-item/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/watch-item/{id}")   //v
     @ResponseBody
     public ResponseEntity addItemToCart(@PathVariable("id") Integer buyerId, @RequestBody Item item) {
         ShoppingCart cart = new ShoppingCart();
         cart.setBuyerId(buyerId);
-        cart.setItemId(item);
+        cart.setItemId(item.getItemId());
+        service.save(cart);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping(path="/unwatch-item/{id}", consumes=MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/unwatch-item")  //v
     @ResponseBody
-    public ResponseEntity removeItemFromCart(@PathVariable("id") Integer buyerId, @RequestBody Integer shoppingCartId) {
-        service.deleteByShoppingCartId(shoppingCartId);
+    public ResponseEntity removeItemFromCart(@RequestBody ShoppingCart shoppingCart) {
+        service.deleteByShoppingCartId(shoppingCart.getShoppingCartId());
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @PostMapping(path="/purchase", consumes=MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/purchase")  //v
     @ResponseBody
-    public ResponseEntity buyItems(@RequestBody Integer buyerId) {
-        itemService.setBuyer(buyerId);
-        service.deleteAllByBuyerId(buyerId);
+    public ResponseEntity buyItems(@RequestBody ShoppingCart shoppingCart) {
+        itemService.setBuyer(shoppingCart.getBuyerId());
+        service.deleteAllByBuyerId(shoppingCart.getBuyerId());
         return new ResponseEntity(HttpStatus.OK);
     }
 }
