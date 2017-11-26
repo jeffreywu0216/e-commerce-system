@@ -4,6 +4,7 @@ import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AlertService} from "./alert.service";
 import {User} from "../models/user";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class AuthService {
@@ -32,16 +33,9 @@ export class AuthService {
       }
     );
   }
-  getUser() {
+  getUser(): Observable<User> {
     const url = `${this.loginURL}/profile`;
-    return this.http.post(url, JSON.parse(localStorage.getItem('currentUser'))).subscribe(
-      resp => {
-        console.log(resp);
-      },
-      err => {
-        this.alertService.error("Error fetching user information");
-      }
-    );
+    return this.http.post<User>(url, JSON.parse(localStorage.getItem('currentUser')));
   }
   logout() {
     localStorage.removeItem('currentUser');
