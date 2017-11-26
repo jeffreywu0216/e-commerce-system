@@ -33,9 +33,12 @@ export class AuthService {
       }
     );
   }
-  getUser(): Observable<User> {
-    const url = `${this.loginURL}/profile`;
-    return this.http.post<User>(url, JSON.parse(localStorage.getItem('currentUser')));
+  // getUser(): Observable<User> {
+  //   const url = `${this.loginURL}/profile`;
+  //   return this.http.post<User>(url, JSON.parse(localStorage.getItem('currentUser')));
+  // }
+  getUser(): User {
+      return JSON.parse(localStorage.getItem('currentUser'));
   }
   logout() {
     localStorage.removeItem('currentUser');

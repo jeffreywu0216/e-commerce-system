@@ -14,10 +14,11 @@ export class ProfileComponent implements OnInit {
   constructor(private auth: AuthService, private alertService: AlertService) { }
 
   ngOnInit() {
-    this.auth.getUser().subscribe(
-      resp => this.user = resp,
-      err => this.alertService.error("Error fetching user information")
-    );
+    this.user = this.auth.getUser();
+    // this.auth.getUser().subscribe(
+    //   resp => this.user = resp,
+    //   err => this.alertService.error("Error fetching user information")
+    // );
   }
 
 }
