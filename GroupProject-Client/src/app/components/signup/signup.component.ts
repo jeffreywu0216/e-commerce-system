@@ -9,6 +9,7 @@ import {MatFormFieldControl} from '@angular/material/form-field';
 import {Subject} from 'rxjs/Subject';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -17,11 +18,20 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 })
 export class SignupComponent {
   email = new FormControl('', [Validators.required, Validators.email]);
-  
-    getErrorMessage() {
-      return this.email.hasError('required') ? 'You must enter a value' :
-          this.email.hasError('email') ? 'Not a valid email' :
-              '';
+  pass:string;
+
+  constructor(private service: UserService ){
+  }
+
+  getErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+    this.email.hasError('email') ? 'Not a valid email' :
+      '';
+    }
+
+    newAccount(){
+      this.service.newUser(this.email, this.pass)
+      .subscribe(() => alert("User Created!"), err => alert(err));;
     }
 }
 

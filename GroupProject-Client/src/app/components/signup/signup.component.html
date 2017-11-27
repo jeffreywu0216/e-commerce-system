@@ -6,6 +6,7 @@
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
       </button>
+
     </mat-form-field>
     <div class="example-container">
       <mat-form-field>
@@ -13,17 +14,10 @@
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
-    <mat-form-field class="example-full-width">
-        <span matPrefix>+1 &nbsp;</span>
-        <input type="tel" matInput placeholder="Enter Telephone">
-        <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
-    </mat-form-field>
-    <br>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Enter Birthdate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+
+    <div class="example-container">
+      <button class btn btn-submit>Submit</button>
+    </div>
   </form>
        <!-- <div>
        <div>
