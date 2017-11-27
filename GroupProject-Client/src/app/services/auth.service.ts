@@ -4,12 +4,14 @@ import {map} from "rxjs/operators";
 import {Router} from "@angular/router";
 import {AlertService} from "./alert.service";
 import {User} from "../models/user";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class AuthService {
   loginURL = 'http://localhost:8080/user';
   userlogin = false;
   isAdmin = false;
+  id: number;
   constructor(private http: HttpClient, private router: Router, private alertService: AlertService) { }
   login(username: string, password: string) {
     const url = `${this.loginURL}/login`;
@@ -17,6 +19,8 @@ export class AuthService {
       resp => {
         localStorage.setItem('currentUser', JSON.stringify(resp));
         this.userlogin = true;
+        this.id = resp["id"];
+        console.log(this.id);
         console.log(localStorage.getItem('currentUser'));
         if (resp["userrole"] === 'admin') {
           this.isAdmin = true;
@@ -29,16 +33,12 @@ export class AuthService {
       }
     );
   }
-  getUser() {
-    const url = `${this.loginURL}/profile`;
-    return this.http.post(url, JSON.parse(localStorage.getItem('currentUser'))).subscribe(
-      resp => {
-        console.log(resp);
-      },
-      err => {
-        this.alertService.error("Error fetching user information");
-      }
-    );
+  // getUser(): Observable<User> {
+  //   const url = `${this.loginURL}/profile`;
+  //   return this.http.post<User>(url, JSON.parse(localStorage.getItem('currentUser')));
+  // }
+  getUser(): User {
+      return JSON.parse(localStorage.getItem('currentUser'));
   }
   logout() {
     localStorage.removeItem('currentUser');

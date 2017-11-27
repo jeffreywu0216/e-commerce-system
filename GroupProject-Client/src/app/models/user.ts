@@ -1,16 +1,17 @@
 export interface User {
-    id:number;
-    name:string;
-    age:number;
-    email:string;
-    password:string;
-    phone:number;
-    ccard:number;
-    address: Address;
+    id: number;
+    email: string;
+    password: string;
+    street: string;
+    city: string;
+    state: string;
+    phone: number;
+    creditCard: number;
+    userRole: string;
 }
 
-interface Address{
-    street:string;
-    city:string;
-    state:string;
-  }
+// interface Address{
+//     street:string;
+//     city:string;
+//     state:string;
+//   }

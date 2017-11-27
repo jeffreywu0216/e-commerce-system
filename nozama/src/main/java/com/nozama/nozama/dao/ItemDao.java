@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface ItemDao extends JpaRepository<Item, Integer> {
+
     public List<Item> findByStatusId(Integer statusId);
     public List<Item> findByDescriptionContaining (String s);
     public List<Item> findBySellerId(Integer sellerId);

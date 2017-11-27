@@ -27,6 +27,7 @@ public class Item {
         this.itemId = itemId;
     }
 
+
     @Column(name="SELLERID")
     @Basic
 //    @ManyToOne
@@ -38,6 +39,7 @@ public class Item {
     public void setSellerId(Integer sellerId) {
         this.sellerId = sellerId;
     }
+
 
     @Column(name="BUYERID")
     @Basic
@@ -90,6 +92,7 @@ public class Item {
     public void setTimeToSell(Date timeToSell) {
         this.timeToSell = timeToSell;
     }
+
 
 
     @Column(name="STATUSID", insertable = false, updatable = false)

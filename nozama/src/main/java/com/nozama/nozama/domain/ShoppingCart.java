@@ -31,6 +31,7 @@ public class ShoppingCart {
         this.buyerId = buyerId;
     }
 
+
     @Column(name = "ITEMID")
     @Basic
 //    @ManyToOne
