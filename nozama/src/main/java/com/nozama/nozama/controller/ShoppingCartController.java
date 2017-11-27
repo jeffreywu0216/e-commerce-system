@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller //this is a bean that can handle request
@@ -51,6 +52,7 @@ public class ShoppingCartController {
 
     @PostMapping(path="/purchase")  //v
     @ResponseBody
+    @Transactional
     public ResponseEntity buyItems(@RequestBody ShoppingCart shoppingCart) {
         itemService.setBuyer(shoppingCart.getBuyerId());
         service.deleteAllByBuyerId(shoppingCart.getBuyerId());

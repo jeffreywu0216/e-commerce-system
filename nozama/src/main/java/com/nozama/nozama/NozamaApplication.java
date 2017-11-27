@@ -21,16 +21,16 @@ import java.sql.Date;
 @SpringBootApplication
 public class NozamaApplication {
 
-	private ItemService itemService;
-	private ShoppingCartService shoppingCartService;
-	private UserService userService;
-
-	@Autowired
-	public void setService(ItemService itemService, ShoppingCartService shoppingCartService, UserService userService) {
-		this.itemService = itemService;
-		this.shoppingCartService = shoppingCartService;
-		this.userService = userService;
-	}
+//	private ItemService itemService;
+//	private ShoppingCartService shoppingCartService;
+//	private UserService userService;
+//
+//	@Autowired
+//	public void setService(ItemService itemService, ShoppingCartService shoppingCartService, UserService userService) {
+//		this.itemService = itemService;
+//		this.shoppingCartService = shoppingCartService;
+//		this.userService = userService;
+//	}
   
 	public static void main(String[] args) {
 		SpringApplication.run(NozamaApplication.class, args);

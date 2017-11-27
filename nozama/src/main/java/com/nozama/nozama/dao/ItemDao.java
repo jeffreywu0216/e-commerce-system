@@ -22,7 +22,7 @@ public interface ItemDao extends JpaRepository<Item, Integer> {
     public void deleteByItemId(Integer id);
 
     @Modifying
-    @Transactional
+//    @Transactional
     @Query("UPDATE Item SET buyerId = ?1, statusId = 2 WHERE itemId IN (SELECT itemId FROM ShoppingCart WHERE buyerId = ?1)")
     public void setBuyer(Integer buyerId);
 
