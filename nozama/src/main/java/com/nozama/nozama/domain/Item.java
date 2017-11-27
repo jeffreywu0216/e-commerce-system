@@ -4,53 +4,57 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table
+@Table(name="ITEM")
 public class Item {
-    private int itemId;
-    private User sellerId;
-    private User buyerId;
+    private Integer itemId;
+    private Integer sellerId;
+    private Integer buyerId;
     private String productName;
     private String description;
-    private double price;
+    private Double price;
     private Date timeToSell;
-    private ItemStatus statusId;
+    private Integer statusId;
 
     @Id
-    @Column
+    @Column(name="ITEMID")
     @GeneratedValue(generator = "ITEMCOUNT", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "ITEMCOUNT", sequenceName = "ITEMCOUNT",allocationSize=1)
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
-//    @Column
-    @ManyToOne
-    @JoinColumn(name = "SELLERID", referencedColumnName = "USERID")
-    public User getSellerId() {
+
+    @Column(name="SELLERID")
+    @Basic
+//    @ManyToOne
+//    @JoinColumn(name = "SELLERID", referencedColumnName = "USERID")
+    public Integer getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(User sellerId) {
+    public void setSellerId(Integer sellerId) {
         this.sellerId = sellerId;
     }
 
-//    @Column
-    @ManyToOne
-    @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
-    public User getBuyerId() {
+
+    @Column(name="BUYERID")
+    @Basic
+//    @ManyToOne
+//    @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
+    public Integer getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(User buyerId) {
+    public void setBuyerId(Integer buyerId) {
         this.buyerId = buyerId;
     }
 
     @Basic
-    @Column
+    @Column(name="PRODUCTNAME")
     public String getProductName() {
         return productName;
     }
@@ -60,7 +64,7 @@ public class Item {
     }
 
     @Basic
-    @Column
+    @Column(name="DESCRIPTION")
     public String getDescription() {
         return description;
     }
@@ -70,17 +74,17 @@ public class Item {
     }
 
     @Basic
-    @Column
-    public double getPrice() {
+    @Column(name="PRICE")
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
     @Basic
-    @Column
+    @Column(name="TIMETOSELL", updatable = false, insertable = false)
     public Date getTimeToSell() {
         return timeToSell;
     }
@@ -90,14 +94,16 @@ public class Item {
     }
 
 
-//    @Column
-    @ManyToOne
-    @JoinColumn(name = "STATUSID", referencedColumnName = "STATUSID")
-    public ItemStatus getStatusId() {
+
+    @Column(name="STATUSID", insertable = false, updatable = false)
+    @Basic
+//    @ManyToOne
+//    @JoinColumn(name = "STATUSID", referencedColumnName = "STATUSID")
+    public Integer getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(ItemStatus statusId) {
+    public void setStatusId(Integer statusId) {
         this.statusId = statusId;
     }
 

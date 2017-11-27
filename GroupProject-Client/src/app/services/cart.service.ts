@@ -19,8 +19,10 @@ export class CartService {
     );
   }
   removeItemFromCart(shoppingCartId: number) {
-    return this.http.post(`http://localhost:8080/cart/unwatch-item/${this.auth.id}`,
-      JSON.stringify({shoppingCartId: shoppingCartId})
+    return this.http.post(`http://localhost:8080/cart/unwatch-item`,
+      JSON.stringify({
+        shoppingCartId: shoppingCartId
+      })
     );
   }
   buyItems(buyerId: number): Observable<any> {

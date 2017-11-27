@@ -21,84 +21,80 @@ public class ItemController {
         this.service = service;
     }
 
-    @GetMapping(path="/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/item/{id}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
     public ResponseEntity<Item> findOne(@PathVariable("id") Integer id) {
         Item item = service.findOne(id);
         return new ResponseEntity(item, HttpStatus.OK);
     }
 
-    @GetMapping(consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces= MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllSellingItems() {
-        List<Item> items = service.findByStatusId(1);
+        List<Item> items = null;
+        try {
+            items = service.findByStatusId(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-    @GetMapping(path="/search", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/search/{word}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
-    public ResponseEntity<List<Item>> getSearchResult(@RequestBody String word) {
+    public ResponseEntity<List<Item>> getSearchResult(@PathVariable("word") String word) {
         List<Item> items = service.findByDescriptionContaining(word);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-    @GetMapping(path="/seller/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/seller/{id}", produces= MediaType.APPLICATION_JSON_VALUE)    //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllItemsBySellerId(@PathVariable("id") Integer id) {
         List<Item> items = service.findBySellerId(id);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-    @GetMapping(path="/seller/sell/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/seller/sell/{id}", produces= MediaType.APPLICATION_JSON_VALUE)      //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllSellItemsBySellerId(@PathVariable("id") Integer id) {
         List<Item> items = service.findBySellerIdAAndStatusId(id, 1);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-    @GetMapping(path="/seller/sold/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/seller/sold/{id}", produces= MediaType.APPLICATION_JSON_VALUE)   //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllSoldItemsBySellerId(@PathVariable("id") Integer id) {
         List<Item> items = service.findBySellerIdAAndStatusId(id, 2);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-    @GetMapping(path="/buyer/bought/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path="/buyer/bought/{id}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllBoughtItemsByBuyerId(@PathVariable("id") Integer id) {
         List<Item> items = service.findByBuyerId(id);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-//    @PostMapping(path="/item/new/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseBody
-//    public ResponseEntity submitNewSellItem(@PathVariable("id") Integer id, @RequestBody Double price,
-//                                            @RequestBody String productName, @RequestBody String description) {
-//        Item item = new Item();
-//        item.setSellerId(userService.findOne(id));
-//        item.setPrice(price);
-//        item.setProductName(productName);
-//        item.setDescription(description);
-//        service.save(item);
-//        return new ResponseEntity(HttpStatus.OK);
-//    }
-
-    @PostMapping(path="/item/update/{id}", consumes= MediaType.APPLICATION_JSON_VALUE, produces= MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path="/item/new/{id}") //v
     @ResponseBody
-    public ResponseEntity updateSellItem(@PathVariable("id") Integer id, @RequestBody Double price,
-                                            @RequestBody String productName, @RequestBody String description) {
-        Item item = service.findOne(id);
-        item.setPrice(price);
-        item.setProductName(productName);
-        item.setDescription(description);
+    public ResponseEntity submitNewSellItem(@PathVariable("id") Integer id, @RequestBody Item item) {
+        item.setSellerId(id);
         service.save(item);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @DeleteMapping(path="/item/{id}")
+    @PostMapping(path="/item/update/{id}") //v
     @ResponseBody
-    public ResponseEntity removeSellItem(@PathVariable("id") Integer id) {
-        service.deleteByItemId(id);
+    public ResponseEntity updateSellItem(@PathVariable("id") Integer id, @RequestBody Item item) {
+        item.setItemId(id);
+        service.save(item);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(path="/item/delete")   //v
+    @ResponseBody
+    public ResponseEntity removeSellItem(@RequestBody Item item) {
+        service.deleteByItemId(item.getItemId());
         return new ResponseEntity(HttpStatus.OK);
     }
 }
