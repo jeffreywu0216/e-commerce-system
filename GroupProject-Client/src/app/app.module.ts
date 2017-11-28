@@ -35,6 +35,7 @@ import {
 import {CdkTableModule} from "@angular/cdk/table";
 import { UserItemComponent } from './components/user-item/user-item.component';
 import {CartService} from "./services/cart.service";
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {CartService} from "./services/cart.service";
     UserItemComponent
   ],
   imports: [
-    ReactiveFormsModule,
+ 
+  ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -99,7 +101,8 @@ import {CartService} from "./services/cart.service";
     AlertService,
     AuthGuard,
     ItemService,
-    CartService
+    CartService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
