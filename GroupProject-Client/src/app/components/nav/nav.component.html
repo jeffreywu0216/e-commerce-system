@@ -12,7 +12,7 @@
 <mat-toolbar>
   <a routerLink="/"><img src="https://pbs.twimg.com/profile_images/739426092096708608/kwIQqGYh_400x400.jpg" height="60"></a>
   <a mat-button routerLink="buy">Buy</a>
-  <a mat-button routerLink="sell">Sell</a>
+  <a mat-button *ngIf="isLoggedIn" routerLink="sell">Sell</a>
   <a mat-button *ngIf="isManager" routerLink="admin">All User</a>
   <span style="flex: auto;"></span>
 
@@ -29,9 +29,9 @@
 
 
   <a *ngIf="isLoggedIn" mat-button routerLink="cart"><mat-icon>shopping_cart</mat-icon></a>
-  <form class="navbar-form" role="search">
+  <form class="navbar-form" name="searchForm" #searchForm="ngForm" (ngSubmit)="search()">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search...">
+      <input type="text" class="form-control" name="searchString" [(ngModel)] = model.searchString placeholder="Search...">
       <span class="input-group-btn">
 							<button type="submit" class="btn btn-default">
 								<span class="glyphicon glyphicon-search">

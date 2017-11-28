@@ -1,5 +1,7 @@
 import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
+import {ItemService} from "../../services/item.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -9,7 +11,8 @@ import {AuthService} from "../../services/auth.service";
 export class NavComponent implements DoCheck {
   isManager: boolean;
   isLoggedIn: boolean;
-  constructor(private login: AuthService) { }
+  model: any = {};
+  constructor(private login: AuthService, private itemService: ItemService, private router: Router) { }
 
 
 
@@ -25,5 +28,11 @@ export class NavComponent implements DoCheck {
       this.isManager = false;
     }
     console.log(this.isLoggedIn);
+  }
+  search() {
+    console.log('search loading' + this.model.searchString);
+    this.itemService.getSearchResult(this.model.searchString).subscribe(
+      resp => this.router.navigate(["buy"])
+    );
   }
 }
