@@ -5,6 +5,6 @@ export interface Item {
   price: number;
   productName: string;
   description: string;
-  status: number;
-  time: Date;
+  statusId: number;
+  timeToSell: string;
 }
