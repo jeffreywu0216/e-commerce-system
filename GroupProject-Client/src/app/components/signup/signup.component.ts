@@ -11,7 +11,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { UserService } from './../../services/user.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
