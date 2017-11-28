@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.nozama.nozama.domain.Item;
 import com.nozama.nozama.domain.User;
 import com.nozama.nozama.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,13 @@ public class UserController {
         User user1 = userService.getUserById(user.getId());
         user1.setPassword("");
         return new ResponseEntity<User>(user1, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/user/new")
+    @ResponseBody
+    public ResponseEntity submitNewUser( @RequestBody User user) {
+        userService.insertUser(user);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

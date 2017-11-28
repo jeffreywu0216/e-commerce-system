@@ -22,11 +22,10 @@ export class UserService {
 
     newUser(name:string, email:string, password:string): Observable<any> {
        return this.http.post<User[]>(`http://localhost:8080/user/new/`,
-       JSON.stringify({
+       {
         name:name,
         email: email,
-        password: password,
-       
-    }));
+        password: password  
+    });
     }
 }
