@@ -35,9 +35,6 @@ export class SignupComponent {
     }
 
     submitNewUser(){
-      console.log(this.model.name);
-      console.log(this.model.email);
-      console.log(this.model.password);
       this.service.newUser(this.model.name, this.model.email, this.model.password)
       .subscribe(() => alert("User Created!"), err => alert("User Failed"));
     }
