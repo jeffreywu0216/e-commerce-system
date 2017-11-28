@@ -9,9 +9,3 @@ export interface User {
     creditCard: number;
     userRole: string;
 }
-
-// interface Address{
-//     street:string;
-//     city:string;
-//     state:string;
-//   }

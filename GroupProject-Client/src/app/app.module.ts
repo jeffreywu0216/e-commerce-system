@@ -35,6 +35,7 @@ import {
 import {CdkTableModule} from "@angular/cdk/table";
 import {UserItemComponent, UserItemDialogComponent} from './components/user-item/user-item.component';
 import {CartService} from "./services/cart.service";
+import { UserService } from './services/user.service';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 @NgModule({
@@ -56,7 +57,8 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     UserItemDialogComponent
   ],
   imports: [
-    ReactiveFormsModule,
+ 
+  ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -102,7 +104,8 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     AlertService,
     AuthGuard,
     ItemService,
-    CartService
+    CartService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

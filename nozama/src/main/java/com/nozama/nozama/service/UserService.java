@@ -25,4 +25,7 @@ public class UserService {
         return user;
     }
 
+    public void insertUser(User user){
+        dao.save(user);
+    }
 }
