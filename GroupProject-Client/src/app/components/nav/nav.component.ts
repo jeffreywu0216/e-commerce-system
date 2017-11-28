@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnInit} from '@angular/core';
+import {Component, DoCheck, OnChanges, OnInit} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 
 @Component({
@@ -9,20 +9,21 @@ import {AuthService} from "../../services/auth.service";
 export class NavComponent implements DoCheck {
   isManager: boolean;
   isLoggedIn: boolean;
-  // navlinks = [{path: 'buy', label: 'Buy'}, {path: 'sell', label: 'Sell'}];
   constructor(private login: AuthService) { }
 
-  // ngOnInit() {
-  //   this.isLoggedIn = this.login.userlogin;
-  //   // this.isLoggedIn = false;
-  //   // this.isManager = true;
-  //   this.isManager = this.login.isAdmin;
-  // }
+
 
   ngDoCheck() {
-    this.isLoggedIn = this.login.userlogin;
-    // this.isLoggedIn = false;
-    // this.isManager = true;
-    this.isManager = this.login.isAdmin;
+    if (localStorage.getItem('userlogin') != null) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+    if (localStorage.getItem('isManager') != null) {
+      this.isManager = true;
+    } else {
+      this.isManager = false;
+    }
+    console.log(this.isLoggedIn);
   }
 }
