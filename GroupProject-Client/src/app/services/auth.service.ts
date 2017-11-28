@@ -18,12 +18,14 @@ export class AuthService {
     return this.http.post(url, {email: username, password: password}).subscribe(
       resp => {
         localStorage.setItem('currentUser', JSON.stringify(resp));
+        localStorage.setItem('userlogin', 'true');
         this.userlogin = true;
         this.id = resp["id"];
         console.log(this.id);
-        console.log(localStorage.getItem('currentUser'));
+        localStorage.getItem('currentUser');
         if (resp["userrole"] === 'admin') {
           this.isAdmin = true;
+          localStorage.setItem('isManager', 'true');
         }
         this.router.navigate(['homepage']);
       },
@@ -42,6 +44,8 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userlogin');
+    localStorage.removeItem('isManager');
     this.userlogin = false;
     this.isAdmin = false;
   }
