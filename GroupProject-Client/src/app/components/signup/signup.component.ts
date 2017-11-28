@@ -11,6 +11,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { UserService } from './../../services/user.service';
 
+import { AlertService } from './../../services/alert.service';
+
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +20,7 @@ import { UserService } from './../../services/user.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  constructor(private service: UserService ){
+  constructor(private service: UserService, private alert: AlertService){
   }
   model: any = {};
 
@@ -36,7 +38,7 @@ export class SignupComponent {
 
     submitNewUser(){
       this.service.newUser(this.model.name, this.model.email, this.model.password)
-      .subscribe(() => alert("User Created!"), err => alert("User Failed"));
+      .subscribe(() => alert("User Created!"), err =>  this.alert.error("Invalid  Input"));
     }
 }
 
