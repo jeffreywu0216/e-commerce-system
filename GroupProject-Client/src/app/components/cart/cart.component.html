@@ -51,7 +51,7 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button class="btn btn-danger" (click)="removeItemFromCart(row.itemId)">Remove From Cart</button>
+          <button class="btn btn-danger" (click)="removeItemFromCart(row.itemId, row.productName)">Remove From Cart</button>
         </mat-cell>
       </ng-container>
 
@@ -60,7 +60,7 @@
       </mat-row>
     </mat-table>
 
-    <button mat-raised-button color="primary" style="float: right;">Place Order</button>
+    <button mat-raised-button color="primary" style="float: right;" (click)="buyItems()">Place Order</button>
 
   </div>
 </div>

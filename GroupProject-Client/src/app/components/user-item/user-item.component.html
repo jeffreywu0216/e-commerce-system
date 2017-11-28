@@ -79,8 +79,10 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button *ngIf="row.status == 1" class="btn btn-danger" (click)="cancelItem(row.itemId)">Cancel Item</button>
-          <button *ngIf="row.status == 2" class="btn btn-info" (click)="viewBuyer(row.itemId)">View Buyer</button>
+          <!--<button mat-raised-button (click)="openDialog()">Pick one</button>-->
+          <button mat-raised-button *ngIf="row.status == 1"<!--class="btn btn-danger"--> (click)="updateItem(row.itemId)">Update Item</button>
+          <button mat-raised-button *ngIf="row.status == 1"<!--class="btn btn-danger"--> (click)="cancelItem(row.itemId)">Cancel Item</button>
+          <button mat-raised-button *ngIf="row.status == 2"<!--class="btn btn-info"--> (click)="viewBuyer(row.buyerId)">View Buyer</button>
         </mat-cell>
       </ng-container>
 

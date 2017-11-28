@@ -33,8 +33,9 @@ import {
   MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
-import { UserItemComponent } from './components/user-item/user-item.component';
+import {UserItemComponent, UserItemDialogComponent} from './components/user-item/user-item.component';
 import {CartService} from "./services/cart.service";
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,9 @@ import {CartService} from "./services/cart.service";
     BuyComponent,
     SellComponent,
     AlertComponent,
-    UserItemComponent
+    UserItemComponent,
+    OrderHistoryComponent,
+    UserItemDialogComponent
   ],
   imports: [
     ReactiveFormsModule,
