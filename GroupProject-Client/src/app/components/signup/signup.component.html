@@ -1,64 +1,29 @@
 <div class="container">
-  <h1>Sign Up</h1>
+  <h1 id="title">Sign Up</h1>
+  <app-alert></app-alert>
   <form class="example-form">
     <mat-form-field class="example-form-field">
-      <input matInput type="text" placeholder="Enter Name" [(ngModel)]="value"/>
+      <input matInput type="text" placeholder="Enter Name" [(ngModel)]="model.name" name="name"/>
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Enter your email" [formControl]="email"  required>
+        <input matInput placeholder="Enter your email" [(ngModel)]="model.email"  [formControl]="email"  required/>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
+      <br>
+      <mat-form-field class="example-form-field">
+        <input matInput type="password" placeholder="Password" [formControl]="passwordControl" name="password" [(ngModel)]="model.password" required>
+        <mat-error *ngIf="passwordControl.hasError('required')">Password is <strong>required</strong></mat-error>
+      </mat-form-field>
     </div>
-    <mat-form-field class="example-full-width">
-        <span matPrefix>+1 &nbsp;</span>
-        <input type="tel" matInput placeholder="Enter Telephone">
-        <!-- <mat-icon matSuffix>mode_edit</mat-icon> -->
-    </mat-form-field>
     <br>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Enter Birthdate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </form>
-       <!-- <div>
-       <div>
-      <label for="name">Name: </label><br>
-      <input type="text" [(ngModel)] ="userModel.name" name="name" required>
-      </div> 
-       <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Enter your email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
+    <div class="example-container">
+      <div class="button-row">
+        <button mat-raised-button (click)="submitNewUser()">Submit</button>
       </div>
-       -->
-      
-      <!-- <div class="example-container">
-        <mat-form-field>
-          <input matInput placeholder="Enter your email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div> -->
-      
-       <!-- <div>
-        <label for="age">Date of Birth: </label><br>
-        <input type="date" [(ngModel)] ="userModel.age" name="name" required>
-      </div>
-      <div>
-          <label for="email">Email: </label><br>
-          <input type="text" [(ngModel)] ="userModel.email" name="name" required>
-        </div>
-            <div>
-                <label for="phone">Phone: </label><br>
-                <input type="text" [(ngModel)] ="userModel.phone" name="name" required>
-            </div>
-            <br>
-            <button type="submit" class ="btn btn-success" (click)="onSubmit">Submit</button> 
     </div>
-  </form>-->
+  </form>
 </div>

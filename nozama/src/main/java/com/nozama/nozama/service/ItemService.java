@@ -26,7 +26,7 @@ public class ItemService {
     }
 
     public List<Item> findByDescriptionContaining(String word) {
-        return dao.findByDescriptionContaining(word);
+        return dao.findByProductNameContainingAndDescriptionContaining(word, word);
     }
 
     public List<Item> findBySellerId(Integer sellerId) {

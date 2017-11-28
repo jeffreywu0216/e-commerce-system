@@ -14,20 +14,18 @@ export class CartService {
     return this.http.get<Item[]>(`http://localhost:8080/cart/buyer/${buyerId}`);
   }
   addItemToCart(item: Item): Observable<any> {
-    return this.http.post(`http://localhost:8080/cart/watch-item/${this.auth.id}`,
-      JSON.stringify({item: item})
+    return this.http.post(`http://localhost:8080/cart/watch-item/${this.auth.getUser().id}`,
+      {itemId: item.itemId}
     );
   }
-  removeItemFromCart(shoppingCartId: number) {
-    return this.http.post(`http://localhost:8080/cart/unwatch-item`,
-      JSON.stringify({
-        shoppingCartId: shoppingCartId
-      })
+  removeItemFromCart(itemId: number) {
+    return this.http.post(`http://localhost:8080/cart/unwatch-item/${this.auth.getUser().id}`,
+      {
+        itemId: itemId
+      }
     );
   }
   buyItems(buyerId: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/cart/purchase`,
-      JSON.stringify({userId: buyerId})
-    );
+    return this.http.post(`http://localhost:8080/cart/purchase`, {buyerId: buyerId});
   }
 }

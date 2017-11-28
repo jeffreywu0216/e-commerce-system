@@ -1,5 +1,7 @@
 package com.nozama.nozama.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nozama.nozama.domain.Item;
 import com.nozama.nozama.domain.ShoppingCart;
 import com.nozama.nozama.service.ItemService;
@@ -33,29 +35,55 @@ public class ShoppingCartController {
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
-    @PostMapping(path="/watch-item/{id}")   //v
+    @PostMapping(path="/watch-item/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)   //v
     @ResponseBody
     public ResponseEntity addItemToCart(@PathVariable("id") Integer buyerId, @RequestBody Item item) {
         ShoppingCart cart = new ShoppingCart();
         cart.setBuyerId(buyerId);
         cart.setItemId(item.getItemId());
         service.save(cart);
-        return new ResponseEntity(HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "Success";
+        String returnVal = null;
+        try {
+            returnVal = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 
-    @PostMapping(path="/unwatch-item")  //v
+    @PostMapping(path="/unwatch-item/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
-    public ResponseEntity removeItemFromCart(@RequestBody ShoppingCart shoppingCart) {
-        service.deleteByShoppingCartId(shoppingCart.getShoppingCartId());
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity removeItemFromCart(@PathVariable("id") Integer id, @RequestBody Item item) {
+        service.deleteByBuyerIdAndItemId(id, item.getItemId());
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "Success";
+        String returnVal = null;
+        try {
+            returnVal = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 
-    @PostMapping(path="/purchase")  //v
+    @PostMapping(path="/purchase", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
     @Transactional
     public ResponseEntity buyItems(@RequestBody ShoppingCart shoppingCart) {
+        System.out.println(shoppingCart);
+        System.out.println(shoppingCart.getBuyerId());
         itemService.setBuyer(shoppingCart.getBuyerId());
         service.deleteAllByBuyerId(shoppingCart.getBuyerId());
-        return new ResponseEntity(HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "Success";
+        String returnVal = null;
+        try {
+            returnVal = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 }

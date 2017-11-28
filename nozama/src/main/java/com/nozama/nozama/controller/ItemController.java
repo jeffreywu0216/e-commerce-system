@@ -1,5 +1,7 @@
 package com.nozama.nozama.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nozama.nozama.domain.Item;
 import com.nozama.nozama.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,26 +77,52 @@ public class ItemController {
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
-    @PostMapping(path="/item/new/{id}") //v
+    @PostMapping(path="/item/new/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity submitNewSellItem(@PathVariable("id") Integer id, @RequestBody Item item) {
         item.setSellerId(id);
         service.save(item);
-        return new ResponseEntity(HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "Success";
+        String returnVal = null;
+        try {
+            returnVal = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 
-    @PostMapping(path="/item/update/{id}") //v
+    // not checked
+    @PostMapping(path="/item/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity updateSellItem(@PathVariable("id") Integer id, @RequestBody Item item) {
         item.setItemId(id);
         service.save(item);
-        return new ResponseEntity(HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "Success";
+        String returnVal = null;
+        try {
+            returnVal = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 
-    @PostMapping(path="/item/delete")   //v
+    // not checked
+    @PostMapping(path="/item/delete", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)   //v
     @ResponseBody
     public ResponseEntity removeSellItem(@RequestBody Item item) {
         service.deleteByItemId(item.getItemId());
-        return new ResponseEntity(HttpStatus.OK);
+        ObjectMapper mapper = new ObjectMapper();
+        String message = "Success";
+        String returnVal = null;
+        try {
+            returnVal = mapper.writeValueAsString(message);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 }
