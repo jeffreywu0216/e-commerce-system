@@ -14,6 +14,9 @@ public interface ShoppingCartDao extends JpaRepository<ShoppingCart, Integer> {
     @Transactional
     void deleteByShoppingCartId(Integer id);
 
+    @Transactional
+    void deleteByBuyerIdAndItemId(Integer buyerId, Integer itemId);
+
 //    @Transactional
     void deleteAllByBuyerId(Integer id);
 }

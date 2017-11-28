@@ -51,7 +51,7 @@
 
       <ng-container matColumnDef="time">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.time}} </mat-cell>
+        <mat-cell *matCellDef="let row"> {{row.timeToSell | date: "medium"}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">

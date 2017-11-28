@@ -33,26 +33,26 @@ export class ItemService {
   }
   submitNewSellItem  (price: number, productName: string, description: string): Observable<any> {
     return this.http.post(`http://localhost:8080/items/item/new/${this.auth.id}`,
-      JSON.stringify({
+      {
         price: price,
         productName: productName,
         description: description
-    }));
+    });
   }
   updateSellItem(itemId: number, sellerId: number, price: number, productName: string, description: string) {
     return this.http.post(`http://localhost:8080/items/item/update/${itemId}`,
-      JSON.stringify({
+      {
         sellerId: sellerId,
         price: price,
         productName: productName,
         description: description
-      }));
+      });
   }
   removeSellItem(itemId: number) {
     return this.http.post(`http://localhost:8080/items/item/delete`,
-      JSON.stringify({
+      {
         itemId: itemId
-      }));
+      });
   }
 
 }

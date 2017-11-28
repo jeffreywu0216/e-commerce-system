@@ -20,29 +20,29 @@ export class BuyComponent implements OnInit {
 
   constructor(private itemService: ItemService,
               private cartService: CartService) {
-    // this.getAllSellingItems();
-    this.items = [
-      {
-        itemId: 1,
-        sellerId: 1,
-        buyerId: 1,
-        price: 1,
-        productName: "1",
-        description: "1",
-        status: 1,
-        time: new Date()
-      },
-      {
-        itemId: 2,
-        sellerId: 2,
-        buyerId: 2,
-        price: 2,
-        productName: "2",
-        description: "2",
-        status: 2,
-        time: new Date()
-      }
-    ];
+    this.getAllSellingItems();
+    // this.items = [
+    //   {
+    //     itemId: 1,
+    //     sellerId: 1,
+    //     buyerId: 1,
+    //     price: 1,
+    //     productName: "1",
+    //     description: "1",
+    //     status: 1,
+    //     time: new Date()
+    //   },
+    //   {
+    //     itemId: 2,
+    //     sellerId: 2,
+    //     buyerId: 2,
+    //     price: 2,
+    //     productName: "2",
+    //     description: "2",
+    //     status: 2,
+    //     time: new Date()
+    //   }
+    // ];
     this.dataSource = new MatTableDataSource(this.items);
   }
   ngOnInit() {
@@ -58,7 +58,6 @@ export class BuyComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   getAllSellingItems(): void {
-
     this.itemService.getAllSellingItems()
       .subscribe( items => {
         this.items = items;
@@ -70,12 +69,7 @@ export class BuyComponent implements OnInit {
   addItemToCart(item: Item) {
     this.cartService.addItemToCart(item)
       .subscribe(() => {
-        // for (let i = 0; i < this.items.length; i++) {
-        //   if (this.items[i].itemId === itemId) {
-        //     alert(`Added ${this.items[i].productName} to Cart`);
-        //     break;
-        //   }
-        // }
+        alert(item.productName + " Added" );
       }, error => {
         console.log(error);
       });

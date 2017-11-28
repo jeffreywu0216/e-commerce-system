@@ -24,6 +24,10 @@ public class ShoppingCartService {
         dao.deleteByShoppingCartId(shoppingCartId);
     }
 
+    public void deleteByBuyerIdAndItemId (Integer buyerId, Integer itemId) {
+        dao.deleteByBuyerIdAndItemId(buyerId, itemId);
+    }
+
     public ShoppingCart save(ShoppingCart shoppingCart) {
         return dao.save(shoppingCart);
     }
