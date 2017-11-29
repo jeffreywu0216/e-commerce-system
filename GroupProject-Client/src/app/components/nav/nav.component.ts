@@ -27,10 +27,8 @@ export class NavComponent implements DoCheck {
     } else {
       this.isManager = false;
     }
-    console.log(this.isLoggedIn);
   }
   search() {
-    console.log('search loading' + this.model.searchString);
     this.itemService.getSearchResult(this.model.searchString).subscribe(
       resp => this.router.navigate(["buy"])
     );

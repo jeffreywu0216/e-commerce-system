@@ -19,6 +19,8 @@
   <mat-menu #appMenu="matMenu">
     <button *ngIf="isLoggedIn" mat-menu-item routerLink="profile"> Profile </button>
     <button *ngIf="isLoggedIn" mat-menu-item routerLink="history"> History </button>
+    <button *ngIf="isLoggedIn" mat-menu-item routerLink="allsell"> All Selling </button>
+    <button *ngIf="!isLoggedIn" mat-menu-item routerLink="signup"> Register </button>
     <button *ngIf="!isLoggedIn" routerLink="login" mat-menu-item> Login </button>
     <button *ngIf="isLoggedIn" routerLink="logout" mat-menu-item> Logout </button>
   </mat-menu>

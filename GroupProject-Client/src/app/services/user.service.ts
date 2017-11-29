@@ -19,13 +19,12 @@ export class UserService {
     getAllUsers(): Observable<User[]>{
       return this.http.get<User[]>(`http://localhost:8080/user/`);
     }
-
-    newUser(name:string, email:string, password:string): Observable<any> {
+    newUser(name: string, email: string, password: string): Observable<any> {
        return this.http.post<User[]>(`http://localhost:8080/user/new/`,
        {
-        name:name,
+        name: name,
         email: email,
-        password: password  
+        password: password
     });
     }
 }
