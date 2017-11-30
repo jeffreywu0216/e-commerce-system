@@ -34,6 +34,11 @@
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field><br>
+              <mat-form-field class="example-full-width">
+                <span matPrefix>+1 &nbsp;</span>
+                <input type="tel" matInput placeholder="Telephone" [(ngModel)]="model.phone" name="phone">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+              </mat-form-field><br>
               <button mat-raised-button (click)="submitNewUser()">Submit</button>
         </div>
       </form>

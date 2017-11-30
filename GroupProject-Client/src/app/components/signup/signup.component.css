@@ -22,7 +22,7 @@ header {
     /* Set max width to be 100% of the containing element */
     max-width: 100%;
   }
-  
+
 /*   
   h1 {
    
@@ -39,15 +39,5 @@ header {
     padding: 20px;
     text-align: center;
     margin-top: 60px
-  }
-  
-  @media (max-width: 600px) {
-  
-    body {
-      /* Set the background color to be red */
-      /* Set the font color to be white */
-      background-color: red;
-      color: white;
-    }
   }
   
