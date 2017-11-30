@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "USERS")
 public class User {
     private Integer id;
+    private String name;
     private String email;
     private String password;
     private String street;
@@ -47,6 +48,15 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Column(name="NAME")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Column
@@ -107,6 +117,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", street='" + street + '\'' +
