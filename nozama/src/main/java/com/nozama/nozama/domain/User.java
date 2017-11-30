@@ -94,7 +94,7 @@ public class User {
         this.creditCard = creditCard;
     }
 
-    @Column(name="USERROLE")
+    @Column(name="USERROLE", updatable = false, insertable = false)
     public String getUserRole() {
         return userRole;
     }

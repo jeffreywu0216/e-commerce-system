@@ -2,28 +2,34 @@
   <h1 id="title">Sign Up</h1>
   <app-alert></app-alert>
   <form class="example-form">
-    <mat-form-field class="example-form-field">
-      <input matInput type="text" placeholder="Enter Name" [(ngModel)]="model.name" name="name"/>
-      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-      </button>
-    </mat-form-field>
     <div class="example-container">
       <mat-form-field>
-        <input matInput placeholder="Enter your email" [(ngModel)]="model.email"  [formControl]="email"  required/>
+        <input matInput placeholder="Email" [(ngModel)]="model.email"  [formControl]="email"  required />
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <br>
+      </mat-form-field><br>
       <mat-form-field class="example-form-field">
-        <input matInput type="password" placeholder="Password" [formControl]="passwordControl" name="password" [(ngModel)]="model.password" required>
+        <input matInput type="password" placeholder="Password" [formControl]="passwordControl" name="password" [(ngModel)]="model.password" required />
         <mat-error *ngIf="passwordControl.hasError('required')">Password is <strong>required</strong></mat-error>
-      </mat-form-field>
-    </div>
-    <br>
-    <div class="example-container">
-      <div class="button-row">
-        <button mat-raised-button (click)="submitNewUser()">Submit</button>
-      </div>
+      </mat-form-field><br>
+      <mat-form-field class="example-form-field">
+          <input matInput type="text" placeholder="Street" [(ngModel)]="model.street" name="street" required/>
+          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field><br>
+      <mat-form-field class="example-form-field">
+          <input matInput type="text" placeholder="City" [(ngModel)]="model.city" name="city" required/>
+          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field><br>
+        <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="State" [(ngModel)]="model.state" name="state" required/>
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field><br>
+          <button mat-raised-button (click)="submitNewUser()">Submit</button>
     </div>
   </form>
 </div>

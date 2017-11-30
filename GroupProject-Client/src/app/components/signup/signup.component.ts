@@ -37,8 +37,10 @@ export class SignupComponent {
     }
 
     submitNewUser(){
-      this.service.newUser(this.model.name, this.model.email, this.model.password)
-      .subscribe(() => alert("User Created!"), err =>  this.alert.error("Invalid  Input"));
+      console.log(this.model.password);
+      this.service.newUser(this.model.email, this.model.password, this.model.street, this.model.city, this.model.state)
+      .subscribe(err =>  this.alert.error("Invalid  Input"));
+      
     }
 }
 

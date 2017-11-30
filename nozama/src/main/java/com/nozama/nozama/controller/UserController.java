@@ -62,11 +62,18 @@ public class UserController {
         return new ResponseEntity<User>(user1, HttpStatus.OK);
     }
 
-    @PostMapping(path = "/user/new")
+    @PostMapping(path = "/new")
     @ResponseBody
     public ResponseEntity submitNewUser( @RequestBody User user) {
         userService.insertUser(user);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping(path="/{id}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
+    @ResponseBody
+    public ResponseEntity<User> findOne(@PathVariable("id") Integer id) {
+        User user = userService.getUserById(id);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
 
 }

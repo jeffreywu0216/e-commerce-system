@@ -20,12 +20,14 @@ export class UserService {
       return this.http.get<User[]>(`http://localhost:8080/user/`);
     }
 
-    newUser(name:string, email:string, password:string): Observable<any> {
+    newUser(email:string, password:string, street:string, city: string, state:string): Observable<any> {
        return this.http.post<User[]>(`http://localhost:8080/user/new/`,
        {
-        name:name,
         email: email,
-        password: password  
+        password: password, 
+        street: street,
+        city: city,
+        state: state
     });
     }
 }
