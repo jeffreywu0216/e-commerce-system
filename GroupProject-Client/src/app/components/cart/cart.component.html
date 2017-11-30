@@ -29,29 +29,35 @@
   <!--</div>-->
 <!--</div>-->
 <div class="container">
+  <h2>Shopping Cart</h2>
   <div class="example-container mat-elevation-z8">
 
     <mat-table [dataSource]="dataSource" >
 
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef class="image"> Image </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="image"> <img src="{{row.pictureUrl}}"/> </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="productName">
-        <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.productName}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="productName"> Product Name </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="productName"> {{row.productName}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="description"> {{row.description}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="price"> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="price"> {{row.price}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <button class="btn btn-danger" (click)="removeItemFromCart(row.itemId, row.productName)">Remove From Cart</button>
+        <mat-header-cell *matHeaderCellDef class="action"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="action">
+          <button class="btn btn-danger" (click)="removeItemFromCart(row.itemId, row.productName)">Remove</button>
         </mat-cell>
       </ng-container>
 

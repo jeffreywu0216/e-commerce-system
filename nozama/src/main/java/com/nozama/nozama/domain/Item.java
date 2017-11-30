@@ -14,6 +14,7 @@ public class Item {
     private Double price;
     private Date timeToSell;
     private Integer statusId;
+    private String pictureUrl;
 
     @Id
     @Column(name="ITEMID")
@@ -107,6 +108,16 @@ public class Item {
         this.statusId = statusId;
     }
 
+    @Column(name="PICTUREURL")
+    @Basic
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -118,6 +129,7 @@ public class Item {
                 ", price=" + price +
                 ", timeToSell=" + timeToSell +
                 ", statusId=" + statusId +
+                ", pictureUrl='" + pictureUrl + '\'' +
                 '}';
     }
 }

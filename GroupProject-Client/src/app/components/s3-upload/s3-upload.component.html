@@ -1,0 +1,33 @@
+<div class="uploadSection">
+
+  <hr>
+  <h3>S3 File Upload Test</h3>
+
+  <div class="subsection">
+    <h4>Confirm Endpoint Format:</h4>
+    <div class="indent">
+      The endpoint should be in the following format <span class="monospace">s3-&lt;region&gt;.amazonaws.com</span>.
+      <pre>
+            Based on the configuration information you provided:
+                Expect Endpoint: {{expectEndpoint}}
+                Actual Endpoint: {{actualEndpoint}}
+          </pre>
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h4>Select File:</h4>
+    <div class="indent">
+      <input type="file" (change)="fileEvent($event)" />
+    </div>
+  </div>
+
+  <div class="subsection">
+    <h4>Upload Status/Results:</h4>
+    <div class="indent">
+      <span class="monospace result">{{uploadStatus}}</span>
+    </div>
+  </div>
+
+  <hr>
+</div>

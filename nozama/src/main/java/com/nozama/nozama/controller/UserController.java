@@ -69,4 +69,10 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @GetMapping(path="{id}")
+    @ResponseBody
+    public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
+        User user = userService.getUserById(id);
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
 }
