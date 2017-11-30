@@ -1,5 +1,6 @@
 body {
-    /* Set line height to be 1.5 times larger than default */  
+    /* Set line height to be 1.5 times larger than default */ 
+    background-color: #F5F5F5; 
     margin: 0px;
     line-height: 1.5;
   }
@@ -23,10 +24,10 @@ header {
     max-width: 100%;
   }
 
-/*   
+
   h1 {
-   
-  } */
+   font-family: 'Play';
+  } 
 
   footer {
     /* Set font color to white */
@@ -34,10 +35,16 @@ header {
     /* Set padding on all sides to be 20 pixels */
     /* Set text alignment to center */
     /* Set margin on top to be 60 pixels */
-    color: black;
-    background-color: white;
+    color: 	#FFA812;
+    background-color: #69359C;
     padding: 20px;
     text-align: center;
     margin-top: 60px
+  }
+
+  #btn{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #F5F5F5;
+    font-size: large;
   }
   

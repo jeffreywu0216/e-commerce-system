@@ -2,6 +2,7 @@ body {
     /* Set line height to be 1.5 times larger than default */  
     margin: 0px;
     line-height: 1.5;
+    background-color:	#F5F5F5;
   }
   
 header {
@@ -23,9 +24,10 @@ header {
     max-width: 100%;
   }
   
-  /* h1 {
+  h1 {
+   font-family: 'Play';
    
-  } */
+  } 
 
   footer {
     /* Set font color to white */
@@ -33,10 +35,15 @@ header {
     /* Set padding on all sides to be 20 pixels */
     /* Set text alignment to center */
     /* Set margin on top to be 60 pixels */
-    color: black;
-    background-color: white;
+    color: #FFA812;
+    font-family: 'Open Sans';
+    background-color:	#69359C;
     padding: 20px;
     text-align: center;
     margin-top: 60px
+  }
+  
+  mat-list-item {
+    font-family: 'Chathura';
   }
   

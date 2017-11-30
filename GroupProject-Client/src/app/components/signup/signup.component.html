@@ -39,7 +39,8 @@
                 <input type="tel" matInput placeholder="Telephone" [(ngModel)]="model.phone" name="phone">
                 <mat-icon matSuffix>mode_edit</mat-icon>
               </mat-form-field><br>
-              <button mat-raised-button (click)="submitNewUser()">Submit</button>
+              <button id="btn" mat-button color="primary" (click)="submitNewUser()">Submit</button>
+              <!-- <button mat-raised-button (click)="submitNewUser()">Submit</button> -->
         </div>
       </form>
     </div>  
