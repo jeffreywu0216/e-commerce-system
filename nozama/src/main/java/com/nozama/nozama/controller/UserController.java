@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "user")
@@ -69,11 +70,24 @@ public class UserController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping(path="/{id}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
+    @GetMapping(path="/user/{id}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
     public ResponseEntity<User> findOne(@PathVariable("id") Integer id) {
         User user = userService.getUserById(id);
         return new ResponseEntity(user, HttpStatus.OK);
     }
+
+    @GetMapping(path="/user", produces= MediaType.APPLICATION_JSON_VALUE) //v
+    @ResponseBody
+    public ResponseEntity<List<Item>> getAllSellingItems() {
+        List<User> user = null;
+        try {
+            user = userService.getAllUsers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+
 
 }

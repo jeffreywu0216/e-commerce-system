@@ -39,7 +39,7 @@ export class SignupComponent {
 
     submitNewUser(){
       console.log(this.model.password);
-      this.service.newUser(this.model.email, this.model.password,
+      this.service.newUser(this.model.name, this.model.email, this.model.password,
          this.model.street, this.model.city, this.model.state, this.model.phone)
       .subscribe(err => { this.alert.error("Invalid  Input")},
             rsp => {this.router.navigate(["login"])});

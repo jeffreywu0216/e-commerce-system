@@ -1,3 +1,53 @@
-<p>
-  admin works!
-</p>
+<html>
+  <body>
+		<header>
+			<!-- <img src=""> -->
+    </header>
+		<main> 
+        <div class="container">
+          <mat-list>
+            <div class="example-container">
+              <h1>All Users</h1>
+                <div class="example-container mat-elevation-z8">
+                  <div class="example-header">
+                    <!-- <mat-form-field>
+                      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field> -->
+                  </div>
+                  <mat-table #table [dataSource]="dataSource">
+                  
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+                      <mat-cell *matCellDef="let users" > {{users.name}} </mat-cell>
+                    </ng-container>
+
+              
+                    <ng-container matColumnDef="email">
+                      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                      <mat-cell *matCellDef="let users"> {{users.email}} </mat-cell>
+                    </ng-container>
+
+                   
+                    <!-- <ng-container matColumnDef="address">
+                      <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                      <mat-cell *matCellDef="let users"> {{users.address}} </mat-cell>
+                    </ng-container> -->
+
+                 
+                    <ng-container matColumnDef="phone">
+                      <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+                      <mat-cell *matCellDef="let users"> {{users.phone}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                </div>
+            </div>
+          </mat-list> 
+      </div>
+    </main>
+    <footer>Nozama &copy; 2017</footer>
+  </body>
+</html>
