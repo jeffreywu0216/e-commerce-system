@@ -1,0 +1,52 @@
+body {
+    /* Set line height to be 1.5 times larger than default */  
+    margin: 0px;
+    line-height: 1.5;
+  }
+  
+header {
+    /* Set text alignment to center */
+    text-align: center;
+  }
+  
+  main {
+    /* Set maximum width to be 800 pixels */
+    /* Set margin to be automatically calculated on all sides */
+    /* Set padding to be 0 pixels top & bottom, and 20 pixels left & right */
+    max-width: 800px;
+    margin: auto;
+    padding: 0px, 20px;
+  }
+
+  img {
+    /* Set max width to be 100% of the containing element */
+    max-width: 100%;
+  }
+  
+  /* h1 {
+   
+  } */
+
+  footer {
+    /* Set font color to white */
+    /* Set background color to black */
+    /* Set padding on all sides to be 20 pixels */
+    /* Set text alignment to center */
+    /* Set margin on top to be 60 pixels */
+    color: black;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 60px
+  }
+  
+  @media (max-width: 600px) {
+  
+    body {
+      /* Set the background color to be red */
+      /* Set the font color to be white */
+      background-color: red;
+      color: white;
+    }
+  }
+  

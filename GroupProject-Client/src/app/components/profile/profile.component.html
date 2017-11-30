@@ -1,11 +1,16 @@
-<div class ="container">
-<mat-list>
-    <h1>Profile</h1>
-    <mat-list-item *ngIf="user"><label>Email:</label>{{user.email}}</mat-list-item>
-    <mat-list-item *ngIf="user"><label>Phone:</label>{{user.phone}}</mat-list-item>
-    <mat-list-item *ngIf="user"><label>Street:</label>{{user.street}}</mat-list-item>
-    <mat-list-item *ngIf="user"><label>City:</label>{{user.city}}</mat-list-item>
-    <mat-list-item *ngIf="user"><label>State:</label>{{user.state}}</mat-list-item>
-  </mat-list>
-</div>    
-  
+<body>
+		<header>
+			<!-- <img src=""> -->
+		</header>
+		<main>
+      <mat-list>
+        <h1>Profile</h1>
+        <mat-list-item *ngIf="user"><label>Email: </label>{{user.email}}</mat-list-item>
+        <mat-list-item *ngIf="user"><label>Phone: </label>{{user.phone}}</mat-list-item>
+        <mat-list-item *ngIf="user"><label>Street: </label>{{user.street}}</mat-list-item>
+        <mat-list-item *ngIf="user"><label>City: </label>{{user.city}}</mat-list-item>
+        <mat-list-item *ngIf="user"><label>State: </label>{{user.state}}</mat-list-item>
+      </mat-list> 
+		</main>
+    <footer>Nozoma</footer>
+  </body>
