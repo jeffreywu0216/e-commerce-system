@@ -1,0 +1,5 @@
+<h1 mat-dialog-title>Cancel Item {{data.productName}}?</h1>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.itemId" tabindex="2">Yes</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">No</button>
+</div>

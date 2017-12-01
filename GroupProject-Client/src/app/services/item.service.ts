@@ -31,21 +31,23 @@ export class ItemService {
   getAllBoughtItemsByBuyerId(buyerId: number): Observable<Item[]> {
     return this.http.get<Item[]>(`http://localhost:8080/items/buyer/bought/${buyerId}`);
   }
-  submitNewSellItem  (price: number, productName: string, description: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/items/item/new/${this.auth.id}`,
+  submitNewSellItem  (price: number, productName: string, description: string, pictureUrl: string): Observable<any> {
+    return this.http.post(`http://localhost:8080/items/item/new/${this.auth.getUser().id}`,
       {
         price: price,
         productName: productName,
-        description: description
-    });
+        description: description,
+        pictureUrl: pictureUrl
+      });
   }
-  updateSellItem(itemId: number, sellerId: number, price: number, productName: string, description: string) {
-    return this.http.post(`http://localhost:8080/items/item/update/${itemId}`,
+  updateSellItem(item: Item) {
+    return this.http.post(`http://localhost:8080/items/item/update/${item.itemId}`,
       {
-        sellerId: sellerId,
-        price: price,
-        productName: productName,
-        description: description
+        sellerId: item.sellerId,
+        price: item.price,
+        productName: item.productName,
+        description: item.description,
+        pictureUrl: item.pictureUrl
       });
   }
   removeSellItem(itemId: number) {

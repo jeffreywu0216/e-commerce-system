@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Update Item {{data.item.productName}}</h1>
+<div mat-dialog-content>
+  <p>Product Name</p>
+  <mat-form-field>
+    <input matInput tabindex="1" [(ngModel)]="data.item.productName">
+  </mat-form-field>
+  <p>Description</p>
+  <mat-form-field>
+    <input matInput tabindex="2" [(ngModel)]="data.item.description">
+  </mat-form-field>
+  <p>Price</p>
+  <mat-form-field>
+    <input matInput tabindex="3" [(ngModel)]="data.item.price">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.item" tabindex="4">Update</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>

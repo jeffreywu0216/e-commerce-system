@@ -1,0 +1,24 @@
+img {
+  width: 100px;
+}
+.image{
+  flex: 0 0 100px;
+}
+.productName{
+  flex: 0 0 120px;
+}
+.description{
+  flex: 0 0 550px;
+}
+.price{
+  flex: 0 0 80px;
+}
+.time{
+  flex: 0 0 100px;
+}
+.action{
+  flex: 0 0 100px;
+}
+.update-btn {
+  margin-bottom: 5px;
+}

@@ -1,20 +1,21 @@
-.example-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 300px;
+img {
+  width: 100px;
 }
-
-.example-header {
-  min-height: 64px;
-  padding: 8px 24px 0;
+.image{
+  flex: 0 0 100px;
 }
-
-.def-form-field {
-  font-size: 14px;
-  width: 100%;
+.productName{
+  flex: 0 0 120px;
 }
-
-.def-table {
-  overflow: auto;
-  max-height: 500px;
+.description{
+  flex: 0 0 550px;
+}
+.price{
+  flex: 0 0 80px;
+}
+.time{
+  flex: 0 0 100px;
+}
+.action{
+  flex: 0 0 100px;
 }
