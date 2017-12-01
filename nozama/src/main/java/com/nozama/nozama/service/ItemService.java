@@ -26,9 +26,10 @@ public class ItemService {
     }
 
     public List<Item> findBySearchingWord(String word) {
-        List<Item> result = dao.findByStatusIdAndDescriptionContaining(1, word);
-        result.addAll(dao.findByStatusIdAndProductNameContaining(1, word));
-        return result;
+        return dao.findByStatusIdAndDescriptionContaining(1, word);
+//        List<Item> result = dao.findByStatusIdAndDescriptionContaining(1, word);
+//        result.addAll(dao.findByStatusIdAndProductNameContaining(1, word));
+//        return result;
     }
 
     public List<Item> findBySellerId(Integer sellerId) {

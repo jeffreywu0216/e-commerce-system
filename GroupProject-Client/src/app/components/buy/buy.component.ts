@@ -66,6 +66,8 @@ export class BuyComponent implements OnInit, AfterViewInit {
         this.dataSource = new MatTableDataSource(this.items);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        console.log(this.items);
+
       }, error => {
         console.log(error);
       });

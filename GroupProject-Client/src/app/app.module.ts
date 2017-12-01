@@ -42,7 +42,6 @@ import {
   OrderHistoryComponent,
   OrderHistoryViewSellerDialogComponent
 } from './components/order-history/order-history.component';
-// import { S3UploadComponent } from './components/s3-upload/s3-upload.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +63,6 @@ import {
     UserItemCancelDialogComponent,
     UserItemUpdateDialogComponent,
     OrderHistoryViewSellerDialogComponent
-    // S3UploadComponent
   ],
   imports: [
     ReactiveFormsModule,

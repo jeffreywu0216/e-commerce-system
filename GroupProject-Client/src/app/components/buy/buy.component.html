@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Buy Or Die!</h2>
+  <h2>Online Store</h2>
   <div class="example-header">
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -27,11 +27,11 @@
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="price"> {{row.price}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="price"> ${{row.price}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="time">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="time"> Date </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="time"> Date </mat-header-cell>
         <mat-cell *matCellDef="let row" class="time"> {{row.timeToSell | date: "medium"}} </mat-cell>
       </ng-container>
 

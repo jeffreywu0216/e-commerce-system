@@ -80,6 +80,7 @@ public class ItemController {
     @PostMapping(path="/item/new/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity submitNewSellItem(@PathVariable("id") Integer id, @RequestBody Item item) {
+        System.out.println(item);
         item.setSellerId(id);
         service.save(item);
         ObjectMapper mapper = new ObjectMapper();

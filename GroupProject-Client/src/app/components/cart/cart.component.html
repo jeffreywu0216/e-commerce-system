@@ -50,8 +50,8 @@
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef class="price"> Price </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="price"> {{row.price}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="price"> ${{row.price}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">
