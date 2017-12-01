@@ -10,6 +10,7 @@ import {SignupComponent} from "./components/signup/signup.component";
 import {AdminComponent} from "./components/admin/admin.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {UserItemComponent} from "./components/user-item/user-item.component";
+import {OrderHistoryComponent} from "./components/order-history/order-history.component";
 
 const routes: Routes = [
   // {path: 'home', component: HomepageComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
     // {path: 'login', redirectTo: '/login', pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'logout', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'history', component: UserItemComponent, canActivate: [AuthGuard]},
+  {path: 'history', component: OrderHistoryComponent, canActivate: [AuthGuard]},
+  {path: 'allsell', component: UserItemComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: SignupComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
   {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},

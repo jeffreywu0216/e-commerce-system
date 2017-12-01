@@ -6,6 +6,10 @@
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
+.row {
+  padding: 20px;
+}
 .background {
    background-color: lightblue;
 }

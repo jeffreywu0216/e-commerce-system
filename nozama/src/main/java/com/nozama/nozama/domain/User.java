@@ -55,6 +55,15 @@ public class User {
         this.password = password;
     }
 
+    @Column(name="NAME")
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Column
     public String getStreet() {
         return street;
@@ -113,6 +122,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", street='" + street + '\'' +
