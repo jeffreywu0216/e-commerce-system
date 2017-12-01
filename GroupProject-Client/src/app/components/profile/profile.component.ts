@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {AlertService} from "../../services/alert.service";
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +11,19 @@ import {AlertService} from "../../services/alert.service";
 })
 export class ProfileComponent implements OnInit {
   user: User;
+  isEdit: boolean = false;
 
-  constructor(private auth: AuthService, private alertService: AlertService) { }
+  constructor(private auth: AuthService, private alertService: AlertService, private service: UserService) { }
 
   ngOnInit() {
-    this.user = this.auth.getUser();
-    // this.auth.getUser().subscribe(
-    //   resp => this.user = resp,
-    //   err => this.alertService.error("Error fetching user information")
-    // );
+    this.service.findUser(this.auth.getUser().id)
+    .subscribe( user => {
+      this.user = user;
+    });
+  }
+
+  editProfile(){
+    this.isEdit = !this.isEdit;
   }
 
 }

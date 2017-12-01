@@ -11,6 +11,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
+
 import { AdminComponent } from './components/admin/admin.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -38,6 +39,7 @@ import {
 } from './components/user-item/user-item.component';
 import {CartService} from "./services/cart.service";
 import { UserService } from './services/user.service';
+import { EditproComponent } from './components/editpro/editpro.component';
 import {
   OrderHistoryComponent,
   OrderHistoryViewSellerDialogComponent
@@ -59,6 +61,7 @@ import {
     AlertComponent,
     UserItemComponent,
     OrderHistoryComponent,
+    EditproComponen,
     UserItemViewBuyerDialogComponent,
     UserItemCancelDialogComponent,
     UserItemUpdateDialogComponent,

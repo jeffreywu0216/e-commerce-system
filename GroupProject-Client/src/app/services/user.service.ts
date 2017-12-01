@@ -13,19 +13,23 @@ export class UserService {
     private auth: AuthService) { }
 
     findUser(userId: number): Observable<User> {
-      return this.http.get<User>(`http://localhost:8080/user/${userId}`);
+      return this.http.get<User>(`http://localhost:8080/user/user/${userId}`);
     }
 
     getAllUsers(): Observable<User[]>{
-      return this.http.get<User[]>(`http://localhost:8080/user/`);
+      return this.http.get<User[]>(`http://localhost:8080/user/user/`);
     }
 
-    newUser(name:string, email:string, password:string): Observable<any> {
+    newUser(name: string, email:string, password:string, street:string, city: string, state:string, phone:number): Observable<any> {
        return this.http.post<User[]>(`http://localhost:8080/user/new/`,
        {
-        name:name,
+        name: name,
         email: email,
-        password: password  
+        password: password, 
+        street: street,
+        city: city,
+        state: state,
+        phone: phone
     });
     }
 }

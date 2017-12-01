@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "USERS")
 public class User {
     private Integer id;
+    private String name;
     private String email;
     private String password;
     private String street;
@@ -30,6 +31,11 @@ public class User {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Column (name="NAME ")
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     @Column(name="EMAIL")
     public String getEmail() {
@@ -94,7 +100,7 @@ public class User {
         this.creditCard = creditCard;
     }
 
-    @Column(name="USERROLE")
+    @Column(name="USERROLE", updatable = false, insertable = false)
     public String getUserRole() {
         return userRole;
     }
