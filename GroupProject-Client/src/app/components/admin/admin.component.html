@@ -16,7 +16,7 @@
                   </div>
                   <mat-table #table [dataSource]="dataSource">
                   
-                    <!-- Position Column -->
+                   
                     <ng-container matColumnDef="name">
                       <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
                       <mat-cell *matCellDef="let users" > {{users.name}} </mat-cell>
@@ -29,10 +29,10 @@
                     </ng-container>
 
                    
-                    <!-- <ng-container matColumnDef="address">
+                    <ng-container matColumnDef="address">
                       <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
-                      <mat-cell *matCellDef="let users"> {{users.address}} </mat-cell>
-                    </ng-container> -->
+                      <mat-cell *matCellDef="let users"> {{users.street}} {{users.city}}, {{users.state}}</mat-cell>
+                    </ng-container>
 
                  
                     <ng-container matColumnDef="phone">

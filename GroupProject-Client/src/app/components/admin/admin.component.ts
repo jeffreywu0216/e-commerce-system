@@ -9,9 +9,9 @@ import {UserService} from "../../services/user.service";
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 users: User[] = [];
-displayedColumns = ['name', 'email', 'phone'];
+displayedColumns = ['name', 'email', 'phone', 'address'];
   dataSource : MatTableDataSource<User>;
 
   constructor(private userService: UserService) {

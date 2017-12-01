@@ -26,7 +26,7 @@ header {
   footer {
     color: #FFA812;
     font-family: 'Open Sans';
-    background-color:	#69359C;
+    background-color:	#F5F5F5;
     padding: 20px;
     text-align: center;
     margin-top: 60px
@@ -37,12 +37,12 @@ header {
   }
    
 
-.example-container {
+/* .example-container {
   display: flex;
   flex-direction: column;
   max-height: 500px;
   min-width: 300px;
-}
+} */
 
 .mat-table {
   overflow: auto;
