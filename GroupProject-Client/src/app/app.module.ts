@@ -11,6 +11,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
+
 import { AdminComponent } from './components/admin/admin.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -37,6 +38,7 @@ import {UserItemComponent, UserItemDialogComponent} from './components/user-item
 import {CartService} from "./services/cart.service";
 import { UserService } from './services/user.service';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { EditproComponent } from './components/editpro/editpro.component';
 
 @NgModule({
   declarations: [
@@ -54,10 +56,10 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     AlertComponent,
     UserItemComponent,
     OrderHistoryComponent,
-    UserItemDialogComponent
+    UserItemDialogComponent,
+    EditproComponent
   ],
   imports: [
- 
   ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,

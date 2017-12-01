@@ -11,6 +11,7 @@ import { UserService } from './../../services/user.service';
 })
 export class ProfileComponent implements OnInit {
   user: User;
+  isEdit: boolean = false;
 
   constructor(private auth: AuthService, private alertService: AlertService, private service: UserService) { }
 
@@ -20,4 +21,9 @@ export class ProfileComponent implements OnInit {
       this.user = user;
     });
   }
+
+  editProfile(){
+    this.isEdit = !this.isEdit;
+  }
+
 }

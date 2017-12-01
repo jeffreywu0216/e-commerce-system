@@ -7,12 +7,12 @@
 header {
     text-align: center;
   }
-/*   
+
   main {
     max-width: 800px;
     margin: auto;
     padding: 0px, 20px;
-  } */
+  } 
 
   img {
     max-width: 100%;
@@ -32,19 +32,23 @@ header {
     margin-top: 60px
   }
   
-  mat-list-item {
-    font-family: 'Chathura';
+  .example-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
   }
-   
-
-/* .example-container {
-  display: flex;
-  flex-direction: column;
-  max-height: 500px;
-  min-width: 300px;
-} */
-
-.mat-table {
-  overflow: auto;
-  max-height: 500px;
-}
+  
+  .example-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }

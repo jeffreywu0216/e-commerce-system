@@ -79,7 +79,7 @@ public class UserController {
 
     @GetMapping(path="/user", produces= MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
-    public ResponseEntity<List<Item>> getAllUsers() {
+    public ResponseEntity<List<Item>> getAllSellingItems() {
         List<User> user = null;
         try {
             user = userService.getAllUsers();

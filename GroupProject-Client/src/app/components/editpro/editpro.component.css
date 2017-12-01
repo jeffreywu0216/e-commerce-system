@@ -1,9 +1,9 @@
 body {
+    background-color: #F5F5F5; 
     margin: 0px;
     line-height: 1.5;
-    background-color:	#F5F5F5;
   }
-  
+
 header {
     text-align: center;
   }
@@ -17,22 +17,23 @@ header {
   img {
     max-width: 100%;
   }
-  
+
+
   h1 {
    font-family: 'Play';
-
-   
   } 
 
   footer {
-    color: #FFA812;
-    font-family: 'Open Sans';
+    color: 	#69359C;
+    background-color: #F5F5F5;
     padding: 20px;
     text-align: center;
     margin-top: 60px
   }
-  
-  mat-list-item {
-    font-family: 'Chathura';
+
+  #btn{
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #F5F5F5;
+    font-size: large;
   }
   
