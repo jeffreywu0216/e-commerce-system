@@ -13,12 +13,13 @@ import {AuthService} from "../../services/auth.service";
 export class CartComponent implements OnInit {
   items: Item[] = [];
 
-  displayedColumns = ['productName', 'description', 'price', 'action'];
+  displayedColumns = ['image', 'productName', 'description', 'price', 'action'];
   dataSource: MatTableDataSource<Item>;
   constructor(private itemService: ItemService,
               private cartService: CartService,
               private auth: AuthService) {
     this.getAllCartByBuyerId();
+    this.dataSource = new MatTableDataSource(this.items);
   }
 
   ngOnInit() {

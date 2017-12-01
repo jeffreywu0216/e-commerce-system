@@ -25,8 +25,11 @@ public class ItemService {
         return dao.findByStatusId(statusId);
     }
 
-    public List<Item> findByDescriptionContaining(String word) {
-        return dao.findByProductNameContainingAndDescriptionContaining(word, word);
+    public List<Item> findBySearchingWord(String word) {
+        return dao.findByStatusIdAndDescriptionContaining(1, word);
+//        List<Item> result = dao.findByStatusIdAndDescriptionContaining(1, word);
+//        result.addAll(dao.findByStatusIdAndProductNameContaining(1, word));
+//        return result;
     }
 
     public List<Item> findBySellerId(Integer sellerId) {

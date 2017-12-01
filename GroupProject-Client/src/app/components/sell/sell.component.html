@@ -20,6 +20,7 @@
   <!--</div>-->
 <!--</div>-->
 <div class="container">
+  <h2>Post Your Item</h2>
   <div class="example-container col-sm-6">
     <mat-form-field>
       <input matInput placeholder="Product Name" [(ngModel)]="productName">
@@ -33,6 +34,19 @@
     <mat-form-field>
       <input matInput placeholder="Amount" type="number" class="example-right-align" [(ngModel)]="price">
     </mat-form-field>
+
+    <div class="button-row">
+      <input type="file" (change)="getImg($event)" />
+    </div>
+
+    <!--<form>-->
+      <!--<div class="form-group">-->
+        <!--<label for="fileInput">Upload Picture</label>-->
+        <!--<input type="file" id="fileInput" name="fileInput" (change)="getImg($event)"/>-->
+      <!--</div>-->
+    <!--</form>-->
+
+    <br/>
     <div class="button-row">
       <button mat-raised-button (click)="submitNewSellItem()">Submit</button>
     </div>

@@ -7,4 +7,5 @@ export interface Item {
   description: string;
   statusId: number;
   timeToSell: string;
+  pictureUrl: string;
 }

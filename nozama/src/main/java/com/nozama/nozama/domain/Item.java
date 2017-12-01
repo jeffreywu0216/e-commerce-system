@@ -1,6 +1,7 @@
 package com.nozama.nozama.domain;
 
 import javax.persistence.*;
+import java.io.File;
 import java.util.Date;
 
 @Entity
@@ -14,6 +15,8 @@ public class Item {
     private Double price;
     private Date timeToSell;
     private Integer statusId;
+    private String pictureUrl;
+//    private Object picture;
 
     @Id
     @Column(name="ITEMID")
@@ -107,6 +110,24 @@ public class Item {
         this.statusId = statusId;
     }
 
+    @Column(name="PICTUREURL")
+    @Basic
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
+//    public Object getPicture() {
+//        return picture;
+//    }
+//
+//    public void setPicture(Object picture) {
+//        this.picture = picture;
+//    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -118,6 +139,8 @@ public class Item {
                 ", price=" + price +
                 ", timeToSell=" + timeToSell +
                 ", statusId=" + statusId +
+                ", pictureUrl='" + pictureUrl + '\'' +
+//                ", picture=" + picture +
                 '}';
     }
 }

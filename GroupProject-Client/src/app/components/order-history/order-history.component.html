@@ -1,3 +1,51 @@
-<p>
-  order-history works!
-</p>
+<div class="container">
+  <h2>Order History</h2>
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef class="image"> Image </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="image"> <img src="{{row.pictureUrl}}"/> </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="productName"> Product Name </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="productName"> {{row.productName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="description"> {{row.description}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="price"> ${{row.price}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="time">
+        <mat-header-cell *matHeaderCellDef class="time"> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="time"> {{row.timeToSell | date: "medium"}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef class="action"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="action">
+          <button mat-raised-button class="btn btn-info" (click)="viewSeller(row.sellerId)">View Seller</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

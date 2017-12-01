@@ -1,0 +1,18 @@
+img {
+  width: 100px;
+}
+.image{
+  flex: 0 0 100px;
+}
+.productName{
+  flex: 0 0 120px;
+}
+.description{
+  flex: 0 0 650px;
+}
+.price{
+  flex: 0 0 80px;
+}
+.action{
+  flex: 0 0 100px;
+}
