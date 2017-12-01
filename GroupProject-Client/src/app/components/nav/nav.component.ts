@@ -12,7 +12,7 @@ export class NavComponent implements DoCheck {
   isManager: boolean;
   isLoggedIn: boolean;
   model: any = {};
-  constructor(private login: AuthService, private itemService: ItemService, private router: Router) { }
+  constructor(private login: AuthService, private router: Router) { }
 
 
 
@@ -29,8 +29,11 @@ export class NavComponent implements DoCheck {
     }
   }
   search() {
-    this.itemService.getSearchResult(this.model.searchString).subscribe(
-      resp => this.router.navigate(["buy"])
-    );
+    console.log('search loading ' + this.model.searchString);
+    this.router.navigate([`buy/${this.model.searchString}`]);
+    this.model = {};
+    // this.itemService.getSearchResult(this.model.searchString).subscribe(
+    //   resp => this.router.navigate([`buy/${resp}`])
+    // );
   }
 }

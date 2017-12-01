@@ -11,6 +11,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SignupComponent } from './components/signup/signup.component';
 import { ProfileComponent } from './components/profile/profile.component';
+
 import { AdminComponent } from './components/admin/admin.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -29,14 +30,20 @@ import {
   MatListModule, MatMenuModule,
   MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule,
   MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
-  MatSortModule,MatTableModule,
+  MatSortModule, MatTableModule,
   MatStepperModule, MatTabsModule, MatToolbarModule, MatTooltipModule
 } from "@angular/material";
 import {CdkTableModule} from "@angular/cdk/table";
-import {UserItemComponent, UserItemDialogComponent} from './components/user-item/user-item.component';
+import {
+  UserItemCancelDialogComponent, UserItemComponent, UserItemUpdateDialogComponent, UserItemViewBuyerDialogComponent
+} from './components/user-item/user-item.component';
 import {CartService} from "./services/cart.service";
 import { UserService } from './services/user.service';
-import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { EditproComponent } from './components/editpro/editpro.component';
+import {
+  OrderHistoryComponent,
+  OrderHistoryViewSellerDialogComponent
+} from './components/order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -54,11 +61,14 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     AlertComponent,
     UserItemComponent,
     OrderHistoryComponent,
-    UserItemDialogComponent
+    EditproComponen,
+    UserItemViewBuyerDialogComponent,
+    UserItemCancelDialogComponent,
+    UserItemUpdateDialogComponent,
+    OrderHistoryViewSellerDialogComponent
   ],
   imports: [
- 
-  ReactiveFormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -99,7 +109,7 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     MatNativeDateModule,
     ReactiveFormsModule
   ],
-    providers: [
+  providers: [
     AuthService,
     AlertService,
     AuthGuard,
@@ -107,6 +117,12 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     CartService,
     UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    UserItemViewBuyerDialogComponent,
+    UserItemCancelDialogComponent,
+    UserItemUpdateDialogComponent,
+    OrderHistoryViewSellerDialogComponent
+  ]
 })
 export class AppModule { }

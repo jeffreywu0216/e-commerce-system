@@ -13,7 +13,8 @@ import java.util.List;
 public interface ItemDao extends JpaRepository<Item, Integer> {
 
     List<Item> findByStatusId(Integer statusId);
-    List<Item> findByProductNameContainingAndDescriptionContaining (String s1, String s2);
+    List<Item> findByStatusIdAndDescriptionContaining (Integer id, String s);
+    List<Item> findByStatusIdAndProductNameContaining (Integer id, String s);
     List<Item> findBySellerId(Integer sellerId);
     List<Item> findBySellerIdAndStatusId(Integer sellerId, Integer statusId);
     List<Item> findByBuyerId(Integer buyerId);

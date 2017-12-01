@@ -5,6 +5,8 @@ import com.nozama.nozama.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -13,6 +15,10 @@ public class UserService {
     @Autowired
     public void setDao (UserDao dao){
         this.dao = dao;
+    }
+
+    public List<User> getAllUsers() {
+        return dao.findAll();
     }
 
     public User getUserByEmail (String email){

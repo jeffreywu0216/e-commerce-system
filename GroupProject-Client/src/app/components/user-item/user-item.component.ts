@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {ItemService} from "../../services/item.service";
 import {Item} from "../../models/item";
 import {MatPaginator, MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -11,10 +11,10 @@ import {User} from "../../models/user";
   templateUrl: './user-item.component.html',
   styleUrls: ['./user-item.component.css']
 })
-export class UserItemComponent implements OnInit {
+export class UserItemComponent implements OnInit, AfterViewInit {
   items: Item[];
   selected = "option1";
-  displayedColumns = ['productName', 'description', 'price', 'time', 'action'];
+  displayedColumns = ['image', 'productName', 'description', 'price', 'time', 'action'];
   dataSource: MatTableDataSource<Item>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -23,11 +23,13 @@ export class UserItemComponent implements OnInit {
               private userService: UserService,
               private authService: AuthService,
               public dialog: MatDialog) {
-    this.getAllItem();
-    this.dataSource = new MatTableDataSource(this.items);
   }
 
   ngOnInit() {
+    this.getAllItem();
+    this.dataSource = new MatTableDataSource(this.items);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -42,7 +44,11 @@ export class UserItemComponent implements OnInit {
   getAllItem() {
     this.itemService.getAllItemsBySellerId(this.authService.getUser().id)
       .subscribe( items => {
+        this.items = [];
         this.items = items;
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }, err => {
         console.log(err);
       });
@@ -50,7 +56,11 @@ export class UserItemComponent implements OnInit {
   getAllSellItem() {
     this.itemService.getAllSellItemsBySellerId(this.authService.getUser().id)
       .subscribe( items => {
+        this.items = [];
         this.items = items;
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }, err => {
         console.log(err);
       });
@@ -58,57 +68,130 @@ export class UserItemComponent implements OnInit {
   getAllSoldItem() {
     this.itemService.getAllSoldItemsBySellerId(this.authService.getUser().id)
       .subscribe( items => {
+        this.items = [];
         this.items = items;
+        this.dataSource = new MatTableDataSource(this.items);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }, err => {
         console.log(err);
       });
   }
-  // viewBuyer(buyerId: number) {
-  //   this.userService.getUser()
-  // }
-  // updateItem(itemId: number) {}
-  // cancelItem(itemId: number) {
-  //   this.itemService.removeSellItem()
-  // } // make a new status for canceled items so can be put back
-  //
-  // openViewBuyerDialog(buyerId: number): void {
-  //   let user: User;
-  //   this.userService.getUser(buyerId)
-  //     .subscribe(resp => {
-  //       user = resp;
-  //     }, err => {
-  //       console.log(err);
-  //     })
-  //   const dialogRef = this.dialog.open(UserItemDialogComponent, {
-  //     width: '250px',
-  //     data: {
-  //       email: user.email,
-  //       street: user.street,
-  //       city: user.city,
-  //       state: user.state,
-  //       phone: user.phone
-  //     }
-  //   });
+  viewBuyer(buyerId: number) {
+    this.userService.findUser(buyerId)
+      .subscribe(user => {
+        this.openViewBuyerDialog(user);
+      }, err => {
+        console.log(err);
+      });
+  }
+  updateItem(item: Item) {
+    this.itemService.updateSellItem(item)
+      .subscribe(() => {
+        alert("Success");
+        this.getAllItem();
+      }, err => {
+        console.log(err);
+      });
+  }
+  cancelItem(itemId: number): void {
+    this.itemService.removeSellItem(itemId)
+      .subscribe(() => {
+        console.log("Success");
+        this.getAllItem();
+      }, err => {
+        console.log(err);
+      });
+  }
+  openViewBuyerDialog(user: User): void {
+    const dialogRef = this.dialog.open(UserItemViewBuyerDialogComponent, {
+      width: '250px',
+      data: {
+        email: user.email,
+        street: user.street,
+        city: user.city,
+        state: user.state,
+        phone: user.phone
+      }
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //   this.animal = result;
-    // });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openUpdateDialog(item: Item): void {
+    const dialogRef = this.dialog.open(UserItemUpdateDialogComponent, {
+      width: '250px',
+      data: {
+        item: item
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.updateItem(result);
+      }
+    });
+  }
+  openCancelDialog(item: Item): void {
+    const dialogRef = this.dialog.open(UserItemCancelDialogComponent, {
+      width: '250px',
+      data: {
+        productName: item.productName,
+        itemId: item.itemId
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.cancelItem(result);
+      }
+    });
+  }
 }
 
 @Component({
-  selector: 'app-user-item-dialog',
-  templateUrl: './user-item-dialog.component.html',
+  selector: 'app-user-item-view-buyer-dialog',
+  templateUrl: './user-item-view-buyer-dialog.component.html',
 })
-export class UserItemDialogComponent {
+export class UserItemViewBuyerDialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<UserItemDialogComponent>,
+    public dialogRef: MatDialogRef<UserItemViewBuyerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
+}
 
+@Component({
+  selector: 'app-user-item-update-dialog',
+  templateUrl: './user-item-update-dialog.component.html',
+})
+export class UserItemUpdateDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<UserItemUpdateDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
+@Component({
+  selector: 'app-user-item-cancel-dialog',
+  templateUrl: './user-item-cancel-dialog.component.html',
+})
+export class UserItemCancelDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<UserItemCancelDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

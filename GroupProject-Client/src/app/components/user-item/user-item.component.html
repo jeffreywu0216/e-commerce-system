@@ -38,12 +38,13 @@
   <!--</table>-->
 <!--</div>-->
 <div class="container">
+  <h2>My Items</h2>
   <mat-form-field>
-    <mat-select [(value)]="selected">
-      <mat-option>None</mat-option>
-      <mat-option value="option1" (onSelectionChange)="getAllItem()">View All Items</mat-option>
-      <mat-option value="option2" (onSelectionChange)="getAllSellItem()">View All Selling</mat-option>
-      <mat-option value="option3" (onSelectionChange)="getAllSoldItem()">View All Sold</mat-option>
+    <mat-select [(value)]="selected" >
+      <!--<mat-option>None</mat-option>-->
+      <mat-option value="option1" (click)="getAllItem()">View All Items</mat-option>
+      <mat-option value="option2" (click)="getAllSellItem()">View All Selling</mat-option>
+      <mat-option value="option3" (click)="getAllSoldItem()">View All Sold</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -56,33 +57,39 @@
   <div class="example-container mat-elevation-z8">
 
     <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef class="image"> Image </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="image"> <img src="{{row.pictureUrl}}"/> </mat-cell>
+      </ng-container>
+
       <ng-container matColumnDef="productName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.productName}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="productName"> Product Name </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="productName"> {{row.productName}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.description}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="description"> {{row.description}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Price </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.price}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="price"> ${{row.price}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="time">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Date </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.time}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef class="time"> Date </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="time"> {{row.timeToSell | date: "medium"}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <!--<button mat-raised-button (click)="openDialog()">Pick one</button>-->
-          <button mat-raised-button *ngIf="row.status == 1"<!--class="btn btn-danger"--> (click)="updateItem(row.itemId)">Update Item</button>
-          <button mat-raised-button *ngIf="row.status == 1"<!--class="btn btn-danger"--> (click)="cancelItem(row.itemId)">Cancel Item</button>
-          <button mat-raised-button *ngIf="row.status == 2"<!--class="btn btn-info"--> (click)="viewBuyer(row.buyerId)">View Buyer</button>
+        <mat-header-cell *matHeaderCellDef class="action"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="action">
+          <div>
+          <button mat-raised-button *ngIf="row.statusId === 1" class="btn btn-primary update-btn" (click)="openUpdateDialog(row)">Update</button>
+          <button mat-raised-button *ngIf="row.statusId === 1" class="btn btn-warning" (click)="openCancelDialog(row)">Cancel</button>
+          </div>
+          <button mat-raised-button *ngIf="row.statusId === 2" class="btn btn-info" (click)="viewBuyer(row.buyerId)">View Buyer</button>
         </mat-cell>
       </ng-container>
 

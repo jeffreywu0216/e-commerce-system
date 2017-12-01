@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Buyer Information</h1>
+<div class="container" mat-dialog-content *ngIf="data">
+  <p>Email: {{data.email}}</p>
+  <p>Street: {{data.street}}</p>
+  <p>City: {{data.city}}</p>
+  <p>State: {{data.state}}</p>
+  <p>Phone: {{data.phone}}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Close</button>
+</div>

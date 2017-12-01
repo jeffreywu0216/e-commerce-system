@@ -1,4 +1,27 @@
-<p>
-  {{user.id}}
-  {{user.email}}
-</p>
+<html>
+  <body>
+		<header>
+			<!-- <img src=""> -->
+    </header>
+		<main> 
+        <div class="container">
+          <!-- <button id="btn" mat-button color="primary" (click)="editProfile()">Edit Profile</button> -->
+          <mat-button-toggle mat-button color="primary" (click)="editProfile()">Edit Profile</mat-button-toggle>
+          <div class="example-container"><edit *ngIf=isEdit></edit></div>
+          <mat-list>
+            <div *ngIf=!isEdit class="example-container">
+              <h1>Profile</h1>
+              <mat-list-item *ngIf="user"><label>Name:&nbsp;</label>{{user.name}}</mat-list-item>
+              <mat-list-item *ngIf="user"><label>Email:&nbsp;</label>{{user.email}}</mat-list-item>
+              <mat-list-item *ngIf="user"><label>Phone:&nbsp;</label>{{user.phone}}</mat-list-item>
+              <mat-list-item *ngIf="user"><label>Street:&nbsp;</label>{{user.street}}</mat-list-item>
+              <mat-list-item *ngIf="user"><label>City:&nbsp;</label>{{user.city}}</mat-list-item>
+              <mat-list-item *ngIf="user"><label>State:&nbsp;</label>{{user.state}}</mat-list-item>
+            </div>
+          </mat-list> 
+      </div>
+    </main> 
+    <br> <br>
+    <footer>Nozama &copy; 2017</footer>
+  </body>
+</html>
