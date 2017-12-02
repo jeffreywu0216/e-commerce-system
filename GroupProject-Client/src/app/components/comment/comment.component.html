@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>What do you think about the item?</h1>
+<div mat-dialog-content>
+  <mat-form-field class="full-width">
+    <textarea matInput placeholder="Comment" [(ngModel)]="data.comment"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data.comment" tabindex="2">Ok</button>
+  <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+</div>
