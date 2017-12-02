@@ -2,6 +2,7 @@ body {
     background-color: #F5F5F5; 
     margin: 0px;
     line-height: 1.5;
+    /* background-image: url("http://bashooka.com/wp-content/uploads/2012/04/patterns_4.jpg"); */
   }
 
 header {
@@ -24,7 +25,7 @@ header {
   } 
 
   footer {
-    color: 	#69359C;
+    color: 	#212121;
     background-color: #F5F5F5;
     padding: 20px;
     text-align: center;
@@ -34,6 +35,9 @@ header {
   #btn{
     font-family: 'Times New Roman', Times, serif;
     background-color: #F5F5F5;
-    font-size: large;
+    
   }
   
+  #btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }

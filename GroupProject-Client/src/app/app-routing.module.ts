@@ -11,6 +11,7 @@ import {AdminComponent} from "./components/admin/admin.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {UserItemComponent} from "./components/user-item/user-item.component";
 import {OrderHistoryComponent} from "./components/order-history/order-history.component";
+import { EditproComponent } from './components/editpro/editpro.component';
 
 const routes: Routes = [
   // {path: 'home', component: HomepageComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   {path: 'buy/:word', component: BuyComponent},
   {path: 'sell', component: SellComponent},
   {path: '', component: HomepageComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'edit', component: EditproComponent}
 ];
 
 @NgModule({

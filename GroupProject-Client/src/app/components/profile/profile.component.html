@@ -5,11 +5,9 @@
     </header>
 		<main> 
         <div class="container">
-          <!-- <button id="btn" mat-button color="primary" (click)="editProfile()">Edit Profile</button> -->
-          <mat-button-toggle mat-button color="primary" (click)="editProfile()">Edit Profile</mat-button-toggle>
-          <div class="example-container"><edit *ngIf=isEdit></edit></div>
           <mat-list>
-            <div *ngIf=!isEdit class="example-container">
+            <div class="example-container">
+              <button id="edit-btn" mat-button color="primary" (click)="editProfile()">Edit</button>
               <h1>Profile</h1>
               <mat-list-item *ngIf="user"><label>Name:&nbsp;</label>{{user.name}}</mat-list-item>
               <mat-list-item *ngIf="user"><label>Email:&nbsp;</label>{{user.email}}</mat-list-item>
@@ -22,6 +20,6 @@
       </div>
     </main> 
     <br> <br>
-    <footer>Nozama &copy; 2017</footer>
+    <footer> &copy; 2017, Nozama.com</footer>
   </body>
 </html>
