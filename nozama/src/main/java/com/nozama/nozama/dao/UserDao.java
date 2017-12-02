@@ -9,10 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao extends JpaRepository<User, Integer> {
     public User findByEmail(String email);
-
-    @Modifying
-//    @Transactional
-    @Query("UPDATE User SET buyerId = ?1, statusId = 2 WHERE itemId IN (SELECT itemId FROM ShoppingCart WHERE buyerId = ?1)")
-    void setBuyer(Integer buyerId);
-
 }

@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: User;
-  isEdit: boolean = false;
 
   constructor(private auth: AuthService, private alertService: AlertService, 
     private service: UserService, private router: Router,) { }
@@ -21,7 +20,6 @@ export class ProfileComponent implements OnInit {
     this.service.findUser(this.auth.getUser().id)
     .subscribe( user => {
       this.user = user;
-      
     });
   }
 

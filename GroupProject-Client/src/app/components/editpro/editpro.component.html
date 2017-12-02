@@ -1,45 +1,57 @@
 <body>
-    <header>
-       <!-- <img src=""> -->
-       </header>
-       <main>
-         <br/>
-         <br/>
-         <br/>
-         <div class="container">
-           <app-alert></app-alert>
-           <form class="example-form">
-             <div class="example-container">
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Name" value="Sushi">
-                </mat-form-field>
-                <br>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="E-mail" value="Sushi">
-                </mat-form-field>
-                <br>
-                <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Phone" value="Sushi">
-                </mat-form-field>
-                <br>
-                <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Street" value="Sushi">
-                </mat-form-field>
-                <br>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="City" value="Sushi">
-                </mat-form-field>
-                <br>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="State" value="Sushi">
-                </mat-form-field>
-                <br>
-                <button id="btn" mat-button color="primary" (click)="updateUser()">Update</button>
-                <button id="btn" mat-button color="primary" (click)="cancel()">Cancel</button>                
-             </div>
-           </form>
-         </div>  
-       </main>
-       <footer> &copy; 2017, Nozama.com</footer>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
-         
+  <header>
+    <!-- <img src=""> -->
+  </header>
+  <main>
+    <div class="container">
+      <app-alert></app-alert>
+      <form class="example-form">
+        <div class="example-container">
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Name" [(ngModel)]="model.name" name="name" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Email" [(ngModel)]="model.email" name="email" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Phone" [(ngModel)]="model.phone" name="phone" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field> 
+          <br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="Street" [(ngModel)]="model.street" name="street" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field> 
+          <br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="City" [(ngModel)]="model.city" name="city" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field> 
+          <br>
+          <mat-form-field class="example-form-field">
+            <input matInput type="text" placeholder="State" [(ngModel)]="model.state" name="state" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field> 
+          <button id="btn" mat-button color="primary" (click)="updateUser()">Update</button>
+          <button id="btn" mat-button color="primary" (click)="cancel()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </main>
+  <footer> &copy; 2017, Nozama.com</footer>
