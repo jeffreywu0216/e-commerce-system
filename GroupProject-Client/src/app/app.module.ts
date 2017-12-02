@@ -44,6 +44,8 @@ import {
   OrderHistoryComponent,
   OrderHistoryViewSellerDialogComponent
 } from './components/order-history/order-history.component';
+import {CommentComponent} from "./components/comment/comment.component";
+import {CommentService} from "./services/comment.service";
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import {
     ProfileComponent,
     AdminComponent,
     HomepageComponent,
+    CommentComponent,
     CartComponent,
     BuyComponent,
     SellComponent,
@@ -109,13 +112,17 @@ import {
     MatNativeDateModule,
     ReactiveFormsModule
   ],
+  entryComponents: [
+    CommentComponent
+  ],
   providers: [
     AuthService,
     AlertService,
     AuthGuard,
     ItemService,
     CartService,
-    UserService
+    UserService,
+    CommentService
   ],
   bootstrap: [
     AppComponent,

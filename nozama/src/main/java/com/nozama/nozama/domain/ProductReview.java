@@ -3,14 +3,14 @@ package com.nozama.nozama.domain;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "PRODUCTREVIEW")
 public class ProductReview {
     private Integer productReviewId;
-    private Integer itemId;
+    private Item itemId;
     private String productReview;
 
     @Id
-    @Column
+    @Column(name = "PRODUCTREVIEWID")
     @GeneratedValue(generator = "PRODUCTREVIEWCOUNT", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "PRODUCTREVIEWCOUNT", sequenceName = "PRODUCTREVIEWCOUNT",allocationSize=1)
     public Integer getProductReviewId() {
@@ -21,18 +21,19 @@ public class ProductReview {
         this.productReviewId = productReviewId;
     }
 
-    @Basic
-    @Column
-    public Integer getItemId() {
+//    @Basic
+//    @Column
+    @ManyToOne
+    @JoinColumn(name = "ITEMID", referencedColumnName = "ITEMID")
+    public Item getItemId() {
         return itemId;
     }
-
-    public void setItemId(Integer itemId) {
+    public void setItemId(Item itemId) {
         this.itemId = itemId;
     }
 
     @Basic
-    @Column
+    @Column(name = "PRODUCTREVIEW")
     public String getProductReview() {
         return productReview;
     }
