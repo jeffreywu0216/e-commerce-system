@@ -8,7 +8,8 @@ import {AuthService} from "../../services/auth.service";
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
-  imgFile: any;
+  imgFile: string;
+  pictureUrl: string;
   price: number;
   productName: string;
   description: string;
@@ -39,7 +40,7 @@ export class SellComponent implements OnInit {
   ngOnInit() {
   }
   submitNewSellItem() {
-    this.itemService.submitNewSellItem(this.price, this.productName, this.description, this.imgFile.name)
+    this.itemService.submitNewSellItem(this.price, this.productName, this.description, this.pictureUrl, this.imgFile)
       .subscribe(() => {
         alert("Success!");
         this.price = undefined;
@@ -51,7 +52,24 @@ export class SellComponent implements OnInit {
       });
   }
 
-  getImg(evt) {
-    this.imgFile = evt.target.files[0];
+  // getImg(evt) {
+  //   this.imgFile = evt.target.files[0];
+  // }
+
+  getImg(e): void {
+    this.readThis(e.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    this.pictureUrl = file.name;
+    this.pictureUrl = this.pictureUrl.trim();
+    this.pictureUrl = this.pictureUrl.split(' ').join('');
+    const myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.imgFile = myReader.result;
+    },
+    myReader.readAsDataURL(file);
   }
 }

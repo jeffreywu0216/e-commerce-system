@@ -16,7 +16,7 @@ public class Item {
     private Date timeToSell;
     private Integer statusId;
     private String pictureUrl;
-//    private Object picture;
+    private String picture;
 
     @Id
     @Column(name="ITEMID")
@@ -120,13 +120,14 @@ public class Item {
         this.pictureUrl = pictureUrl;
     }
 
-//    public Object getPicture() {
-//        return picture;
-//    }
-//
-//    public void setPicture(Object picture) {
-//        this.picture = picture;
-//    }
+    @Transient
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     @Override
     public String toString() {
@@ -140,7 +141,7 @@ public class Item {
                 ", timeToSell=" + timeToSell +
                 ", statusId=" + statusId +
                 ", pictureUrl='" + pictureUrl + '\'' +
-//                ", picture=" + picture +
+                ", picture=" + picture +
                 '}';
     }
 }

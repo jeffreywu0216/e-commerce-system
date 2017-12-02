@@ -12,6 +12,8 @@ import {AuthService} from "../../services/auth.service";
 })
 export class CartComponent implements OnInit {
   items: Item[] = [];
+  total: number;
+  handler: any;
 
   displayedColumns = ['image', 'productName', 'description', 'price', 'action'];
   dataSource: MatTableDataSource<Item>;
@@ -23,14 +25,25 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_C44Nfz5X8RSueDEW91uKYvTl',
+      locale: 'auto',
+      token: token => {
+        this.buyItems();
+      }
+    });
   }
   getAllCartByBuyerId() {
+    this.total = 0;
+    this.items = [];
+    this.dataSource = new MatTableDataSource(this.items);
     this.cartService.getAllCartByBuyerId(this.auth.getUser().id)
       .subscribe( cart => {
         for (let i = 0; i < cart.length; i++) {
           this.itemService.findOne(cart[i].itemId)
             .subscribe( item => {
               this.items[i] = item;
+              this.total = this.total + item.price;
               this.dataSource = new MatTableDataSource(this.items);
             }, err => {
                 console.log(err);
@@ -42,10 +55,11 @@ export class CartComponent implements OnInit {
   }
 
   // call strip api, and after success link to database
-  buyItems(userId: number) {
+  buyItems() {
     this.cartService.buyItems(this.auth.getUser().id)
       .subscribe(() => {
         alert("Success");
+        this.getAllCartByBuyerId();
       }, error => {
         console.log(error);
       });
@@ -60,5 +74,22 @@ export class CartComponent implements OnInit {
       }, error => {
         console.log(error);
       });
+  }
+
+  openCheckout() {
+    // const handler = (<any>window).StripeCheckout.configure({
+    //   key: 'pk_test_C44Nfz5X8RSueDEW91uKYvTl',
+    //   locale: 'auto',
+    //   token: function (token: any) {
+    //     // You can access the token ID with `token.id`.
+    //     // Get the token ID to your server-side code for use.
+    //   }
+    // });
+
+    this.handler.open({
+      // name: 'Demo Site',
+      // description: '2 widgets',
+      amount: this.total * 100
+    });
   }
 }

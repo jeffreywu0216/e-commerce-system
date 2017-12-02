@@ -61,7 +61,7 @@ import {
     AlertComponent,
     UserItemComponent,
     OrderHistoryComponent,
-    EditproComponen,
+    EditproComponent,
     UserItemViewBuyerDialogComponent,
     UserItemCancelDialogComponent,
     UserItemUpdateDialogComponent,
