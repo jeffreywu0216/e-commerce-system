@@ -28,6 +28,9 @@ export class AdminComponent {
       .subscribe( users => {
         this.users = users;
         this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource = new MatTableDataSource(this.users);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       }, err => {
         console.log(err);
       });

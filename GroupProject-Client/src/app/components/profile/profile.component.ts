@@ -3,6 +3,7 @@ import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {AlertService} from "../../services/alert.service";
 import { UserService } from './../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,9 +12,9 @@ import { UserService } from './../../services/user.service';
 })
 export class ProfileComponent implements OnInit {
   user: User;
-  isEdit: boolean = false;
 
-  constructor(private auth: AuthService, private alertService: AlertService, private service: UserService) { }
+  constructor(private auth: AuthService, private alertService: AlertService, 
+    private service: UserService, private router: Router,) { }
 
   ngOnInit() {
     this.service.findUser(this.auth.getUser().id)
@@ -23,7 +24,7 @@ export class ProfileComponent implements OnInit {
   }
 
   editProfile(){
-    this.isEdit = !this.isEdit;
+   this.router.navigate(["/edit"]); 
   }
 
 }

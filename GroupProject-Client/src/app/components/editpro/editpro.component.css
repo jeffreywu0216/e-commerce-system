@@ -9,7 +9,7 @@ header {
   }
   
   main {
-    max-width: 800px;
+    max-width: 100%;
     margin: auto;
     padding: 0px, 20px;
   }
@@ -24,7 +24,7 @@ header {
   } 
 
   footer {
-    color: 	#69359C;
+    color: 	#212121;
     background-color: #F5F5F5;
     padding: 20px;
     text-align: center;
@@ -33,7 +33,9 @@ header {
 
   #btn{
     font-family: 'Times New Roman', Times, serif;
-    background-color: #F5F5F5;
-    font-size: large;
   }
-  
+
+   #btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+   
