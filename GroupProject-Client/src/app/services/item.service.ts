@@ -31,13 +31,14 @@ export class ItemService {
   getAllBoughtItemsByBuyerId(buyerId: number): Observable<Item[]> {
     return this.http.get<Item[]>(`http://localhost:8080/items/buyer/bought/${buyerId}`);
   }
-  submitNewSellItem  (price: number, productName: string, description: string, pictureUrl: string): Observable<any> {
+  submitNewSellItem  (price: number, productName: string, description: string, pictureUrl: string, picture: string): Observable<any> {
     return this.http.post(`http://localhost:8080/items/item/new/${this.auth.getUser().id}`,
       {
         price: price,
         productName: productName,
         description: description,
-        pictureUrl: pictureUrl
+        pictureUrl: pictureUrl,
+        picture: picture
       });
   }
   updateSellItem(item: Item) {

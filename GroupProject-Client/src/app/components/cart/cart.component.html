@@ -50,7 +50,7 @@
       </ng-container>
 
       <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef class="price"> Price </mat-header-cell>
         <mat-cell *matCellDef="let row" class="price"> ${{row.price}} </mat-cell>
       </ng-container>
 
@@ -66,7 +66,8 @@
       </mat-row>
     </mat-table>
 
-    <button mat-raised-button color="primary" style="float: right;" (click)="buyItems()">Place Order</button>
+    <!--<button mat-raised-button color="primary" style="float: right;" (click)="buyItems()">Place Order</button>-->
+    <button mat-raised-button color="primary" style="float: right;" (click)="openCheckout()">Place Order</button>
 
   </div>
 </div>
