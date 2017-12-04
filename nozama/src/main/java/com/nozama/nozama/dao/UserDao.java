@@ -13,13 +13,9 @@ import javax.transaction.Transactional;
 public interface UserDao extends JpaRepository<User, Integer> {
     public User findByEmail(String email);
 
-//    @Transactional
-//    void deleteByItemId(Integer id);
-
     @Modifying
     @Transactional
-//    ) u.EMAIL = ?2, u.STREET = ?3, u.CITY = ?4, u.STATE = ?5  WHERE u.USERID = ?6")
-    @Query("UPDATE User SET NAME = ?1 WHERE USERID = 51")
-    void updateUser(@Param("NAME") String name);
+    @Query("UPDATE User  SET NAME = :NAME, STREET =:STREET WHERE USERID = 51")
+    void updateUser(@Param("NAME") String name, @Param("STREET") String street);
 
 }

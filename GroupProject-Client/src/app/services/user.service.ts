@@ -33,10 +33,11 @@ export class UserService {
     });
     }
 
-    updateUser(name: string): Observable<any> {
+    updateUser(name: string, street:string): Observable<any> {
       return this.http.post<User[]>(`http://localhost:8080/user/update/`,
       {
-       name: name
-   });
+       name: name,
+       street: street
+      });
    }
 }
