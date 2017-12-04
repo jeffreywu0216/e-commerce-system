@@ -36,7 +36,7 @@ public class UserService {
     }
 
 //    String email, String street, String city, String state, Integer id){
-    public void updateUser(String name, String street){
-        dao.updateUser(name,street);
+    public void updateUser(String name, String email, Long phone, String street, String city, String state, Integer userid){
+        dao.updateUser(name, email, phone, street, city, state, userid);
     }
 }

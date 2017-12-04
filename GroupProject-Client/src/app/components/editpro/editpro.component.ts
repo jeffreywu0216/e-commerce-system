@@ -41,7 +41,8 @@ export class EditproComponent implements OnInit {
 
   updateUser() {
 
-    this.service.updateUser(this.model.name, this.model.street)
+    this.service.updateUser(this.model.name, this.model.email, this.model.phone,
+       this.model.street, this.model.city, this.model.state, this.auth.getUser().id)
       .subscribe(err => { this.alert.error("Invalid  Input") },
       rsp => { this.router.navigate(["profile"]) });
   }

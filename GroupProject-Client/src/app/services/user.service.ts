@@ -33,11 +33,16 @@ export class UserService {
     });
     }
 
-    updateUser(name: string, street:string): Observable<any> {
+    updateUser(name: string, email: string, phone: number, street: string, city: string, state: string, id: number): Observable<any> {
       return this.http.post<User[]>(`http://localhost:8080/user/update/`,
       {
        name: name,
-       street: street
+       email: email,
+       phone: phone,
+       street: street,
+       city: city,
+       state: state,
+       id: id
       });
    }
 }
