@@ -34,4 +34,9 @@ public class UserService {
     public void insertUser(User user){
         dao.save(user);
     }
+
+//    String email, String street, String city, String state, Integer id){
+    public void updateUser(String name){
+        dao.updateUser(name);
+    }
 }

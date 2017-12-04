@@ -32,4 +32,11 @@ export class UserService {
         phone: phone
     });
     }
+
+    updateUser(name: string): Observable<any> {
+      return this.http.post<User[]>(`http://localhost:8080/user/update/`,
+      {
+       name: name
+   });
+   }
 }

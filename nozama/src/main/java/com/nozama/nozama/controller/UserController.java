@@ -89,5 +89,12 @@ public class UserController {
         return new ResponseEntity(user, HttpStatus.OK);
     }
 
+    @PostMapping(path = "/update")
+    @ResponseBody
+    public ResponseEntity updateUser( @RequestBody String name) {
+        userService.updateUser(name);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
 
 }
