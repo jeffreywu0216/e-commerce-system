@@ -2,12 +2,12 @@ import {AfterViewInit, Component, Inject, OnInit, ViewChild} from '@angular/core
 import {Item} from "../../models/item";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {ItemService} from "../../services/item.service";
-import {CartService} from "../../services/cart.service";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
 import {CommentComponent} from "../comment/comment.component";
 import {CommentService} from "../../services/comment.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-order-history',
@@ -17,7 +17,7 @@ import {CommentService} from "../../services/comment.service";
 export class OrderHistoryComponent implements OnInit, AfterViewInit {
   items: Item[] = [];
   comment: String;
-  displayedColumns = ['image', 'productName', 'description', 'price', 'time', 'action'];
+  displayedColumns = ['image', 'productName', 'price', 'time', 'action'];
   dataSource: MatTableDataSource<Item>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -25,8 +25,10 @@ export class OrderHistoryComponent implements OnInit, AfterViewInit {
 
   constructor(private itemService: ItemService,
               private userService: UserService,
-              private auth: AuthService, private commService: CommentService,
-              public dialog: MatDialog) {
+              private auth: AuthService, 
+              private commService: CommentService,
+              public dialog: MatDialog,
+              private router: Router) {
     this.getAllBoughtItemsByBuyerId();
     this.dataSource = new MatTableDataSource(this.items);
     this.dataSource.paginator = this.paginator;
@@ -97,6 +99,9 @@ export class OrderHistoryComponent implements OnInit, AfterViewInit {
       console.log('The dialog was closed');
       // this.animal = result;
     });
+  }
+  viewDetail(itemId: number) {
+    this.router.navigate([`buy/item/${itemId}`]);
   }
 }
 

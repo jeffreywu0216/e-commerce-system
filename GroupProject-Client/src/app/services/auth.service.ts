@@ -42,6 +42,9 @@ export class AuthService {
   getUser(): User {
       return JSON.parse(localStorage.getItem('currentUser'));
   }
+  getLogin(): boolean {
+    return JSON.parse(localStorage.getItem('userlogin'));
+  }
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('userlogin');

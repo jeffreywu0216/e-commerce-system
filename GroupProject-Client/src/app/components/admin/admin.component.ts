@@ -3,9 +3,6 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {UserService} from "../../services/user.service";
 import { User } from "../../models/user";
 
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -36,19 +33,14 @@ export class AdminComponent {
       });
   }
   
-
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    filterValue = filterValue.trim(); 
+    filterValue = filterValue.toLowerCase(); 
     this.dataSource.filter = filterValue;
   }
 }

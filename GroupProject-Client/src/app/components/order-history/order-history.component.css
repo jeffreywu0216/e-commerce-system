@@ -1,20 +1,18 @@
 img {
-  width: 100px;
+  width: 150px;
 }
 .image{
-  flex: 0 0 100px;
+  flex: 0 0 200px;
 }
 .productName{
-  flex: 0 0 120px;
+  flex: 0 0 520px;
 }
-.description{
-  flex: 0 0 550px;
-}
+
 .price{
-  flex: 0 0 80px;
+  flex: 0 0 100px;
 }
 .time{
-  flex: 0 0 100px;
+  flex: 0 0 130px;
 }
 .action{
   flex: 0 0 100px;

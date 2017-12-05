@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from "rxjs/Observable";
 
 
 import { User } from './../models/user';
@@ -30,6 +30,20 @@ export class UserService {
         city: city,
         state: state,
         phone: phone
-    });
+      });
     }
+
+    updateUser(name: string, email: string, password: string, phone: number, street: string, city: string, state: string, id: number): Observable<any> {
+      return this.http.post<User[]>(`http://localhost:8080/user/update/`,
+      {
+       name: name,
+       email: email,
+       password:password,
+       phone: phone,
+       street: street,
+       city: city,
+       state: state,
+       id: id
+      });
+   }
 }
