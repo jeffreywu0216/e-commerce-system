@@ -7,10 +7,19 @@ import {Item} from "../models/item";
 export class CommentService {
 
   constructor(private http: HttpClient) { }
-  submitNewReview (itemId: number, review: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/reviews/new`, {
-        itemId: {itemId: itemId},
-        productReview: review
+  submitNewProductReview (itemId: number, review: string, rating: number): Observable<any> {
+    return this.http.post(`http://localhost:8080/reviews/new/product`, {
+      itemId: {itemId: itemId},
+      productReview: review,
+      rating: rating
+      }
+    );
+  }
+  submitNewUserReview (sellerId: number, review: string, rating: number): Observable<any> {
+    return this.http.post(`http://localhost:8080/reviews/new/user`, {
+        userId: {id: sellerId},
+        userReview: review,
+        rating: rating
       }
     );
   }

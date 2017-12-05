@@ -5,6 +5,8 @@ import {ItemService} from "../../services/item.service";
 import {AuthService} from "../../services/auth.service";
 import {User} from "../../models/user";
 import {UserService} from "../../services/user.service";
+import {CommentComponent} from "../comment/comment.component";
+import {CommentService} from "../../services/comment.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,7 +16,7 @@ import {Router} from "@angular/router";
 })
 export class OrderHistoryComponent implements OnInit, AfterViewInit {
   items: Item[] = [];
-
+  comment: String;
   displayedColumns = ['image', 'productName', 'price', 'time', 'action'];
   dataSource: MatTableDataSource<Item>;
 
@@ -23,7 +25,8 @@ export class OrderHistoryComponent implements OnInit, AfterViewInit {
 
   constructor(private itemService: ItemService,
               private userService: UserService,
-              private auth: AuthService,
+              private auth: AuthService, 
+              private commService: CommentService,
               public dialog: MatDialog,
               private router: Router) {
     this.getAllBoughtItemsByBuyerId();
@@ -61,6 +64,27 @@ export class OrderHistoryComponent implements OnInit, AfterViewInit {
       }, err => {
         console.log(err);
       });
+  }
+  openReviewDialog(id: number, sender: number): void {
+    const dialogRef = this.dialog.open(
+      CommentComponent, {
+        width: '400px',
+        data: {id: id, comment: this.comment}
+      }
+    );
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        console.log(result.id);
+        console.log(result.rating.score);
+        console.log(result.comment);
+        if (sender === 1) {
+          this.commService.submitNewProductReview(result.id, result.comment, result.rating.score).subscribe();
+        } else if (sender === 2) {
+          this.commService.submitNewUserReview(result.id, result.comment, result.rating.score).subscribe();
+
+        }
+      }
+    });
   }
   openViewSellerDialog(user: User): void {
     const dialogRef = this.dialog.open(OrderHistoryViewSellerDialogComponent, {
