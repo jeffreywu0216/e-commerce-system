@@ -23,15 +23,6 @@ header {
    
   } 
 
-  footer {
-    color: #212121;
-    font-family: 'Open Sans';
-    background-color:	#F5F5F5;
-    padding: 20px;
-    text-align: center;
-    margin-top: 60px
-  }
-  
   .example-container {
     display: flex;
     flex-direction: column;

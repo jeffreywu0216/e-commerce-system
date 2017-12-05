@@ -1,7 +1,7 @@
 body {
   background-image: url("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapers9.org%2Fwp-content%2Fuploads%2F2015%2F12%2F2015-Christmas-background-hd.jpg&f=1");
   line-height: 1.5; 
-  background-size: 100% 95%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -11,31 +11,19 @@ body {
   z-index: 1;
 } 
 
-
 header {
   text-align: center;
 }
-
-/* main {
-  max-width: 100%;
-  margin: auto;
-  padding: 0px;
-} */
 
 h1 {
  font-family: 'Play';
 } 
 
- footer {
-  color: 	#212121;
-  background-color: #F5F5F5;
-  padding: 20px;
-  text-align: center;
-  margin-top: 10%;
-} 
+
  
 .example-container{
   font-size: large;
+ 
 }
 
 #edit-btn {

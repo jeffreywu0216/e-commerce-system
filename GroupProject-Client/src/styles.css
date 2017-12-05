@@ -1,6 +1,27 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-.bkgd-clr {
-  background-color: #f5f5f5;
+
+body {
+  background-image: url('http://www.freechristmaswallpapers.net/web/wallpapers/thumbnail/Winter-Christmas-Background_lg.jpeg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
 }
 
+mat-table, mat-card{
+  opacity: 0.9;   
+}
+
+#page{
+  background-color: white;
+  opacity: 0.9;
+}
+
+footer {
+  color: #212121;
+  font-family: 'Open Sans';
+  background-color:	#F5F5F5;
+  text-align: center;
+  margin-top: 15%
+}
