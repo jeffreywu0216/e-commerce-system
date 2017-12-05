@@ -22,6 +22,13 @@
           </mat-form-field>
           <br>
           <mat-form-field class="example-form-field">
+            <input matInput type="password" placeholder="Password" [(ngModel)]="model.password" name="password" />
+            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-form-field">
             <input matInput type="text" placeholder="Phone" [(ngModel)]="model.phone" name="phone" />
             <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
               <mat-icon>close</mat-icon>

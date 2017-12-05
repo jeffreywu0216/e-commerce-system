@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../services/auth.service";
-import {User} from "../../models/user";
-import {AlertService} from "../../services/alert.service";
+import { AuthService } from "../../services/auth.service";
+import { User } from "../../models/user";
+import { AlertService } from "../../services/alert.service";
 import { UserService } from './../../services/user.service';
 import { Router } from '@angular/router';
 
@@ -14,17 +14,18 @@ export class ProfileComponent implements OnInit {
   user: User;
 
   constructor(private auth: AuthService, private alertService: AlertService, 
-    private service: UserService, private router: Router,) { }
+    private service: UserService, private router: Router,) {}
 
   ngOnInit() {
     this.service.findUser(this.auth.getUser().id)
     .subscribe( user => {
       this.user = user;
+    }, err => {
+      console.log(err);
     });
   }
 
   editProfile(){
    this.router.navigate(["/edit"]); 
   }
-
 }
