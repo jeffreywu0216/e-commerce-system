@@ -14,7 +14,7 @@ import {User} from "../../models/user";
 export class UserItemComponent implements OnInit, AfterViewInit {
   items: Item[];
   selected = "option1";
-  displayedColumns = ['image', 'productName', 'description', 'price', 'time', 'action'];
+  displayedColumns = ['image', 'productName', 'price', 'time', 'action'];
   dataSource: MatTableDataSource<Item>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -121,7 +121,7 @@ export class UserItemComponent implements OnInit, AfterViewInit {
   }
   openUpdateDialog(item: Item): void {
     const dialogRef = this.dialog.open(UserItemUpdateDialogComponent, {
-      width: '250px',
+      width: '550px',
       data: {
         item: item
       }
@@ -169,6 +169,7 @@ export class UserItemViewBuyerDialogComponent {
 @Component({
   selector: 'app-user-item-update-dialog',
   templateUrl: './user-item-update-dialog.component.html',
+  styleUrls: ['./user-item.component.css']
 })
 export class UserItemUpdateDialogComponent {
 

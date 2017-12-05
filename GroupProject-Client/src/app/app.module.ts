@@ -46,6 +46,8 @@ import {
 } from './components/order-history/order-history.component';
 import {CommentComponent} from "./components/comment/comment.component";
 import {CommentService} from "./services/comment.service";
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
+import { JokeComponent } from './components/joke/joke.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import {CommentService} from "./services/comment.service";
     UserItemViewBuyerDialogComponent,
     UserItemCancelDialogComponent,
     UserItemUpdateDialogComponent,
-    OrderHistoryViewSellerDialogComponent
+    OrderHistoryViewSellerDialogComponent,
+    ItemDetailComponent,
+    JokeComponent
   ],
   imports: [
     ReactiveFormsModule,
