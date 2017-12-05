@@ -4,6 +4,7 @@ import {ItemService} from "../../services/item.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {CartService} from "../../services/cart.service";
 import {AuthService} from "../../services/auth.service";
+import {CommentService} from "../../services/comment.service";
 
 @Component({
   selector: 'app-item-detail',
@@ -12,8 +13,10 @@ import {AuthService} from "../../services/auth.service";
 })
 export class ItemDetailComponent implements OnInit {
   item = {};
+  comment: Comment[] = [];
   constructor(private itemService: ItemService,
               private cartService: CartService,
+              private commService: CommentService,
               private auth: AuthService,
               private route: ActivatedRoute,
               private router: Router) {
@@ -29,6 +32,7 @@ export class ItemDetailComponent implements OnInit {
     this.itemService.findOne(id)
       .subscribe(item => {
         this.item = item;
+        this.findComment(item.sellerId.id);
       }, err => {
         console.log(err);
       });
@@ -46,5 +50,14 @@ export class ItemDetailComponent implements OnInit {
       alert("Please Log In First");
       this.router.navigate(['login']);
     }
+  }
+  findComment(itemId: number) {
+    this.commService.getUserReview(itemId).subscribe(
+      comm => {
+        this.comment = comm;
+      }, err => {
+        console.log(err);
+      }
+    );
   }
 }

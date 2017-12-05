@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "USERREVIEW")
 public class UserReview {
     private Integer userReviewId;
-    private User userId;
+    private User buyerId;
+    private User sellerId;
     private String userReview;
     private Double rating;
 
@@ -23,16 +24,28 @@ public class UserReview {
     }
 
 
+
+
     //    @Basic
 //    @Column
     @ManyToOne
-    @JoinColumn(name = "USERID", referencedColumnName = "USERID")
-    public User getUserId() {
-        return userId;
+    @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
+    public User getBuyerId() {
+        return buyerId;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setBuyerId(User buyerId) {
+        this.buyerId = buyerId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "SELLERID", referencedColumnName = "USERID")
+    public User getSellerId() {
+        return sellerId;
+    }
+
+    public void setSellerId(User sellerId) {
+        this.sellerId = sellerId;
     }
 
     @Basic
@@ -61,7 +74,8 @@ public class UserReview {
     public String toString() {
         return "UserReview{" +
                 "userReviewId=" + userReviewId +
-                ", userId=" + userId +
+                ", buyerId=" + buyerId +
+                ", sellerId=" + sellerId +
                 ", userReview='" + userReview + '\'' +
                 ", rating=" + rating +
                 '}';
