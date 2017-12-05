@@ -48,6 +48,7 @@ import {CommentComponent} from "./components/comment/comment.component";
 import {CommentService} from "./services/comment.service";
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { JokeComponent } from './components/joke/joke.component';
+import { SlideshowComponent } from './components/slideshow/slideshow.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { JokeComponent } from './components/joke/joke.component';
     UserItemUpdateDialogComponent,
     OrderHistoryViewSellerDialogComponent,
     ItemDetailComponent,
-    JokeComponent
+    JokeComponent,
+    SlideshowComponent
   ],
   imports: [
     ReactiveFormsModule,

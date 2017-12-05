@@ -17,3 +17,6 @@ img {
 .action{
   flex: 0 0 100px;
 }
+.view-btn {
+  margin-bottom: 5px;
+}
