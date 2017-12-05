@@ -4,6 +4,7 @@ import {MatDialog} from "@angular/material";
 import {Item} from "../../models/item";
 import {ItemService} from "../../services/item.service";
 import {CommentService} from "../../services/comment.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-homepage',
@@ -15,7 +16,8 @@ export class HomepageComponent implements OnInit {
   items: Item[] = [];
   comment: string;
   name: string;
-  constructor(public dialog: MatDialog, private itemService: ItemService, private commService: CommentService) { }
+  constructor(public dialog: MatDialog, private itemService: ItemService,
+              private commService: CommentService, private router: Router) { }
   ngOnInit() {
     this.getLastFourSellingItems();
   }
@@ -45,5 +47,7 @@ export class HomepageComponent implements OnInit {
       }
     );
   }
-
+  viewItem(id: number) {
+    this.router.navigate([`buy/item/${id}`]);
+  }
 }

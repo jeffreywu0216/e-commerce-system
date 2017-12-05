@@ -37,14 +37,14 @@
       <ng-container matColumnDef="image">
         <mat-header-cell *matHeaderCellDef class="image"> Image </mat-header-cell>
 <!--         <mat-cell *matCellDef="let row" class="image"> <img src="{{row.itemId.pictureUrl}}"/> </mat-cell> -->
-        <mat-cell *matCellDef="let row" class="image" (click)="viewDetail(row.itemId)"> <img src="{{row.pictureUrl}}"/> </mat-cell>
+        <mat-cell *matCellDef="let row" class="image" (click)="viewDetail(row.itemId.itemId)"> <img src="{{row.itemId.pictureUrl}}"/> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="productName">
         <mat-header-cell *matHeaderCellDef class="productName"> Product Name </mat-header-cell>
 <!--         <mat-cell *matCellDef="let row" class="productName"> {{row.itemId.productName}} </mat-cell> -->
 <!--       </ng-container> -->
-        <mat-cell *matCellDef="let row" class="productName" (click)="viewDetail(row.itemId)"> {{row.productName}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="productName" (click)="viewDetail(row.itemId.itemId)"> {{row.itemId.productName}} </mat-cell>
       </ng-container>
 
       <!--<ng-container matColumnDef="description">-->

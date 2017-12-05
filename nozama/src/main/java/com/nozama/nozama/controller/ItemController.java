@@ -2,6 +2,13 @@ package com.nozama.nozama.controller;
 
 //import com.amazonaws.auth.AWSCredentials;
 //import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nozama.nozama.domain.Item;
@@ -181,33 +188,33 @@ public class ItemController {
         return new ResponseEntity(returnVal, HttpStatus.OK);
     }
 
-//    private void uploadPicture (File file, String fileName) {
-//        AWSCredentials credentials = new BasicAWSCredentials("AKIAJCJVDFNS4RVYZC6Q", "0j2c8aWcZWlZWSwtONG0JMyMY16aR/4dlYCz8B7S");
-//        AmazonS3 s3client = new AmazonS3Client(credentials);
-//        String bucketName     = "jeffrey-wu-test";
-//
-//        try {
-//            System.out.println("uploading file to s3");
-//            s3client.putObject(new PutObjectRequest(bucketName, fileName, file));
-//            System.out.println("uploading file to s3, success");
-//
-//        } catch (AmazonServiceException ase) {
-//            System.out.println("Caught an AmazonServiceException, which " +
-//                    "means your request made it " +
-//                    "to Amazon S3, but was rejected with an error response" +
-//                    " for some reason.");
-//            System.out.println("Error Message:    " + ase.getMessage());
-//            System.out.println("HTTP Status Code: " + ase.getStatusCode());
-//            System.out.println("AWS Error Code:   " + ase.getErrorCode());
-//            System.out.println("Error Type:       " + ase.getErrorType());
-//            System.out.println("Request ID:       " + ase.getRequestId());
-//        } catch (AmazonClientException ace) {
-//            System.out.println("Caught an AmazonClientException, which " +
-//                    "means the client encountered " +
-//                    "an internal error while trying to " +
-//                    "communicate with S3, " +
-//                    "such as not being able to access the network.");
-//            System.out.println("Error Message: " + ace.getMessage());
-//        }
-//    }
+    private void uploadPicture (File file, String fileName) {
+        AWSCredentials credentials = new BasicAWSCredentials("AKIAJCJVDFNS4RVYZC6Q", "0j2c8aWcZWlZWSwtONG0JMyMY16aR/4dlYCz8B7S");
+        AmazonS3 s3client = new AmazonS3Client(credentials);
+        String bucketName     = "jeffrey-wu-test";
+
+        try {
+            System.out.println("uploading file to s3");
+            s3client.putObject(new PutObjectRequest(bucketName, fileName, file));
+            System.out.println("uploading file to s3, success");
+
+        } catch (AmazonServiceException ase) {
+            System.out.println("Caught an AmazonServiceException, which " +
+                    "means your request made it " +
+                    "to Amazon S3, but was rejected with an error response" +
+                    " for some reason.");
+            System.out.println("Error Message:    " + ase.getMessage());
+            System.out.println("HTTP Status Code: " + ase.getStatusCode());
+            System.out.println("AWS Error Code:   " + ase.getErrorCode());
+            System.out.println("Error Type:       " + ase.getErrorType());
+            System.out.println("Request ID:       " + ase.getRequestId());
+        } catch (AmazonClientException ace) {
+            System.out.println("Caught an AmazonClientException, which " +
+                    "means the client encountered " +
+                    "an internal error while trying to " +
+                    "communicate with S3, " +
+                    "such as not being able to access the network.");
+            System.out.println("Error Message: " + ace.getMessage());
+        }
+    }
 }
