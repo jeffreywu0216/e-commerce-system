@@ -26,6 +26,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller //this is a bean that can handle request
@@ -51,6 +54,7 @@ public class ItemController {
         List<Item> items = null;
         try {
             items = service.findByStatusId(1);
+            Collections.sort(items, Comparator.comparingInt(Item::getItemId));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -95,22 +99,30 @@ public class ItemController {
     @PostMapping(path="/item/new/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity submitNewSellItem(@PathVariable("id") Integer id, @RequestBody Item item) {
-        System.out.println(item);
+        if (item.getPictureUrl() != null && item.getPicture() != null) {
+            String encodingPrefix = "base64,";
+            int contentStartIndex = item.getPicture().indexOf(encodingPrefix) + encodingPrefix.length();
+            byte[] imageData = Base64.decodeBase64(item.getPicture().substring(contentStartIndex));
 
-        String encodingPrefix = "base64,";
-        int contentStartIndex = item.getPicture().indexOf(encodingPrefix) + encodingPrefix.length();
-        byte[] imageData = Base64.decodeBase64(item.getPicture().substring(contentStartIndex));
+            String imgPrefix = "image/";
+            int typeStartIndex = item.getPicture().indexOf(imgPrefix) + imgPrefix.length();
+            String fileType = item.getPicture().substring(typeStartIndex).split(";")[0];
 
-        try {
-            BufferedImage inputImage = ImageIO.read(new ByteArrayInputStream(imageData));
-            File file = new File("image.png");
-            uploadPicture(file, item.getPictureUrl());
+            try {
+                BufferedImage inputImage = ImageIO.read(new ByteArrayInputStream(imageData));
+                File file = new File(item.getPictureUrl());
+                ImageIO.write(inputImage, fileType, file);
+                uploadPicture(file, item.getPictureUrl());
+                file.delete();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            item.setPictureUrl("https://s3.us-east-2.amazonaws.com/jeffrey-wu-test/" + item.getPictureUrl());
+        } else {
+            item.setPictureUrl("https://s3.us-east-2.amazonaws.com/jeffrey-wu-test/no-photo.jpg");
         }
 
-        item.setPictureUrl("https://s3.us-east-2.amazonaws.com/jeffrey-wu-test/" + item.getPictureUrl());
         item.setSellerId(id);
         service.save(item);
         ObjectMapper mapper = new ObjectMapper();

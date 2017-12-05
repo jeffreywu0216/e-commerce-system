@@ -12,27 +12,27 @@
 
       <ng-container matColumnDef="image">
         <mat-header-cell *matHeaderCellDef class="image"> Image </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="image"> <img src="{{row.pictureUrl}}"/> </mat-cell>
+        <mat-cell *matCellDef="let row" class="image" routerLink="item/{{row.itemId}}"> <img src="{{row.pictureUrl}}"/> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="productName">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="productName"> Product Name </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="productName"> {{row.productName}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="productName" routerLink="item/{{row.itemId}}">{{row.productName}}</mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="description"> {{row.description}} </mat-cell>
-      </ng-container>
+      <!--<ng-container matColumnDef="description">-->
+        <!--<mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>-->
+        <!--<mat-cell *matCellDef="let row" class="description" routerLink="item/{{row.itemId}}"> {{row.description}} </mat-cell>-->
+      <!--</ng-container>-->
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="price"> ${{row.price}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="price" routerLink="item/{{row.itemId}}"> ${{row.price}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="time">
         <mat-header-cell *matHeaderCellDef class="time"> Date </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="time"> {{row.timeToSell | date: "medium"}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="time" routerLink="item/{{row.itemId}}"> {{row.timeToSell | date: "medium"}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="action">

@@ -52,10 +52,6 @@ export class SellComponent implements OnInit {
       });
   }
 
-  // getImg(evt) {
-  //   this.imgFile = evt.target.files[0];
-  // }
-
   getImg(e): void {
     this.readThis(e.target);
   }
