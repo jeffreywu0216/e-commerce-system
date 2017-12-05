@@ -4,16 +4,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nozama.nozama.domain.Item;
 import com.nozama.nozama.domain.ShoppingCart;
+import com.nozama.nozama.domain.User;
 import com.nozama.nozama.service.ItemService;
 import com.nozama.nozama.service.ShoppingCartService;
+import com.nozama.nozama.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Controller //this is a bean that can handle request
@@ -21,9 +24,11 @@ import java.util.List;
 public class ShoppingCartController {
     private ShoppingCartService service;
     private ItemService itemService;
+    private User user = new User();
+    private EntityManager entityManager;
 
     @Autowired
-    public void setService(ShoppingCartService service, ItemService itemService) {
+    public void setService(ShoppingCartService service, ItemService itemService, UserService userService) {
         this.service = service;
         this.itemService = itemService;
     }
@@ -31,7 +36,8 @@ public class ShoppingCartController {
     @GetMapping(path="/buyer/{id}", produces= MediaType.APPLICATION_JSON_VALUE) //v
     @ResponseBody
     public ResponseEntity<List<ShoppingCart>> findByBuyerId(@PathVariable("id") Integer id) {
-        List<ShoppingCart> cartItems = service.findByBuyerId(id);
+        user.setId(id);
+        List<ShoppingCart> cartItems = service.findByBuyerId(user);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
@@ -39,8 +45,10 @@ public class ShoppingCartController {
     @ResponseBody
     public ResponseEntity addItemToCart(@PathVariable("id") Integer buyerId, @RequestBody Item item) {
         ShoppingCart cart = new ShoppingCart();
-        cart.setBuyerId(buyerId);
-        cart.setItemId(item.getItemId());
+        user.setId(buyerId);
+        cart.setBuyerId(user);
+        cart.setItemId(item);
+//        cart.setItemId(item.getItemId());
         service.save(cart);
         ObjectMapper mapper = new ObjectMapper();
         String message = "Success";
@@ -56,7 +64,8 @@ public class ShoppingCartController {
     @PostMapping(path="/unwatch-item/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
     public ResponseEntity removeItemFromCart(@PathVariable("id") Integer id, @RequestBody Item item) {
-        service.deleteByBuyerIdAndItemId(id, item.getItemId());
+        user.setId(id);
+        service.deleteByBuyerIdAndItemId(user, item);
         ObjectMapper mapper = new ObjectMapper();
         String message = "Success";
         String returnVal = null;

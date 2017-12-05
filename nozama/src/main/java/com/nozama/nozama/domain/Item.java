@@ -1,15 +1,20 @@
 package com.nozama.nozama.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.File;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="ITEM")
 public class Item {
     private Integer itemId;
-    private Integer sellerId;
-    private Integer buyerId;
+    private User sellerId;
+    private User buyerId;
     private String productName;
     private String description;
     private Double price;
@@ -17,6 +22,12 @@ public class Item {
     private Integer statusId;
     private String pictureUrl;
     private String picture;
+    @OneToMany(mappedBy = "itemId", cascade = CascadeType.ALL)
+    private Set<ShoppingCart> shoppingCartSet;
+//    private Set<ProductReview> productReviewSet;
+
+    public Item() {
+    }
 
     @Id
     @Column(name="ITEMID")
@@ -31,28 +42,30 @@ public class Item {
     }
 
 
-    @Column(name="SELLERID")
-    @Basic
-//    @ManyToOne
-//    @JoinColumn(name = "SELLERID", referencedColumnName = "USERID")
-    public Integer getSellerId() {
+//    @Column(name="SELLERID")
+//    @Basic
+    @ManyToOne
+    @JoinColumn(name = "SELLERID", referencedColumnName = "USERID")
+//    @JsonBackReference
+    public User getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(Integer sellerId) {
+    public void setSellerId(User sellerId) {
         this.sellerId = sellerId;
     }
 
 
-    @Column(name="BUYERID")
-    @Basic
-//    @ManyToOne
-//    @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
-    public Integer getBuyerId() {
+//    @Column(name="BUYERID")
+//    @Basic
+    @ManyToOne
+    @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
+//    @JsonBackReference
+    public User getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(Integer buyerId) {
+    public void setBuyerId(User buyerId) {
         this.buyerId = buyerId;
     }
 
@@ -97,7 +110,6 @@ public class Item {
     }
 
 
-
     @Column(name="STATUSID", insertable = false, updatable = false)
     @Basic
 //    @ManyToOne
@@ -129,6 +141,26 @@ public class Item {
         this.picture = picture;
     }
 
+//    @OneToMany(mappedBy = "itemId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    public Set<ShoppingCart> getShoppingCartSet() {
+//        return shoppingCartSet;
+//    }
+//
+//    public void setShoppingCartSet(Set<ShoppingCart> shoppingCartSet) {
+//        this.shoppingCartSet = shoppingCartSet;
+//    }
+//
+//    @OneToMany(mappedBy = "itemId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    public Set<ProductReview> getProductReviewSet() {
+//        return productReviewSet;
+//    }
+//
+//    public void setProductReviewSet(Set<ProductReview> productReviewSet) {
+//        this.productReviewSet = productReviewSet;
+//    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -141,7 +173,7 @@ public class Item {
                 ", timeToSell=" + timeToSell +
                 ", statusId=" + statusId +
                 ", pictureUrl='" + pictureUrl + '\'' +
-                ", picture=" + picture +
+                ", picture='" + picture + '\'' +
                 '}';
     }
 }

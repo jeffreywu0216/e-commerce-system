@@ -1,7 +1,9 @@
 package com.nozama.nozama.service;
 
 import com.nozama.nozama.dao.ShoppingCartDao;
+import com.nozama.nozama.domain.Item;
 import com.nozama.nozama.domain.ShoppingCart;
+import com.nozama.nozama.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class ShoppingCartService {
         this.dao = dao;
     }
 
-    public List<ShoppingCart> findByBuyerId(Integer buyerId) {
+    public List<ShoppingCart> findByBuyerId(User buyerId) {
         return dao.findByBuyerId(buyerId);
     }
 
@@ -24,7 +26,7 @@ public class ShoppingCartService {
         dao.deleteByShoppingCartId(shoppingCartId);
     }
 
-    public void deleteByBuyerIdAndItemId (Integer buyerId, Integer itemId) {
+    public void deleteByBuyerIdAndItemId (User buyerId, Item itemId) {
         dao.deleteByBuyerIdAndItemId(buyerId, itemId);
     }
 
@@ -32,7 +34,7 @@ public class ShoppingCartService {
         return dao.save(shoppingCart);
     }
 
-    public void deleteAllByBuyerId(Integer buyerId) {
+    public void deleteAllByBuyerId(User buyerId) {
         dao.deleteAllByBuyerId(buyerId);
     }
 }

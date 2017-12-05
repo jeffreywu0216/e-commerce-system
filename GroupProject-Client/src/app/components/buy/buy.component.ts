@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {Item} from "../../models/item";
 import {ItemService} from "../../services/item.service";
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -26,6 +26,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
               private route: ActivatedRoute,
               private router: Router) {
   }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       const word = params['word'];

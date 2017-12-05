@@ -41,16 +41,17 @@ export class CartComponent implements OnInit {
     this.dataSource = new MatTableDataSource(this.items);
     this.cartService.getAllCartByBuyerId(this.auth.getUser().id)
       .subscribe( cart => {
-        for (let i = 0; i < cart.length; i++) {
-          this.itemService.findOne(cart[i].itemId)
-            .subscribe( item => {
-              this.items[i] = item;
-              this.total = this.total + item.price;
-              this.dataSource = new MatTableDataSource(this.items);
-            }, err => {
-                console.log(err);
-            });
-        }
+        this.dataSource = new MatTableDataSource(cart);
+        // for (let i = 0; i < cart.length; i++) {
+        //   this.itemService.findOne(cart[i].itemId)
+        //     .subscribe( item => {
+        //       this.items[i] = item;
+        //       this.total = this.total + item.price;
+        //       this.dataSource = new MatTableDataSource(this.items);
+        //     }, err => {
+        //         console.log(err);
+        //     });
+        // }
       }, err => {
         console.log(err);
       });

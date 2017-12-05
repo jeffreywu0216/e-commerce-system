@@ -2,6 +2,7 @@ package com.nozama.nozama.service;
 
 import com.nozama.nozama.dao.ItemDao;
 import com.nozama.nozama.domain.Item;
+import com.nozama.nozama.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +33,15 @@ public class ItemService {
 //        return result;
     }
 
-    public List<Item> findBySellerId(Integer sellerId) {
+    public List<Item> findBySellerId(User sellerId) {
         return dao.findBySellerId(sellerId);
     }
 
-    public List<Item> findBySellerIdAAndStatusId(Integer sellerId, Integer statusId) {
+    public List<Item> findBySellerIdAAndStatusId(User sellerId, Integer statusId) {
         return dao.findBySellerIdAndStatusId(sellerId, statusId);
     }
 
-    public List<Item> findByBuyerId(Integer buyerId) {
+    public List<Item> findByBuyerId(User buyerId) {
         return dao.findByBuyerId(buyerId);
     }
 
@@ -48,7 +49,7 @@ public class ItemService {
         return dao.save(item);
     }
 
-    public void setBuyer(Integer buyerId) {
+    public void setBuyer(User buyerId) {
         dao.setBuyer(buyerId);
     }
 
