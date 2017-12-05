@@ -42,7 +42,7 @@ export class HomepageComponent implements OnInit {
       items => {
         this.items = items;
         length = this.items.length;
-        this.items = this.items.slice(length - 4, length);
+        this.items = this.items.slice(0, 4);
         console.log(this.items);
       }
     );

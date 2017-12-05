@@ -48,7 +48,8 @@ export class SellComponent implements OnInit {
         this.description = undefined;
         this.imgFile = undefined;
       }, err => {
-        alert(err);
+        alert('Fail');
+        console.log(err);
       });
   }
 
@@ -60,7 +61,15 @@ export class SellComponent implements OnInit {
     const file: File = inputValue.files[0];
     this.pictureUrl = file.name;
     this.pictureUrl = this.pictureUrl.trim();
-    this.pictureUrl = this.pictureUrl.split(' ').join('');
+    this.pictureUrl = this.pictureUrl.replace(/[^\w]/gi, '');
+    // this.pictureUrl = this.pictureUrl.split(' ').join('');
+    // this.pictureUrl = this.pictureUrl.split('%').join('');
+    // this.pictureUrl = this.pictureUrl.split('\\').join('');
+    // this.pictureUrl = this.pictureUrl.split('#').join('');
+    // this.pictureUrl = this.pictureUrl.split('/').join('');
+    // this.pictureUrl = this.pictureUrl.split('!').join('');
+    // this.pictureUrl = this.pictureUrl.split('&').join('');
+
     const myReader: FileReader = new FileReader();
 
     myReader.onloadend = (e) => {

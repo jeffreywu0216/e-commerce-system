@@ -62,7 +62,7 @@ public class ItemController {
         List<Item> items = null;
         try {
             items = service.findByStatusId(1);
-            Collections.sort(items, Comparator.comparingInt(Item::getItemId));
+            Collections.sort(items, (o1, o2) -> o2.getItemId() - o1.getItemId());
         } catch (Exception e) {
             e.printStackTrace();
         }
