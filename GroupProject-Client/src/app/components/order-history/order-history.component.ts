@@ -25,7 +25,7 @@ export class OrderHistoryComponent implements OnInit, AfterViewInit {
 
   constructor(private itemService: ItemService,
               private userService: UserService,
-              private auth: AuthService, 
+              private auth: AuthService,
               private commService: CommentService,
               public dialog: MatDialog,
               private router: Router) {

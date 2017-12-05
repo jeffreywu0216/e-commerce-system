@@ -9,3 +9,14 @@
     </div>
   </div>
 </div>
+<div>
+  <h2>Seller Review</h2>
+  <br/>
+  <mat-list>
+    <mat-list-item *ngFor="let comm of comment">
+      <h3 matLine>{{comm.buyerId.name}}</h3>
+      <p matLine>{{comm.rating}}</p>
+      <p matLine>{{comm.userReview}}</p>
+    </mat-list-item>
+  </mat-list>
+</div>

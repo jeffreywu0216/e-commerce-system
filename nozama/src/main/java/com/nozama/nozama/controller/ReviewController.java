@@ -2,10 +2,7 @@ package com.nozama.nozama.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nozama.nozama.domain.Item;
-import com.nozama.nozama.domain.ProductReview;
-import com.nozama.nozama.domain.User;
-import com.nozama.nozama.domain.UserReview;
+import com.nozama.nozama.domain.*;
 import com.nozama.nozama.service.ProductReviewService;
 import com.nozama.nozama.service.UserReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(path = "/reviews")
@@ -27,6 +26,16 @@ public class ReviewController {
         this.productService = service;
         this.userReviewService = userService;
     }
+
+    @GetMapping(path="/buyer/{id}", produces= MediaType.APPLICATION_JSON_VALUE) //v
+    @ResponseBody
+    public ResponseEntity<List<UserReview>> findByBuyerId(@PathVariable("id") Integer id) {
+        User user = new User();
+        user.setId(id);
+        List<UserReview> reviewList = userReviewService.findBySellerId(user);
+        return new ResponseEntity<>(reviewList, HttpStatus.OK);
+    }
+
 
     @PostMapping(path="/new/product", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType
             .APPLICATION_JSON_VALUE)

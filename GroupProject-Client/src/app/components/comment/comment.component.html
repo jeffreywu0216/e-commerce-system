@@ -10,6 +10,8 @@
         {{rating.score}}
       </mat-option>
     </mat-select>
+    <!--<mat-slider [thumbLabel]="0.1" [max]="5"-->
+                <!--[min]="0" [tick-interval]="0.1"></mat-slider>-->
     <mat-error *ngIf="ratingControl.hasError('required')">Please choose a rating</mat-error>
     <mat-hint>{{ratingControl.value?.name}}</mat-hint>
   </mat-form-field>
