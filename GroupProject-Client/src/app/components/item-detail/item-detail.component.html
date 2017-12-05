@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>{{item.productName}}</h2>
+  <br/>
+  <div class="row">
+    <div class="col-lg-4"><img src="{{item.pictureUrl}}" class="detail-img"/></div>
+    <div class="col-lg-6"><p class="detail-text">{{item.description}}</p></div>
+    <div class="col-lg-2">
+      <button *ngIf="item.statusId === 1" class="btn btn-info" (click)="addItemToCart(item)">Add To Cart</button>
+    </div>
+  </div>
+</div>

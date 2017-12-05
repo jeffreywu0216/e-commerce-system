@@ -26,6 +26,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller //this is a bean that can handle request
@@ -51,6 +54,7 @@ public class ItemController {
         List<Item> items = null;
         try {
             items = service.findByStatusId(1);
+            Collections.sort(items, Comparator.comparingInt(Item::getItemId));
         } catch (Exception e) {
             e.printStackTrace();
         }

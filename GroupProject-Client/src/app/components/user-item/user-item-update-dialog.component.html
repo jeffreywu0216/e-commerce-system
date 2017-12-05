@@ -1,15 +1,17 @@
 <h1 mat-dialog-title>Update Item {{data.item.productName}}</h1>
 <div mat-dialog-content>
   <p>Product Name</p>
-  <mat-form-field>
+  <mat-form-field class="update-form">
     <input matInput tabindex="1" [(ngModel)]="data.item.productName">
   </mat-form-field>
   <p>Description</p>
-  <mat-form-field>
-    <input matInput tabindex="2" [(ngModel)]="data.item.description">
+  <mat-form-field class="update-form">
+    <textarea matInput tabindex="2" placeholder="Description" matTextareaAutosize matAutosizeMinRows="2"
+              matAutosizeMaxRows="5" [(ngModel)]="data.item.description"></textarea>
+    <!--<input matInput tabindex="2" [(ngModel)]="data.item.description">-->
   </mat-form-field>
   <p>Price</p>
-  <mat-form-field>
+  <mat-form-field class="update-form">
     <input matInput tabindex="3" [(ngModel)]="data.item.price">
   </mat-form-field>
 </div>
