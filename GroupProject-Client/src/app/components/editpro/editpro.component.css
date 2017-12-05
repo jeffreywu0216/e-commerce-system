@@ -1,10 +1,10 @@
 body {
     background-image: url("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapers9.org%2Fwp-content%2Fuploads%2F2015%2F12%2F2015-Christmas-background-hd.jpg&f=1");
     line-height: 1.5; 
-    background-size: 100% 95%;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center top;
-    
+    padding-top: 5%;
   }
 
   #content {
@@ -26,14 +26,6 @@ header {
 
   h1 {
    font-family: 'Play';
-  } 
-
-   footer {
-    color: 	#212121;
-    background-color: #F5F5F5;
-    padding: 20px;
-    text-align: center;
-    margin-top: 10%;
   } 
 
   #btn{

@@ -24,14 +24,6 @@ header {
    font-family: 'Play';
   } 
 
-  footer {
-    color: 	#212121;
-    background-color: #F5F5F5;
-    padding: 20px;
-    text-align: center;
-    margin-top: 60px
-  }
-
   #btn{
     font-family: 'Times New Roman', Times, serif;
     background-color: #F5F5F5;
