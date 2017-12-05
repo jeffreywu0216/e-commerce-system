@@ -89,7 +89,7 @@
           <button mat-raised-button *ngIf="row.statusId === 1" class="btn btn-primary update-btn" (click)="openUpdateDialog(row)">Update</button>
           <button mat-raised-button *ngIf="row.statusId === 1" class="btn btn-warning" (click)="openCancelDialog(row)">Cancel</button>
           </div>
-          <button mat-raised-button *ngIf="row.statusId === 2" class="btn btn-info" (click)="viewBuyer(row.buyerId)">View Buyer</button>
+          <button mat-raised-button *ngIf="row.statusId === 2" class="btn btn-info" (click)="viewBuyer(row.buyerId.id)">View Buyer</button>
         </mat-cell>
       </ng-container>
 

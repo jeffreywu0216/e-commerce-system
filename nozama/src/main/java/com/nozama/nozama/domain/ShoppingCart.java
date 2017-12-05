@@ -1,13 +1,16 @@
 package com.nozama.nozama.domain;
 
+import com.amazonaws.services.storagegateway.model.CachediSCSIVolume;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "SHOPPINGCART")
 public class ShoppingCart {
     private Integer shoppingCartId;
-    private Integer buyerId;
-    private Integer itemId;
+    private User buyerId;
+    private Item itemId;
 
     @Id
     @Column(name = "SHOPPINGCARTID")
@@ -21,26 +24,30 @@ public class ShoppingCart {
         this.shoppingCartId = shoppingCartId;
     }
 
-    @Basic
-    @Column(name = "BUYERID")
-    public Integer getBuyerId() {
+//    @Basic
+//    @Column(name = "BUYERID")
+    @ManyToOne
+    @JoinColumn(name = "BUYERID", referencedColumnName = "USERID")
+//    @JsonBackReference
+    public User getBuyerId() {
         return buyerId;
     }
 
-    public void setBuyerId(Integer buyerId) {
+    public void setBuyerId(User buyerId) {
         this.buyerId = buyerId;
     }
 
 
-    @Column(name = "ITEMID")
-    @Basic
-//    @ManyToOne
-//    @JoinColumn(name = "ITEMID", referencedColumnName = "ITEMID")
-    public Integer getItemId() {
+//    @Column(name = "ITEMID")
+//    @Basic
+    @ManyToOne
+    @JoinColumn(name = "ITEMID", referencedColumnName = "ITEMID")
+//    @JsonBackReference
+    public Item getItemId() {
         return itemId;
     }
 
-    public void setItemId(Integer itemId) {
+    public void setItemId(Item itemId) {
         this.itemId = itemId;
     }
 

@@ -1,8 +1,11 @@
 package com.nozama.nozama.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "USERS")
@@ -17,6 +20,13 @@ public class User {
     private Long phone;
     private Long creditCard;
     private String userRole;
+    @OneToMany(mappedBy = "sellerId", cascade = CascadeType.ALL)
+    private Set<Item> itemSellerSet;
+    @OneToMany(mappedBy = "buyerId", cascade = CascadeType.ALL)
+    private Set<Item> itemBuyerSet;
+    @OneToMany(mappedBy = "buyerId", cascade = CascadeType.ALL)
+    private Set<ShoppingCart> shoppingCartSet;
+
     public User() {}
 
     @Id
@@ -109,6 +119,36 @@ public class User {
         this.userRole = userRole;
     }
 
+//    @OneToMany(mappedBy = "sellerId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    public Set<Item> getItemSellerSet() {
+//        return itemSellerSet;
+//    }
+//
+//    public void setItemSellerSet(Set<Item> itemSellerSet) {
+//        this.itemSellerSet = itemSellerSet;
+//    }
+//
+//    @OneToMany(mappedBy = "buyerId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    public Set<Item> getItemBuyerSet() {
+//        return itemBuyerSet;
+//    }
+//
+//    public void setItemBuyerSet(Set<Item> itemBuyerSet) {
+//        this.itemBuyerSet = itemBuyerSet;
+//    }
+//
+//    @OneToMany(mappedBy = "buyerId", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    public Set<ShoppingCart> getShoppingCartSet() {
+//        return shoppingCartSet;
+//    }
+//
+//    public void setShoppingCartSet(Set<ShoppingCart> shoppingCartSet) {
+//        this.shoppingCartSet = shoppingCartSet;
+//    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -124,4 +164,5 @@ public class User {
                 ", userRole='" + userRole + '\'' +
                 '}';
     }
+
 }

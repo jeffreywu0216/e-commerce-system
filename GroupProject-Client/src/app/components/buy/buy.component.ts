@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {Item} from "../../models/item";
 import {ItemService} from "../../services/item.service";
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -23,6 +23,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
               private cartService: CartService,
               private route: ActivatedRoute) {
   }
+
   ngOnInit() {
     this.route.params.subscribe(params => {
       const word = params['word'];
@@ -73,6 +74,7 @@ export class BuyComponent implements OnInit, AfterViewInit {
       });
   }
   addItemToCart(item: Item) {
+    console.log(item);
     this.cartService.addItemToCart(item)
       .subscribe(() => {
         alert(item.productName + " Added" );

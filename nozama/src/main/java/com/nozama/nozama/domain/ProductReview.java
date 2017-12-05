@@ -1,5 +1,7 @@
 package com.nozama.nozama.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -25,6 +27,7 @@ public class ProductReview {
 //    @Column
     @ManyToOne
     @JoinColumn(name = "ITEMID", referencedColumnName = "ITEMID")
+//    @JsonBackReference
     public Item getItemId() {
         return itemId;
     }

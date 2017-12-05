@@ -26,6 +26,6 @@ export class CartService {
     );
   }
   buyItems(buyerId: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/cart/purchase`, {buyerId: buyerId});
+    return this.http.post(`http://localhost:8080/cart/purchase`, {buyerId: {id: buyerId}});
   }
 }

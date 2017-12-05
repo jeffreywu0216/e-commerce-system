@@ -5,6 +5,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nozama.nozama.domain.Item;
+import com.nozama.nozama.domain.User;
 import com.nozama.nozama.service.ItemService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ import java.util.List;
 @RequestMapping(path="/items")
 public class ItemController {
     private ItemService service;
+    private User user = new User();
 
     @Autowired
     public void setService(ItemService service) {
@@ -67,28 +69,32 @@ public class ItemController {
     @GetMapping(path="/seller/{id}", produces= MediaType.APPLICATION_JSON_VALUE)    //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllItemsBySellerId(@PathVariable("id") Integer id) {
-        List<Item> items = service.findBySellerId(id);
+        user.setId(id);
+        List<Item> items = service.findBySellerId(user);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
     @GetMapping(path="/seller/sell/{id}", produces= MediaType.APPLICATION_JSON_VALUE)      //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllSellItemsBySellerId(@PathVariable("id") Integer id) {
-        List<Item> items = service.findBySellerIdAAndStatusId(id, 1);
+        user.setId(id);
+        List<Item> items = service.findBySellerIdAAndStatusId(user, 1);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
     @GetMapping(path="/seller/sold/{id}", produces= MediaType.APPLICATION_JSON_VALUE)   //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllSoldItemsBySellerId(@PathVariable("id") Integer id) {
-        List<Item> items = service.findBySellerIdAAndStatusId(id, 2);
+        user.setId(id);
+        List<Item> items = service.findBySellerIdAAndStatusId(user, 2);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
     @GetMapping(path="/buyer/bought/{id}", produces= MediaType.APPLICATION_JSON_VALUE)  //v
     @ResponseBody
     public ResponseEntity<List<Item>> getAllBoughtItemsByBuyerId(@PathVariable("id") Integer id) {
-        List<Item> items = service.findByBuyerId(id);
+        user.setId(id);
+        List<Item> items = service.findByBuyerId(user);
         return new ResponseEntity(items, HttpStatus.OK);
     }
 
@@ -111,7 +117,8 @@ public class ItemController {
         }
 
         item.setPictureUrl("https://s3.us-east-2.amazonaws.com/jeffrey-wu-test/" + item.getPictureUrl());
-        item.setSellerId(id);
+        user.setId(id);
+        item.setSellerId(user);
         service.save(item);
         ObjectMapper mapper = new ObjectMapper();
         String message = "Success";
