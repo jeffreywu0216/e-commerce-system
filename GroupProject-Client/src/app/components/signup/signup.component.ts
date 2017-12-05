@@ -21,8 +21,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  constructor(private router: Router, private service: UserService, private alert: AlertService){
-  }
+  constructor(private router: Router, private service: UserService, private alert: AlertService) {}
+
   model: any = {};
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -41,8 +41,12 @@ export class SignupComponent {
       console.log(this.model.password);
       this.service.newUser(this.model.name, this.model.email, this.model.password,
          this.model.street, this.model.city, this.model.state, this.model.phone)
-      .subscribe(err => { this.alert.error("Invalid  Input")},
-            rsp => {this.router.navigate(["login"])});
+      .subscribe(err => {
+        this.alert.error("Invalid  Input")
+        },
+        rsp => {
+          this.router.navigate(["login"])
+        });
     }
 }
 
