@@ -12,18 +12,18 @@
 
       <ng-container matColumnDef="image">
         <mat-header-cell *matHeaderCellDef class="image"> Image </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="image"> <img src="{{row.pictureUrl}}"/> </mat-cell>
+        <mat-cell *matCellDef="let row" class="image" (click)="viewDetail(row.itemId)"> <img src="{{row.pictureUrl}}"/> </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="productName">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="productName"> Product Name </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="productName"> {{row.productName}} </mat-cell>
+        <mat-cell *matCellDef="let row" class="productName" (click)="viewDetail(row.itemId)"> {{row.productName}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>
-        <mat-cell *matCellDef="let row" class="description"> {{row.description}} </mat-cell>
-      </ng-container>
+      <!--<ng-container matColumnDef="description">-->
+        <!--<mat-header-cell *matHeaderCellDef class="description"> Description </mat-header-cell>-->
+        <!--<mat-cell *matCellDef="let row" class="description"> {{row.description}} </mat-cell>-->
+      <!--</ng-container>-->
 
       <ng-container matColumnDef="price">
         <mat-header-cell *matHeaderCellDef mat-sort-header class="price"> Price </mat-header-cell>
@@ -38,7 +38,10 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef class="action"> Action </mat-header-cell>
         <mat-cell *matCellDef="let row" class="action">
-          <button mat-raised-button class="btn btn-info" (click)="viewSeller(row.sellerId.id)">View Seller</button>
+<!--           <button mat-raised-button class="btn btn-info" (click)="viewSeller(row.sellerId.id)">View Seller</button> -->
+          <button mat-raised-button class="btn" (click)="viewSeller(row.sellerId.id)">View Seller</button>
+          <!--<button mat-raised-button class="btn btn-info" (click)="openReviewDialog(row.itemId, 1)">Product Review</button>-->
+          <button mat-raised-button class="btn btn-info" (click)="openReviewDialog(row.sellerId.id, 2)">Seller Review</button>
         </mat-cell>
       </ng-container>
 
@@ -49,3 +52,14 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
 </div>
+
+<!--<ng-container matColumnDef="action">-->
+  <!--<mat-header-cell *matHeaderCellDef class="action"> Action </mat-header-cell>-->
+  <!--<mat-cell *matCellDef="let row" class="action">-->
+    <!--<div>-->
+      <!--<button mat-raised-button *ngIf="row.statusId === 1" class="btn btn-primary update-btn" (click)="openUpdateDialog(row)">Update</button>-->
+      <!--<button mat-raised-button *ngIf="row.statusId === 1" class="btn btn-warning" (click)="openCancelDialog(row)">Cancel</button>-->
+    <!--</div>-->
+    <!--<button mat-raised-button *ngIf="row.statusId === 2" class="btn btn-info" (click)="viewBuyer(row.buyerId)">View Buyer</button>-->
+  <!--</mat-cell>-->
+<!--</ng-container>-->

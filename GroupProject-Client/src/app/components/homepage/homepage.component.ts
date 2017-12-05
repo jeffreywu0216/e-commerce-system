@@ -19,17 +19,19 @@ export class HomepageComponent implements OnInit {
   ngOnInit() {
     this.getLastFourSellingItems();
   }
-  openDialog(itemsId: number): void {
+  openDialog(Id: number): void {
     const dialogRef = this.dialog.open(
       CommentComponent, {
         width: '400px',
-        data: {id: itemsId, comment: this.comment}
+        data: {id: Id, comment: this.comment}
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result) {
-        this.commService.submitNewReview(itemsId, result).subscribe();
+         console.log(result.id);
+         console.log(result.rating.score);
+         console.log(result.comment);
+        this.commService.submitNewUserReview(result.id, result.comment, result.rating.score).subscribe();
       }
     });
   }

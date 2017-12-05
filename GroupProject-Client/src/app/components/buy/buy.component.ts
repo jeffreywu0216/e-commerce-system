@@ -3,7 +3,8 @@ import {Item} from "../../models/item";
 import {ItemService} from "../../services/item.service";
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {CartService} from "../../services/cart.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-buy',
@@ -13,7 +14,7 @@ import {ActivatedRoute} from "@angular/router";
 export class BuyComponent implements OnInit, AfterViewInit {
   items: Item[] = [];
 
-  displayedColumns = ['image', 'productName', 'description', 'price', 'time', 'action'];
+  displayedColumns = ['image', 'productName', 'price', 'time', 'action'];
   dataSource: MatTableDataSource<Item>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -21,7 +22,9 @@ export class BuyComponent implements OnInit, AfterViewInit {
 
   constructor(private itemService: ItemService,
               private cartService: CartService,
-              private route: ActivatedRoute) {
+              private auth: AuthService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -74,12 +77,16 @@ export class BuyComponent implements OnInit, AfterViewInit {
       });
   }
   addItemToCart(item: Item) {
-    console.log(item);
-    this.cartService.addItemToCart(item)
-      .subscribe(() => {
-        alert(item.productName + " Added" );
-      }, error => {
-        console.log(error);
-      });
+    if (this.auth.getLogin()) {
+      this.cartService.addItemToCart(item)
+        .subscribe(() => {
+          alert(item.productName + " Added");
+        }, error => {
+          console.log(error);
+        });
+    } else {
+      alert("Please Log In First");
+      this.router.navigate(['login']);
+    }
   }
 }

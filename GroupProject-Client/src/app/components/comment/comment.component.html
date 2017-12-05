@@ -3,8 +3,18 @@
   <mat-form-field class="full-width">
     <textarea matInput placeholder="Comment" [(ngModel)]="data.comment"></textarea>
   </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Pick your rating:" [formControl]="ratingControl" [(ngModel)]="data.rating" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let rating of ratings" [value]="rating">
+        {{rating.score}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="ratingControl.hasError('required')">Please choose a rating</mat-error>
+    <mat-hint>{{ratingControl.value?.name}}</mat-hint>
+  </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="data.comment" tabindex="2">Ok</button>
+  <button mat-button [mat-dialog-close]="data" tabindex="2">Ok</button>
   <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
 </div>

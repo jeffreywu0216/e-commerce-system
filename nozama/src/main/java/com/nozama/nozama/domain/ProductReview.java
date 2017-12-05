@@ -10,6 +10,7 @@ public class ProductReview {
     private Integer productReviewId;
     private Item itemId;
     private String productReview;
+    private Double rating;
 
     @Id
     @Column(name = "PRODUCTREVIEWID")
@@ -45,12 +46,25 @@ public class ProductReview {
         this.productReview = productReview;
     }
 
+    @Basic
+    @Column
+    public Double getRating() {
+        return rating;
+    }
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
     @Override
     public String toString() {
         return "ProductReview{" +
                 "productReviewId=" + productReviewId +
                 ", itemId=" + itemId +
                 ", productReview='" + productReview + '\'' +
+                ", rating=" + rating +
                 '}';
     }
+
+
+
 }

@@ -12,6 +12,8 @@ import {AuthGuard} from "./guards/auth.guard";
 import {UserItemComponent} from "./components/user-item/user-item.component";
 import {OrderHistoryComponent} from "./components/order-history/order-history.component";
 import { EditproComponent } from './components/editpro/editpro.component';
+import {ItemDetailComponent} from "./components/item-detail/item-detail.component";
+import {JokeComponent} from "./components/joke/joke.component";
 
 const routes: Routes = [
   // {path: 'home', component: HomepageComponent},
@@ -33,10 +35,12 @@ const routes: Routes = [
   {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
   {path: 'buy', component: BuyComponent},
   {path: 'buy/:word', component: BuyComponent},
+  {path: 'buy/item/:id', component: ItemDetailComponent},
   {path: 'sell', component: SellComponent},
   {path: '', component: HomepageComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'edit', component: EditproComponent}
+  {path: 'edit', component: EditproComponent},
+  {path: 'joke', component: JokeComponent}
 ];
 
 @NgModule({

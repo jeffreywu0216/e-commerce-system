@@ -4,6 +4,7 @@ import {MatTableDataSource, MatSort} from '@angular/material';
 import {Item} from "../../models/item";
 import {CartService} from "../../services/cart.service";
 import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
@@ -15,11 +16,12 @@ export class CartComponent implements OnInit {
   total: number;
   handler: any;
 
-  displayedColumns = ['image', 'productName', 'description', 'price', 'action'];
+  displayedColumns = ['image', 'productName', 'price', 'action'];
   dataSource: MatTableDataSource<Item>;
   constructor(private itemService: ItemService,
               private cartService: CartService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private router: Router) {
     this.getAllCartByBuyerId();
     this.dataSource = new MatTableDataSource(this.items);
   }
@@ -92,5 +94,8 @@ export class CartComponent implements OnInit {
       // description: '2 widgets',
       amount: this.total * 100
     });
+  }
+  viewDetail(itemId: number) {
+    this.router.navigate([`buy/item/${itemId}`]);
   }
 }
