@@ -13,15 +13,15 @@ export class UserService {
     private auth: AuthService) { }
 
     findUser(userId: number): Observable<User> {
-      return this.http.get<User>(`http://localhost:8080/user/user/${userId}`);
+      return this.http.get<User>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/user/user/${userId}`);
     }
 
     getAllUsers(): Observable<User[]> {
-      return this.http.get<User[]>(`http://localhost:8080/user/user/`);
+      return this.http.get<User[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/user/user/`);
     }
 
     newUser(name: string, email: string, password: string, street: string, city: string, state: string, phone: number): Observable<any> {
-       return this.http.post<User[]>(`http://localhost:8080/user/new/`,
+       return this.http.post<User[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/user/new/`,
        {
         name: name,
         email: email,
@@ -34,7 +34,7 @@ export class UserService {
     }
 
     updateUser(name: string, email: string, password: string, phone: number, street: string, city: string, state: string, id: number): Observable<any> {
-      return this.http.post<User[]>(`http://localhost:8080/user/update/`,
+      return this.http.post<User[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/user/update/`,
       {
        name: name,
        email: email,

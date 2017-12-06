@@ -9,7 +9,7 @@ export class CommentService {
 
   constructor(private http: HttpClient, private auth: AuthService) { }
   submitNewProductReview (itemId: number, review: string, rating: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/reviews/new/product`, {
+    return this.http.post(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/reviews/new/product`, {
       itemId: {itemId: itemId},
       productReview: review,
       rating: rating
@@ -17,7 +17,7 @@ export class CommentService {
     );
   }
   submitNewUserReview (sellerId: number, review: string, rating: number): Observable<any> {
-    return this.http.post(`http://localhost:8080/reviews/new/user`, {
+    return this.http.post(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/reviews/new/user`, {
         buyerId: {id: this.auth.getUser().id},
         sellerId: {id: sellerId},
         userReview: review,
@@ -26,6 +26,6 @@ export class CommentService {
     );
   }
   getUserReview  (sellerId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`http://localhost:8080/reviews/buyer/${sellerId}`);
+    return this.http.get<Comment[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/reviews/buyer/${sellerId}`);
   }
 }

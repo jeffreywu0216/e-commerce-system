@@ -11,28 +11,28 @@ export class ItemService {
   constructor(private http: HttpClient,
               private auth: AuthService) { }
   findOne(itemId: number): Observable<Item> {
-    return this.http.get<Item>(`http://localhost:8080/items/item/${itemId}`);
+    return this.http.get<Item>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/item/${itemId}`);
   }
   getAllSellingItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(`http://localhost:8080/items`);
+    return this.http.get<Item[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items`);
   }
   getSearchResult(word: string): Observable<Item[]> {
-    return this.http.get<Item[]>(`http://localhost:8080/items/search/${word}`);
+    return this.http.get<Item[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/search/${word}`);
   }
   getAllItemsBySellerId(sellerId: number): Observable<Item[]> {
-    return this.http.get<Item[]>(`http://localhost:8080/items/seller/${sellerId}`);
+    return this.http.get<Item[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/seller/${sellerId}`);
   }
   getAllSellItemsBySellerId(sellerId: number): Observable<Item[]> {
-    return this.http.get<Item[]>(`http://localhost:8080/items/seller/sell/${sellerId}`);
+    return this.http.get<Item[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/seller/sell/${sellerId}`);
   }
   getAllSoldItemsBySellerId(sellerId: number): Observable<Item[]> {
-    return this.http.get<Item[]>(`http://localhost:8080/items/seller/sold/${sellerId}`);
+    return this.http.get<Item[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/seller/sold/${sellerId}`);
   }
   getAllBoughtItemsByBuyerId(buyerId: number): Observable<Item[]> {
-    return this.http.get<Item[]>(`http://localhost:8080/items/buyer/bought/${buyerId}`);
+    return this.http.get<Item[]>(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/buyer/bought/${buyerId}`);
   }
   submitNewSellItem  (price: number, productName: string, description: string, pictureUrl: string, picture: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/items/item/new/${this.auth.getUser().id}`,
+    return this.http.post(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/item/new/${this.auth.getUser().id}`,
       {
         price: price,
         productName: productName,
@@ -42,7 +42,7 @@ export class ItemService {
       });
   }
   updateSellItem(item: Item) {
-    return this.http.post(`http://localhost:8080/items/item/update/${item.itemId}`,
+    return this.http.post(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/item/update/${item.itemId}`,
       {
         sellerId: item.sellerId,
         price: item.price,
@@ -52,7 +52,7 @@ export class ItemService {
       });
   }
   removeSellItem(itemId: number) {
-    return this.http.post(`http://localhost:8080/items/item/delete`,
+    return this.http.post(`http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/items/item/delete`,
       {
         itemId: itemId
       });
