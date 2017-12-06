@@ -8,7 +8,7 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class AuthService {
-  loginURL = 'http://localhost:8080/user';
+  loginURL = 'http://ec2-54-82-250-157.compute-1.amazonaws.com:8080/user';
   userlogin = false;
   isAdmin = false;
   id: number;
