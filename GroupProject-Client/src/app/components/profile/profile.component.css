@@ -18,12 +18,10 @@ header {
 h1 {
  font-family: 'Play';
 } 
-
-
  
 .example-container{
   font-size: large;
- 
+  left: 50%;
 }
 
 #edit-btn {
