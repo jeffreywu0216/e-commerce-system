@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 
@@ -49,6 +49,7 @@ import {CommentService} from "./services/comment.service";
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { JokeComponent } from './components/joke/joke.component';
 import { SlideshowComponent } from './components/slideshow/slideshow.component';
+import {AdminGuard} from "./guards/admin.guard";
 
 @NgModule({
   declarations: [
@@ -125,6 +126,7 @@ import { SlideshowComponent } from './components/slideshow/slideshow.component';
     AuthService,
     AlertService,
     AuthGuard,
+    AdminGuard,
     ItemService,
     CartService,
     UserService,

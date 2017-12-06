@@ -14,6 +14,7 @@ import {OrderHistoryComponent} from "./components/order-history/order-history.co
 import { EditproComponent } from './components/editpro/editpro.component';
 import {ItemDetailComponent} from "./components/item-detail/item-detail.component";
 import {JokeComponent} from "./components/joke/joke.component";
+import {AdminGuard} from "./guards/admin.guard";
 
 const routes: Routes = [
   // {path: 'home', component: HomepageComponent},
@@ -27,19 +28,19 @@ const routes: Routes = [
   {path: 'homepage', component: HomepageComponent},
     // {path: 'login', redirectTo: '/login', pathMatch: 'full'},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'logout', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'logout', redirectTo: '/login', pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'history', component: OrderHistoryComponent, canActivate: [AuthGuard]},
   {path: 'allsell', component: UserItemComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: SignupComponent},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard]},
+  {path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
   {path: 'buy', component: BuyComponent},
   {path: 'buy/:word', component: BuyComponent},
   {path: 'buy/item/:id', component: ItemDetailComponent},
-  {path: 'sell', component: SellComponent},
+  {path: 'sell', component: SellComponent, canActivate: [AuthGuard]},
   {path: '', component: HomepageComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'edit', component: EditproComponent},
+  {path: 'edit', component: EditproComponent, canActivate: [AuthGuard]},
   {path: 'joke', component: JokeComponent}
 ];
 
