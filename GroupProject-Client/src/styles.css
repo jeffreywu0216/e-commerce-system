@@ -17,11 +17,3 @@ mat-table, mat-card{
   background-color: white;
   opacity: 0.9;
 }
-
-footer {
-  color: #212121;
-  font-family: 'Open Sans';
-  background-color:	#F5F5F5;
-  text-align: center;
-  margin-top: 15%
-}
