@@ -48,6 +48,6 @@ export class HomepageComponent implements OnInit {
     );
   }
   viewItem(id: number) {
-    this.router.navigate([`buy/item/${id}`]);
+    this.router.navigate([`buy/item/${id}`])  ;
   }
 }

@@ -5,3 +5,10 @@
 .detail-text {
   font-size: 20px;
 }
+
+.comment{
+  flex: 0 0 80%;
+}
+.rating{
+  flex: 0 0 20%;
+}

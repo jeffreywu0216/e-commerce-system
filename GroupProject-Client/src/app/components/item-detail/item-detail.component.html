@@ -1,22 +1,43 @@
-<div class="container">
-  <h2>{{item.productName}}</h2>
+<div class="container" *ngIf="item !== undefined">
+  <h1>{{item.productName}}</h1>
   <br/>
   <div class="row">
     <div class="col-lg-4"><img src="{{item.pictureUrl}}" class="detail-img"/></div>
     <div class="col-lg-6"><p class="detail-text">{{item.description}}</p></div>
     <div class="col-lg-2">
-      <button *ngIf="item.statusId === 1" class="btn btn-info" (click)="addItemToCart(item)">Add To Cart</button>
+      <div class="container">
+        <h4>Price: $ {{item.price}}</h4>
+        <button *ngIf="item.statusId === 1" class="btn btn-info" (click)="addItemToCart(item)">Add To Cart</button>
+      </div>
+      <div>
+        <h3>Seller Information</h3>
+        <p >Name: {{item.sellerId.name}}</p>
+        <p >Email: {{item.sellerId.email}}</p>
+        <p >Phone: {{item.sellerId.phone}}</p>
+      </div>
     </div>
   </div>
 </div>
-<div>
+
+
+<div class="container" >
   <h2>Seller Review</h2>
-  <br/>
-  <mat-list>
-    <mat-list-item *ngFor="let comm of comment">
-      <h3 matLine>{{comm.buyerId.name}}</h3>
-      <p matLine>{{comm.rating}}</p>
-      <p matLine>{{comm.userReview}}</p>
-    </mat-list-item>
-  </mat-list>
+  <div class="example-container mat-elevation-z8" *ngIf="comment.length !== 0">
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="comment">
+        <mat-header-cell *matHeaderCellDef class="comment"> Comment </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="comment">{{row.userReview}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="rating"> Rating </mat-header-cell>
+        <mat-cell *matCellDef="let row" class="rating"> {{row.rating}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+  </div>
+  <h3 *ngIf="comment.length === 0"> No Seller Review</h3>
 </div>
