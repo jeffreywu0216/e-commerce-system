@@ -1,5 +1,5 @@
 body {
-  background-image: url("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapers9.org%2Fwp-content%2Fuploads%2F2015%2F12%2F2015-Christmas-background-hd.jpg&f=1");
+  /* background-image: url("https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwallpapers9.org%2Fwp-content%2Fuploads%2F2015%2F12%2F2015-Christmas-background-hd.jpg&f=1"); */
   line-height: 1.5; 
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -18,12 +18,10 @@ header {
 h1 {
  font-family: 'Play';
 } 
-
-
  
 .example-container{
   font-size: large;
- 
+  left: 50%;
 }
 
 #edit-btn {
@@ -33,7 +31,7 @@ h1 {
   transition: .5s ease;
   top: 14.5%;
   font-family: 'Times New Roman', Times, serif;
-  color: red;
+  color: rgb(0, 132, 255);
   left: 17%;
 }
   
