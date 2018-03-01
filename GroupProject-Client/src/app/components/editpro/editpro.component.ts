@@ -26,7 +26,7 @@ export class EditproComponent implements OnInit {
 
   constructor(private router: Router, private service: UserService, private alert: AlertService,
     private location: Location, private auth: AuthService) {}
-    
+
   ngOnInit() {
     this.service.findUser(this.auth.getUser().id)
       .subscribe(user => {
@@ -45,10 +45,12 @@ export class EditproComponent implements OnInit {
     this.service.updateUser(this.model.name, this.model.email, this.model.password, this.model.phone,
        this.model.street, this.model.city, this.model.state, this.auth.getUser().id)
       .subscribe(err => {
-        this.alert.error("Invalid  Input")
+          this.router.navigate(["profile"])
+
       },
-      rsp => { 
-        this.router.navigate(["profile"]) 
+      rsp => {
+        this.alert.error("Invalid  Input")
+
       });
   }
 }
